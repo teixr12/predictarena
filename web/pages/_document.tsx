@@ -10,13 +10,14 @@ export default function Document() {
         {`@media (prefers-color-scheme: dark) {
             :root {
               color-scheme: dark;
-              background-color: rgb(15 23 41);
+              background-color: rgb(10 14 20);
               color: white;
             }
           }`}
       </style>
       <Head>
-        <link rel="icon" href={ENV_CONFIG.faviconPath} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href={ENV_CONFIG.faviconPath} sizes="any" />
         <Script src="/init-theme.js" strategy="beforeInteractive" />
       </Head>
       <body className="bg-canvas-0 text-ink-1000">

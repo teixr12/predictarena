@@ -1,19 +1,21 @@
-type AboutManifoldProps = {
+type AboutPredictaProps = {
   className?: string
 }
 
-export const AboutManifold = ({ className = '' }: AboutManifoldProps) => {
+export const AboutManifold = ({ className = '' }: AboutPredictaProps) => {
   return (
     <div className={`${className}`}>
       <div className="mb-2">
-        Manifold is the world's largest social prediction market.
+        PREDICTA Arena is the safe simulator that trains you for Kalshi &
+        Polymarket.
       </div>
       <div className="mb-2">
-        Get accurate real-time odds on politics, tech, sports, and more.
+        Practice prediction markets with play money. Build your forecasting
+        skills risk-free.
       </div>
       <div className="mb-2">
-        Or create your own play-money betting market on any question you care
-        about.
+        Track your accuracy, earn your Foresight Portfolio, and prove you're
+        ready for real markets.
       </div>
     </div>
   )

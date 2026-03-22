@@ -714,7 +714,7 @@ function ShareButton(props: {
       return marketAttempt.feedback.map(getFeedbackEmoji).join('')
     })
 
-    const url = `https://manifold.markets/predictle${
+    const url = `https://predictarena.com/predictle${
       username ? referralQuery(username) : ''
     }`
 
@@ -785,7 +785,7 @@ export default function PredictlePage() {
         title="Predictle"
         description="A daily game where you arrange prediction markets by probability."
         url="/predictle"
-        image="https://manifold.markets/predictle-logo.png"
+        image="https://predictarena.com/predictle-logo.png"
       />
       {/* Wrapper needed for iOS absolute positioning */}
       <div

@@ -172,8 +172,8 @@ export const unsubscribe = async (req: Request, res: Response) => {
               <tbody>
               <tr>
                 <td style="width:550px;">
-                  <a href="https://manifold.markets" target="_blank">
-                    <img alt="banner logo" height="auto" src="https://manifold.markets/logo-banner.png"
+                  <a href="https://predictarena.com" target="_blank">
+                    <img alt="banner logo" height="auto" src="https://predictarena.com/logo-banner.png"
                          style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
                          title="" width="550">
                   </a>
@@ -325,8 +325,8 @@ export const unsubscribe = async (req: Request, res: Response) => {
                             <tbody>
                             <tr>
                                 <td style="width:550px;">
-                                    <a href="https://manifold.markets" target="_blank">
-                                        <img alt="banner logo" height="auto" src="https://manifold.markets/logo-banner.png"
+                                    <a href="https://predictarena.com" target="_blank">
+                                        <img alt="banner logo" height="auto" src="https://predictarena.com/logo-banner.png"
                                              style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
                                              title="" width="550">
                                     </a>
@@ -372,7 +372,7 @@ export const unsubscribe = async (req: Request, res: Response) => {
                                         <br/>
                                         <br/>
                     <span>Click
-                    <a href='https://manifold.markets/notifications?tab=settings'>here</a>
+                    <a href='https://predictarena.com/notifications?tab=settings'>here</a>
                        to manage the rest of your notification settings.
                       </span>
                                     </div>

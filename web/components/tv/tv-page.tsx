@@ -32,7 +32,7 @@ export function TVPage(props: {
     return (
       <Page trackPageView="tv page">
         <SEO
-          title="Manifold TV"
+          title="PREDICTA TV"
           description={`${capitalize(
             TRADE_TERM
           )} on live video streams with Manifold TV`}

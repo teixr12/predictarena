@@ -212,15 +212,15 @@ function WhatIsManifoldPage() {
       <Image
         className="h-1/3 w-1/3 place-self-center object-contain"
         src="/logo.svg"
-        alt="Manifold Logo"
+        alt="PREDICTA Arena Logo"
         height={256}
         width={256}
       />
       <div className="to-ink-0mt-3 text-primary-700 mb-6 text-center text-2xl font-normal">
-        Welcome to Manifold!
+        Welcome to PREDICTA Arena!
       </div>
       <div className="mb-4 text-lg">
-        Manifold is a play money prediction market platform.
+        PREDICTA Arena is a play money prediction market platform.
       </div>
       <div className="mb-4 text-lg">
         Bet on politics, tech, sports, and more. Your {TRADE_TERM}s contribute
@@ -303,7 +303,7 @@ function PredictionMarketPage() {
       <Image
         src="/welcome/manifold-example.gif"
         className="my-4 h-full w-full max-w-xl self-center object-contain"
-        alt={'Manifold example animation'}
+        alt={'PREDICTA Arena example animation'}
         width={200}
         height={100}
       />

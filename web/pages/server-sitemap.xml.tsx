@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const score = (index: number) => (1 - index / 1000) * 0.3 + 0.4
 
   const fields = contracts.map((market, i) => ({
-    loc: `https://manifold.markets/${market.creatorUsername}/${market.slug}`,
+    loc: `https://predictarena.com/${market.creatorUsername}/${market.slug}`,
     changefreq: market.volume24Hours > 10 ? 'hourly' : 'daily',
     priority: score(i),
     lastmod: new Date(market.lastUpdatedTime ?? 0).toISOString(),

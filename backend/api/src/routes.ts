@@ -209,6 +209,7 @@ import { getSportsGames } from './get-sports-games'
 import { getSuspectedSpamComments } from './get-suspected-spam-comments'
 import { getUserAchievements } from './get-user-achievements'
 import { getUserCalibration } from './get-user-calibration'
+import { getAiMarketHint } from './get-ai-market-hint'
 import { getUserContractMetricsWithContracts } from './get-user-contract-metrics-with-contracts'
 import { getUserLastActiveTime } from './get-user-last-active-time'
 import { inferNumericUnit } from './infer-numeric-unit'
@@ -456,6 +457,7 @@ export const handlers: { [k in APIPath]: APIHandler<k> } = {
   'get-user-last-active-time': getUserLastActiveTime,
   'get-user-achievements': getUserAchievements,
   'get-user-calibration': getUserCalibration,
+  'get-ai-market-hint': getAiMarketHint,
   'get-monthly-bets-2025': getmonthlybets2025,
   'get-max-min-profit-2025': getmaxminprofit2025,
   'get-pending-clarifications': getPendingClarifications,

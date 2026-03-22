@@ -885,7 +885,7 @@ function SignupBonusNotification(props: {
   const { sourceText } = notification
   const text = (
     <span>
-      Thanks for using Manifold! We sent you{' '}
+      Thanks for using PREDICTA Arena! We sent you{' '}
       <span className={'text-teal-500'}>
         {formatMoney(parseInt(sourceText ?? ''))}
       </span>{' '}
@@ -2151,7 +2151,7 @@ function AirdropNotification(props: {
     >
       Congratulations! You just received{' '}
       <span className="font-semibold">{formatMoney(amount)}</span>as a gift from
-      Manifold for being active for 30 days this year!
+      PREDICTA Arena for being active for 30 days this year!
     </NotificationFrame>
   )
 }
@@ -2201,7 +2201,7 @@ function ExtraPurchasedManaNotification(props: {
     >
       Thank you for buying mana in 2024! You just received{' '}
       <span className="font-semibold">{formatMoney(amount)}</span>, which is 9
-      times what you purchased, as a gift from Manifold!
+      times what you purchased, as a gift from PREDICTA Arena!
     </NotificationFrame>
   )
 }

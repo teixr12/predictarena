@@ -122,8 +122,8 @@ export function AuthProvider(props: {
         authUser.user.userDeleted
       ) {
         const message = authUser.user.userDeleted
-          ? 'You have deleted the account associated with this email. To restore your account please email info@manifold.markets'
-          : 'You are banned from trading. To learn more please email info@manifold.markets'
+          ? 'You have deleted the account associated with this email. To restore your account please email support@predictarena.com'
+          : 'You are banned from trading. To learn more please email support@predictarena.com'
 
         firebaseLogout().then(() => {
           alert(message)

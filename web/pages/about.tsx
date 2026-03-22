@@ -1,105 +1,110 @@
-import { TRADE_TERM } from 'common/envs/constants'
 import {
   ChartBarIcon,
   LightBulbIcon,
   ShieldCheckIcon,
+  AcademicCapIcon,
 } from '@heroicons/react/outline'
-import { capitalize } from 'lodash'
-import { AboutManifold } from 'web/components/about-manifold'
-import { ExplainerPanel } from 'web/components/explainer-panel'
 import { Col } from 'web/components/layout/col'
 import { Row } from 'web/components/layout/row'
 import { Page } from 'web/components/layout/page'
-import { ManifoldLogo } from 'web/components/nav/manifold-logo'
 import { SEO } from 'web/components/SEO'
 import { Title } from 'web/components/widgets/title'
-import { LabCard } from './lab'
-import { Socials } from 'web/components/socials'
+import { LogoIcon } from 'web/components/icons/logo-icon'
+import Link from 'next/link'
 
 export default function AboutPage() {
   return (
     <Page trackPageView={'about page'} className="!col-span-7">
       <SEO
-        title="About"
-        description={`Manifold is a prediction market platform. Users place ${TRADE_TERM}s on an upcoming event which creates a probability of how likely it will happen. ${capitalize(
-          TRADE_TERM
-        )} on current events, politics, tech, & AI with play money. Or create your own prediction market for others to trade on!`}
+        title="About PREDICTA Arena"
+        description="PREDICTA Arena is a play-money prediction market training platform. Practice forecasting risk-free, build your track record, and bridge to real-money platforms like Kalshi and Polymarket."
+        url="/about"
       />
 
-      <Col className="mx-auto w-full max-w-3xl p-4">
-        <Title className="hidden sm:flex">About</Title>
-        <ManifoldLogo className="mb-4 flex sm:hidden" />
-        <Col className="gap-4">
-          <div>
-            <AboutManifold className="text-lg" />
-          </div>
+      <Col className="mx-auto w-full max-w-3xl gap-8 p-4">
+        {/* Header */}
+        <Row className="items-center gap-3">
+          <LogoIcon className="text-primary-400 h-8 w-8 sm:hidden" />
+          <Title className="mb-0">About PREDICTA Arena</Title>
+        </Row>
 
-          <ExplainerPanel className={'max-w-full'} showWhatIsManifold={false} />
-
-          <div>
-            <h2 className={'text-ink-600 mb-2 text-xl'}>Intro video</h2>
-            <div className="mb-1 text-lg">
-              Everything you need to know in 7 minutes presented by an animated
-              corgi:
-            </div>
-            <iframe
-              src="https://www.youtube.com/embed/DB5TfX7eaVY?start=9"
-              className="mb-4 h-80 w-full max-w-2xl"
-            ></iframe>
-          </div>
-
-          <div>
-            <h2 className={'text-ink-600 mb-4 text-xl'}>Our mission</h2>
-            <Col className="gap-3">
-              <MissionItem
-                icon={<ChartBarIcon className="h-5 w-5" />}
-                text="Provide the most accurate, real-time predictions on any event."
-              />
-              <MissionItem
-                icon={<ShieldCheckIcon className="h-5 w-5" />}
-                text="Combat misleading news by incentivising traders to be fast and correct."
-              />
-              <MissionItem
-                icon={<LightBulbIcon className="h-5 w-5" />}
-                text="Help people make more informed decisions by improving their model of the future."
-              />
-            </Col>
-          </div>
-
-          <Socials className="my-2" />
-
-          <div>
-            <h2 className={'text-ink-600 mb-2 text-xl'}>
-              Still have questions?
-            </h2>
-
-            <div className="mt-4 grid gap-x-2 md:grid-cols-3">
-              <LabCard
-                title="FAQ"
-                href="https://docs.manifold.markets/faq"
-                target="_blank"
-                description="Answers to common questions"
-              />
-
-              <LabCard
-                title="Community guidelines"
-                href="https://manifoldmarkets.notion.site/New-WIP-Community-Guidelines-2b986d33f0c646478d4921667c272f21"
-                target="_blank"
-                description="Rules, norms, and expectations"
-              />
-
-              <LabCard
-                title="Sitemap"
-                href="/sitemap"
-                description="I can't find something"
-              />
-            </div>
-            <div className="text-lg">
-              If you need help with a specific market please tag @mods in a
-              comment for help!
-            </div>
-          </div>
+        {/* Mission */}
+        <Col className="gap-3">
+          <p className="text-ink-700 text-lg leading-relaxed">
+            PREDICTA Arena is a <strong>play-money prediction market
+            training platform</strong>. We give you 500 free credits to trade
+            on real-world events — politics, economics, technology, sports —
+            with zero financial risk.
+          </p>
+          <p className="text-ink-600 text-lg leading-relaxed">
+            Once you've built a track record, your{' '}
+            <Link href="/foresight-portfolio" className="text-primary-400 hover:underline">
+              Foresight Portfolio
+            </Link>{' '}
+            shows your Kalshi Readiness Rating, accuracy, and top predictions —
+            proof of skill you can take to real-money platforms like{' '}
+            <strong>Kalshi</strong> and <strong>Polymarket</strong>.
+          </p>
         </Col>
+
+        {/* Mission items */}
+        <div>
+          <h2 className="text-ink-600 mb-4 text-xl font-semibold">Our mission</h2>
+          <Col className="gap-3">
+            <MissionItem
+              icon={<ChartBarIcon className="h-5 w-5" />}
+              text="Make forecasting skills accessible — practice the same mechanics used by professional traders, risk-free."
+            />
+            <MissionItem
+              icon={<AcademicCapIcon className="h-5 w-5" />}
+              text="Bridge the gap between curiosity and real-money prediction markets with structured training and credentialing."
+            />
+            <MissionItem
+              icon={<ShieldCheckIcon className="h-5 w-5" />}
+              text="Build calibrated forecasters who understand probability, not just gut-feeling bettors."
+            />
+            <MissionItem
+              icon={<LightBulbIcon className="h-5 w-5" />}
+              text="Help people make better decisions by improving their model of how the future unfolds."
+            />
+          </Col>
+        </div>
+
+        {/* Built on open source */}
+        <div className="bg-canvas-50 border-ink-200 rounded-xl border p-5">
+          <h2 className="text-ink-700 mb-2 text-lg font-semibold">Built on open source</h2>
+          <p className="text-ink-500 text-sm leading-relaxed">
+            PREDICTA Arena is built on top of{' '}
+            <a
+              href="https://github.com/manifoldmarkets/manifold"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-400 hover:underline"
+            >
+              Manifold Markets
+            </a>
+            , an open-source prediction market platform. We are grateful to the
+            Manifold team for building the infrastructure that makes PREDICTA
+            Arena possible.
+          </p>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h2 className="text-ink-600 mb-3 text-xl font-semibold">
+            Questions or feedback?
+          </h2>
+          <p className="text-ink-600 text-lg">
+            Email us at{' '}
+            <a
+              href="mailto:support@predictarena.com"
+              className="text-primary-400 hover:underline"
+            >
+              support@predictarena.com
+            </a>
+            . We read every message.
+          </p>
+        </div>
       </Col>
     </Page>
   )

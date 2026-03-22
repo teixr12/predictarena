@@ -65,10 +65,10 @@ const WhatIsManifold = ({
   <ExpandSection
     title={
       <>
-        <GoGraph className="mr-2  " /> What is Manifold?
+        <GoGraph className="mr-2  " /> What is PREDICTA Arena?
       </>
     }
-    onClick={() => onClick('What is Manifold?')}
+    onClick={() => onClick('What is PREDICTA Arena?')}
   >
     <AboutManifold />
   </ExpandSection>
@@ -84,11 +84,11 @@ const Accuracy = ({ onClick }: { onClick: (sectionTitle: string) => void }) => (
     onClick={() => onClick('Are our forecasts accurate?')}
   >
     <div className="pb-2">
-      Yes! Manifold is{' '}
+      Yes! PREDICTA Arena is{' '}
       <a
         className="text-primary-700 hover:underline"
         target="_blank"
-        href="https://manifold.markets/calibration"
+        href="https://predictarena.com/calibration"
       >
         very well calibrated
       </a>
@@ -106,7 +106,7 @@ const Accuracy = ({ onClick }: { onClick: (sectionTitle: string) => void }) => (
         outperformed all other prediction market platforms {''}
       </a>
       and were in line with FiveThirtyEight’s performance. Many people who don't
-      like {TRADING_TERM} still use Manifold to get reliable news.
+      like {TRADING_TERM} still use PREDICTA Arena to get reliable news.
     </div>
     <div></div>
   </ExpandSection>
@@ -127,8 +127,8 @@ const PlayMoney = ({
     onClick={() => onClick('Why play money?')}
   >
     <div className="pb-2">
-      Mana ({ENV_CONFIG.moneyMoniker}) is the play-money currency used to bet on
-      Manifold. It cannot be converted to cash. All users start with{' '}
+      Credits ({ENV_CONFIG.moneyMoniker}) is the play-money currency used to predict on
+      PREDICTA Arena. They cannot be converted to cash. All users start with{' '}
       {formatMoney(1000)} for free.
     </div>
     <div className="pb-2">

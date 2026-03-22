@@ -49,5 +49,5 @@ export const DisplayLink = TiptapLink.extend({
 const isInternal = (href: string) =>
   href.startsWith('/') ||
   href.startsWith('#') ||
-  href.includes('manifold.markets') ||
+  href.includes('predictarena.com') ||
   href.includes('localhost')

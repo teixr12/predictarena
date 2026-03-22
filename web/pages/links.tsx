@@ -65,13 +65,13 @@ export default function LinkPage(props: {
   return (
     <Page trackPageView={'manalinks page'}>
       <SEO
-        title="Manalinks"
-        description="Send mana to others with a link, even if they don't have a Manifold account yet!"
+        title="Credit Links"
+        description="Send credits to others with a link, even if they don't have a PREDICTA Arena account yet!"
         url="/links"
       />
       <Col className="mt-6 w-full px-8">
         <Row className="items-start justify-between">
-          <Title>Manalinks</Title>
+          <Title>Credit Links</Title>
           {user && isAdminId(user.id) && (
             <CreateLinksButton
               user={user}
@@ -81,13 +81,13 @@ export default function LinkPage(props: {
           )}
         </Row>
         <p>
-          Manalinks can send mana ({ENV_CONFIG.moneyMoniker}) to other people,
-          even if they don&apos;t yet have a Manifold account. As of April 2024
-          only the Manifold team can create new manalinks.
+          Credit Links can send credits ({ENV_CONFIG.moneyMoniker}) to other people,
+          even if they don&apos;t yet have a PREDICTA Arena account. As of April 2024
+          only the PREDICTA Arena team can create new credit links.
         </p>
 
         <Row className="items-baseline justify-between">
-          <Subtitle>Your Manalinks</Subtitle>
+          <Subtitle>Your Credit Links</Subtitle>
           <Row className="text-ink-500 items-center gap-4 text-sm">
             Show claimed links
             <ShortToggle on={showDisabled} setOn={setShowDisabled} />

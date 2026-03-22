@@ -30,10 +30,10 @@ import { getCurrentPortfolio } from 'common/supabase/portfolio-metrics'
 import Link from 'next/link'
 
 const LEADERBOARD_TYPES = [
-  { name: 'Profit', value: 'profit' },
-  { name: 'Loss', value: 'loss' },
-  { name: 'Volume', value: 'volume' },
-  { name: 'Creators', value: 'creator' },
+  { name: 'Top Forecasters', value: 'profit' },
+  { name: 'Biggest Losses', value: 'loss' },
+  { name: 'Most Active', value: 'volume' },
+  { name: 'Market Creators', value: 'creator' },
   { name: 'Referrals', value: 'referral' },
 ] as const
 
@@ -181,7 +181,7 @@ export default function Leaderboards() {
     <Page trackPageView={'leaderboards'}>
       <SEO
         title="Leaderboards"
-        description={`Manifold's leaderboards show the top ${BETTORS}, question creators, and referrers.`}
+        description={`PREDICTA Arena's leaderboards show the top ${BETTORS}, question creators, and referrers.`}
         url="/leaderboards"
       />
 
@@ -200,7 +200,7 @@ export default function Leaderboards() {
             </Link>
           </Row>
           <p className="text-ink-500 text-sm">
-            All-time top traders on Manifold
+            All-time top traders on PREDICTA Arena
           </p>
         </Col>
 

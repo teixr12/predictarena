@@ -340,7 +340,7 @@ export const getUserByUsername = async (
 }
 
 export function contractUrl(contract: Contract) {
-  return `https://manifold.markets${contractPath(contract)}`
+  return `https://predictarena.com${contractPath(contract)}`
 }
 
 export async function getTrendingContractsToEmail() {

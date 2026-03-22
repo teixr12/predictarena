@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://manifold.markets
+Host: https://predictarena.com
 
 # Sitemaps
-Sitemap: https://manifold.markets/server-sitemap.xml
-Sitemap: https://manifold.markets/sitemap.xml
+Sitemap: https://predictarena.com/server-sitemap.xml
+Sitemap: https://predictarena.com/sitemap.xml

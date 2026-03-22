@@ -20,7 +20,7 @@ export default function CalculatorPage() {
     <Page trackPageView={'calculator'}>
       <SEO
         title="Manaswap Calculator"
-        description="Calculate your betting odds on Manifold"
+        description="Calculate your betting odds on PREDICTA Arena"
         url="/calculator"
       />
       <Calculator />

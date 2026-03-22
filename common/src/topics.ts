@@ -179,7 +179,7 @@ export const SEARCH_TOPICS_TO_SUBTOPICS: { [key: string]: TopicInfo[] } = {
       ],
     },
     {
-      name: '🌐 Manifold',
+      name: '🌐 PREDICTA Arena',
       groupIds: ['hzyCW27Hf9NzuXZRizeZ'],
     },
     {

@@ -16,13 +16,13 @@ export const QUEST_DETAILS: Record<
 > = {
   BETTING_STREAK: {
     requiredCount: 1,
-    rewardAmount: 25,
+    rewardAmount: 50,
     scoreId: 'currentBettingStreak',
-    title: 'Prediction Streak',
+    title: 'Daily Prediction',
   },
   SHARES: {
     requiredCount: 1,
-    rewardAmount: 5,
+    rewardAmount: 10,
     scoreId: 'sharesToday',
     title: 'Sharing',
   },
@@ -30,7 +30,7 @@ export const QUEST_DETAILS: Record<
     requiredCount: 1,
     rewardAmount: 100,
     scoreId: 'marketsCreatedThisWeek',
-    title: 'Question Creation',
+    title: 'Market Creation',
   },
 }
 export const QUEST_SCORE_IDS = QUEST_TYPES.map((t) => QUEST_DETAILS[t].scoreId)

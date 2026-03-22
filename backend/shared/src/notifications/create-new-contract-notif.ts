@@ -101,6 +101,6 @@ export const createNewContractNotification = async (
     `${contractCreator.name} asked ${contract.question}`,
     'new-market-followed-user-bulk',
     bulkEmails,
-    `${contractCreator.name} on Manifold <no-reply@manifold.markets>`
+    `${contractCreator.name} on PREDICTA Arena <noreply@predictarena.com>`
   )
 }

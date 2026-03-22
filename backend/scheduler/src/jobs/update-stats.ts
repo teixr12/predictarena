@@ -22,8 +22,8 @@ import {
 import { bulkUpsert } from 'shared/supabase/utils'
 import { saveCalibrationData } from 'shared/calculate-calibration'
 import {
-  MANA_PURCHASE_RATE_CHANGE_DATE,
-  MANA_PURCHASE_RATE_REVERT_DATE,
+  CREDITS_PURCHASE_RATE_CHANGE_DATE,
+  CREDITS_PURCHASE_RATE_REVERT_DATE,
 } from 'common/envs/constants'
 import {
   updateTxnStats,
@@ -538,8 +538,8 @@ async function updateDailySales(
     [
       start,
       end,
-      MANA_PURCHASE_RATE_CHANGE_DATE.toISOString(),
-      MANA_PURCHASE_RATE_REVERT_DATE.toISOString(),
+      CREDITS_PURCHASE_RATE_CHANGE_DATE.toISOString(),
+      CREDITS_PURCHASE_RATE_REVERT_DATE.toISOString(),
     ]
   )
 

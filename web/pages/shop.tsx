@@ -69,7 +69,7 @@ import { Col } from 'web/components/layout/col'
 import { Modal } from 'web/components/layout/modal'
 import { Page } from 'web/components/layout/page'
 import { Row } from 'web/components/layout/row'
-import { SPEND_MANA_ENABLED } from 'web/components/nav/sidebar'
+import { SPEND_CREDITS_ENABLED } from 'web/components/nav/sidebar'
 import { SEO } from 'web/components/SEO'
 import {
   Avatar,
@@ -296,7 +296,7 @@ export default function ShopPage() {
   }, [user?.streakForgiveness])
 
   // Allow admins to access shop for testing even when feature flag is off
-  if (!SPEND_MANA_ENABLED && !isAdminOrMod) {
+  if (!SPEND_CREDITS_ENABLED && !isAdminOrMod) {
     return <Custom404 />
   }
 
@@ -530,7 +530,7 @@ export default function ShopPage() {
     <Page trackPageView="shop page" className="p-3">
       <SEO
         title="Shop"
-        description="Spend your mana in the Manifold shop"
+        description="Spend your mana in the PREDICTA Arena shop"
         url="/shop"
       />
       {/* Confetti on purchase */}
@@ -1133,7 +1133,7 @@ function MerchItemCard(props: {
             <p className="text-blue-700 dark:text-blue-300">
               After confirming, you'll enter your shipping address. Your address
               is sent directly to our fulfillment partner and{' '}
-              <strong>not stored</strong> by Manifold.
+              <strong>not stored</strong> by PREDICTA Arena.
             </p>
           </div>
 
@@ -1154,7 +1154,7 @@ function MerchItemCard(props: {
           <div className="text-lg font-semibold">Shipping Address</div>
           <p className="text-ink-500 text-sm">
             Enter your shipping details. This info is sent directly to our
-            fulfillment partner and not stored by Manifold.
+            fulfillment partner and not stored by PREDICTA Arena.
           </p>
 
           <Col className="gap-3">
@@ -1620,7 +1620,7 @@ function SupporterCard(props: {
                     filter: 'drop-shadow(0 0 3px rgba(245, 158, 11, 0.5))',
                   }}
                 />
-                <span className="text-xl font-bold">Manifold Membership</span>
+                <span className="text-xl font-bold">PREDICTA Arena Membership</span>
               </Row>
               <p className="text-ink-600 text-sm">Unlock premium benefits</p>
             </Col>
@@ -1685,7 +1685,7 @@ function SupporterCard(props: {
                         SUPPORTER_TIERS[hoveredTier].textColor
                       )}
                     >
-                      Manifold {SUPPORTER_TIERS[hoveredTier].name}
+                      PREDICTA Arena {SUPPORTER_TIERS[hoveredTier].name}
                     </span>
                   ) : isSupporter ? (
                     <span
@@ -1694,7 +1694,7 @@ function SupporterCard(props: {
                         SUPPORTER_TIERS[currentTier].textColor
                       )}
                     >
-                      Manifold {SUPPORTER_TIERS[currentTier].name}
+                      PREDICTA Arena {SUPPORTER_TIERS[currentTier].name}
                     </span>
                   ) : (
                     <span className="text-ink-500 text-sm">
@@ -2064,7 +2064,7 @@ function SupporterModal(props: {
                           SUPPORTER_TIERS[activeTier].textColor
                         )}
                       >
-                        Manifold {SUPPORTER_TIERS[activeTier].name}
+                        PREDICTA Arena {SUPPORTER_TIERS[activeTier].name}
                       </span>
                       {currentEntitlement?.grantedTime && (
                         <span className="text-ink-400 text-xs">
@@ -2132,7 +2132,7 @@ function SupporterModal(props: {
                           SUPPORTER_TIERS[activeTier].textColor
                         )}
                       >
-                        Manifold {SUPPORTER_TIERS[activeTier].name}
+                        PREDICTA Arena {SUPPORTER_TIERS[activeTier].name}
                       </span>
                     </Col>
                   </Row>
@@ -2140,7 +2140,7 @@ function SupporterModal(props: {
                   {/* Right: Tagline - hidden on small screens */}
                   <Col className="hidden items-end gap-0.5 sm:flex">
                     <span className="text-ink-600 text-sm font-medium">
-                      Manifold Membership
+                      PREDICTA Arena Membership
                     </span>
                     <span className="text-ink-500 text-xs">
                       Unlock premium benefits

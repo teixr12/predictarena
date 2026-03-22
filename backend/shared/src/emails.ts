@@ -218,14 +218,14 @@ export const sendWelcomeEmail = async (
 
   return await sendTemplateEmail(
     privateUser.email,
-    'Welcome to Manifold!',
+    'Welcome to PREDICTA Arena!',
     'welcome',
     {
       name: firstName,
       unsubscribeUrl,
     },
     {
-      from: 'Stefanie from Manifold <stefanie@manifold.markets>',
+      from: 'PREDICTA Arena <noreply@predictarena.com>',
       'o:deliverytime': new Date(Date.now() + 2 * HOUR_MS).toUTCString(),
     }
   )
@@ -238,12 +238,12 @@ export const sendBulkEmails = async (
   subject: string,
   template: string,
   recipients: EmailAndTemplateEntry[],
-  from = `Manifold <no-reply@manifold.markets>`
+  from = `PREDICTA Arena <noreply@predictarena.com>`
 ) => {
   // Mailgun has a limit of 1000 recipients per batch
   const emailChunks = chunk(recipients, 1000)
   for (const chunk of emailChunks) {
-    const mailgunDomain = 'mg.manifold.markets'
+    const mailgunDomain = process.env.MAILGUN_DOMAIN ?? 'mg.predictarena.com'
     const mailgunApiKey = process.env.MAILGUN_KEY as string
     const url = `https://api.mailgun.net/v3/${mailgunDomain}/messages`
     const data = new URLSearchParams()
@@ -289,25 +289,24 @@ export const sendPersonalFollowupEmail = async (
 
   const emailBody = `Hi ${firstName},
 
-Thanks for signing up! I'm one of the cofounders of Manifold, and was wondering how you've found your experience on the platform so far?
+Thanks for signing up! We'd love to know how you've found your experience on PREDICTA Arena so far?
 
-If you haven't already, I encourage you to try creating your own prediction market (https://manifold.markets/create) and joining our Discord chat (https://discord.com/invite/eHQBNBqXuh).
+If you haven't already, try creating your own prediction market (https://predictarena.com/create) and exploring the Kalshi Prep section to start training for real-money platforms.
 
-Feel free to reply to this email with any questions or concerns you have.
+Feel free to reply to this email with any questions or feedback.
 
 Cheers,
 
-James
-Cofounder of Manifold
-https://manifold.markets
+The PREDICTA Arena Team
+https://predictarena.com
  `
 
   await sendTextEmail(
     privateUser.email,
-    'How are you finding Manifold?',
+    'How are you finding PREDICTA Arena?',
     emailBody,
     {
-      from: 'James from Manifold <james@manifold.markets>',
+      from: 'PREDICTA Arena <noreply@predictarena.com>',
       'o:deliverytime': sendTime,
     }
   )
@@ -335,7 +334,7 @@ export const sendCreatorGuideEmail = async (
       unsubscribeUrl,
     },
     {
-      from: 'Stefanie from Manifold <stefanie@manifold.markets>',
+      from: 'PREDICTA Arena <noreply@predictarena.com>',
     }
   )
 }
@@ -357,14 +356,14 @@ export const sendUnactivatedNewUserEmail = async (
   if (!sendToEmail) return
   return await sendTemplateEmail(
     privateUser.email,
-    `Help improve Manifold + win $100 Amazon gift card`,
+    `Help improve PREDICTA Arena + win $100 Amazon gift card`,
     templateId,
     {
       name: firstName,
       unsubscribeUrl,
     },
     {
-      from: 'Ian from Manifold <ian@manifold.markets>',
+      from: 'PREDICTA Arena <noreply@predictarena.com>',
     }
   )
 }
@@ -385,14 +384,14 @@ export const sendThankYouEmail = async (
   if (!sendToEmail) return
   return await sendTemplateEmail(
     privateUser.email,
-    'Thanks for your Manifold purchase',
+    'Thanks for your PREDICTA Arena purchase',
     'thank-you',
     {
       name: firstName,
       unsubscribeUrl,
     },
     {
-      from: 'Stefanie from Manifold <stefanie@manifold.markets>',
+      from: 'PREDICTA Arena <noreply@predictarena.com>',
     }
   )
 }
@@ -500,7 +499,7 @@ export const sendNewAnswerEmail = async (
   const marketUrl = `https://${DOMAIN}/${creatorUsername}/${slug}`
 
   const subject = `New answer on ${question}`
-  const from = `${name} <info@manifold.markets>`
+  const from = `${name} <noreply@predictarena.com>`
 
   return await sendTemplateEmail(
     privateUser.email,
@@ -539,7 +538,7 @@ export const sendInterestingMarketsEmail = async (
 
   await sendTemplateEmail(
     privateUser.email,
-    `${contractsToSend[0].question} & 5 more interesting markets on Manifold`,
+    `${contractsToSend[0].question} & 5 more interesting markets on PREDICTA Arena`,
     'interesting-markets',
     {
       name: firstName,
@@ -588,7 +587,7 @@ export const sendBonusWithInterestingMarketsEmail = async (
 
   await sendTemplateEmail(
     privateUser.email,
-    `Interesting questions on Manifold + ${bonusAmount} bonus mana`,
+    `Interesting questions on PREDICTA Arena + ${bonusAmount} bonus credits`,
     'signup-bonus-with-interesting-markets',
     {
       name: firstName,
@@ -684,7 +683,7 @@ export const sendNewPrivateMarketEmail = async (
       groupName,
     },
     {
-      from: `${creatorName} on Manifold <no-reply@manifold.markets>`,
+      from: `${creatorName} on PREDICTA Arena <noreply@predictarena.com>`,
     }
   )
 }
@@ -746,7 +745,7 @@ export const sendNewUniqueBettorsEmail = async (
     'new-unique-traders',
     templateData,
     {
-      from: `Manifold <no-reply@manifold.markets>`,
+      from: `PREDICTA Arena <noreply@predictarena.com>`,
     }
   )
 }

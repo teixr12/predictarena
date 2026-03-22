@@ -23,7 +23,7 @@ const embedPatterns: EmbedPattern[] = [
     regex: /^https?:\/\/manifold\.markets\/([^\/]+\/[^\/]+)/,
     // regex: /^http?:\/\/localhost:3000\/([^\/]+\/[^\/]+)/,
     rewrite: (slug) =>
-      `<iframe src="https://manifold.markets/embed/${slug}"></iframe>`,
+      `<iframe src="https://predictarena.com/embed/${slug}"></iframe>`,
     // `<iframe src="http://localhost:3000/embed/${slug}"></iframe>`,
   },
   {

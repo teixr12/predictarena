@@ -216,7 +216,7 @@ export const RegisterUserForm = (props: {
                   <CheckCircleIcon className="h-6 w-6" />
                 </span>
                 <span>
-                  Manifold uses a verification platform to validate your name,
+                  PREDICTA Arena uses a verification platform to validate your name,
                   phone number, birthday, and address.
                 </span>
               </Row>

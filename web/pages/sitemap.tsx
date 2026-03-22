@@ -44,7 +44,7 @@ export default function SitemapPage() {
     <Page trackPageView={'sitemap page'}>
       <SEO
         title="Sitemap"
-        description={`Manifold is a social prediction game. ${capitalize(
+        description={`PREDICTA Arena is a social prediction game. ${capitalize(
           TRADE_TERM
         )} on news, politics, tech, & AI with play money. Or create your own prediction market.`}
       />
@@ -62,7 +62,7 @@ export default function SitemapPage() {
                 Sitemap
               </h1>
               <p className="text-ink-500 mt-0.5 text-sm">
-                Navigate to any part of Manifold
+                Navigate to any part of PREDICTA Arena
               </p>
             </div>
           </Row>
@@ -180,12 +180,12 @@ export default function SitemapPage() {
         {/* Information Resources Section */}
         <SitemapSection
           title="Information & Resources"
-          subtitle="Learn how Manifold works"
+          subtitle="Learn how PREDICTA Arena works"
           className="mb-8"
         >
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <SitemapLink
-              title="About Manifold"
+              title="About PREDICTA Arena"
               description="Learn what we're all about"
               href="/about"
               icon={InformationCircleIcon}
@@ -200,7 +200,7 @@ export default function SitemapPage() {
             <SitemapLink
               title="FAQ"
               description="Frequently asked questions"
-              href="https://docs.manifold.markets/faq"
+              href="https://docs.predictarena.com/faq"
               external
               icon={QuestionMarkCircleIcon}
             />
@@ -213,7 +213,7 @@ export default function SitemapPage() {
             <SitemapLink
               title="API documentation"
               description="Build with our API"
-              href="https://docs.manifold.markets/api"
+              href="https://docs.predictarena.com/api"
               external
               icon={CodeIcon}
             />
@@ -254,7 +254,7 @@ export default function SitemapPage() {
               icon={HeartIcon}
             />
             <SitemapLink
-              title="Manifold.love"
+              title="Forecaster Love"
               description="Dating prediction markets"
               href="https://manifold.love"
               external

@@ -100,7 +100,7 @@ export async function sendUnseenMarketMovementNotifications() {
 
           return {
             questionTitle: question!,
-            questionUrl: `https://manifold.markets/${creatorUsername}/${slug}`,
+            questionUrl: `https://predictarena.com/${creatorUsername}/${slug}`,
             prob: `${Math.round(endProb * 100)}%`,
             probChangeStyle: endProb > startProb ? greenBg : redBg,
             startProb,

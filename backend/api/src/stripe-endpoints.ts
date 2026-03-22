@@ -16,7 +16,13 @@ import { addHouseSubsidy } from 'shared/helpers/add-house-subsidy'
 import { runTxnInBetQueue } from 'shared/txn/run-txn'
 import { createSupabaseDirectClient } from 'shared/supabase/init'
 import { updateUser } from 'shared/supabase/users'
-import { WEB_PRICES } from 'common/economy'
+import {
+  WEB_PRICES,
+  DEV_PRO_SUBSCRIPTION_STRIPE_PRICE_ID,
+  PROD_PRO_SUBSCRIPTION_STRIPE_PRICE_ID,
+  DEV_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID,
+  PROD_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID,
+} from 'common/economy'
 import { getContract } from 'shared/utils'
 import { boostContractImmediately } from 'shared/supabase/contracts'
 import { getPost } from 'shared/supabase/posts'
@@ -30,6 +36,8 @@ export type StripeSession = Stripe.Event.Data.Object & {
     boostId?: string
     contractId?: string
     postId?: string
+    subscriptionTier?: string
+    entitlementId?: string
   }
 }
 
@@ -71,7 +79,7 @@ export const createcheckoutsession = async (req: Request, res: Response) => {
   const priceId = isProd() ? price.prodStripeId : price.devStripeId
 
   const referrer =
-    req.query.referer || req.headers.referer || 'https://manifold.markets'
+    req.query.referer || req.headers.referer || 'https://predictarena.com'
 
   const stripe = initStripe()
   const session = await stripe.checkout.sessions.create({
@@ -117,9 +125,17 @@ export const stripewebhook = async (req: Request, res: Response) => {
       (session.metadata.contractId || session.metadata.postId)
     ) {
       await handleBoostPayment(session)
+    } else if (session.metadata.subscriptionTier) {
+      await handleSubscriptionCheckout(session)
     } else {
       await issueMoneys(session)
     }
+  } else if (
+    event.type === 'customer.subscription.deleted' ||
+    event.type === 'customer.subscription.updated'
+  ) {
+    const subscription = event.data.object as Stripe.Subscription
+    await handleSubscriptionChange(subscription, event.type)
   }
 
   res.status(200).send('success')
@@ -222,6 +238,62 @@ const issueMoneys = async (session: StripeSession) => {
   }
 }
 
+// Grants a supporter entitlement when a subscription checkout completes
+const handleSubscriptionCheckout = async (session: StripeSession) => {
+  const { userId, entitlementId } = session.metadata
+  if (!userId || !entitlementId) {
+    log.error('Missing userId or entitlementId in subscription checkout metadata')
+    return
+  }
+
+  log(`Granting subscription entitlement ${entitlementId} to user ${userId}`)
+  const pg = createSupabaseDirectClient()
+
+  const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000
+  const expiresTime = new Date(Date.now() + THIRTY_DAYS_MS)
+
+  // Remove any existing supporter entitlements and grant the new one
+  // Also tag the subscription with userId so future webhook events can find the user
+  const subscriptionId = (session as any).subscription
+  if (subscriptionId) {
+    try {
+      const stripe = initStripe()
+      await stripe.subscriptions.update(subscriptionId, {
+        metadata: { userId },
+      })
+    } catch (e) {
+      log(`Warning: could not tag subscription ${subscriptionId} with userId: ${e}`)
+    }
+  }
+
+  await pg.tx(async (tx) => {
+    await tx.none(
+      `DELETE FROM user_entitlements
+       WHERE user_id = $1
+       AND entitlement_id IN ('supporter-basic', 'supporter-plus', 'supporter-premium')`,
+      [userId]
+    )
+    await tx.none(
+      `INSERT INTO user_entitlements (user_id, entitlement_id, expires_time, enabled, auto_renew, stripe_managed)
+       VALUES ($1, $2, $3, true, true, true)
+       ON CONFLICT (user_id, entitlement_id) DO UPDATE SET
+         expires_time = EXCLUDED.expires_time,
+         enabled = true,
+         auto_renew = true,
+         stripe_managed = true`,
+      [userId, entitlementId, expiresTime]
+    )
+  })
+
+  log(`Successfully granted ${entitlementId} to user ${userId} until ${expiresTime.toISOString()}`)
+
+  // Track the subscription purchase event
+  await trackPublicEvent(userId, 'subscription purchase', {
+    entitlementId,
+    sessionId: session.id,
+  })
+}
+
 const handleBoostPayment = async (session: StripeSession) => {
   const { boostId, contractId, postId, userId } = session.metadata
   if (!boostId || (!contractId && !postId) || !userId) {
@@ -294,4 +366,113 @@ const handleBoostPayment = async (session: StripeSession) => {
   )
 }
 
+const handleSubscriptionChange = async (
+  subscription: Stripe.Subscription,
+  eventType: string
+) => {
+  const userId = subscription.metadata?.userId
+  if (!userId) {
+    log(`No userId in subscription metadata for ${subscription.id} — cannot process ${eventType}`)
+    return
+  }
+
+  const pg = createSupabaseDirectClient()
+
+  if (eventType === 'customer.subscription.deleted') {
+    // Subscription cancelled — disable all supporter entitlements for this user
+    await pg.none(
+      `UPDATE user_entitlements
+       SET enabled = false, auto_renew = false
+       WHERE user_id = $1
+       AND entitlement_id IN ('supporter-basic', 'supporter-plus', 'supporter-premium')
+       AND stripe_managed = true`,
+      [userId]
+    )
+    log(`Disabled Stripe-managed entitlements for user ${userId} (subscription cancelled)`)
+  } else if (eventType === 'customer.subscription.updated') {
+    // Subscription updated (e.g. plan change) — extend expiry if still active
+    if (subscription.status === 'active') {
+      const currentPeriodEnd = new Date(subscription.current_period_end * 1000)
+      await pg.none(
+        `UPDATE user_entitlements
+         SET expires_time = $1, enabled = true
+         WHERE user_id = $2
+         AND stripe_managed = true
+         AND entitlement_id IN ('supporter-basic', 'supporter-plus', 'supporter-premium')`,
+        [currentPeriodEnd, userId]
+      )
+      log(`Extended entitlement expiry for user ${userId} to ${currentPeriodEnd.toISOString()}`)
+    }
+  }
+}
+
 const firestore = admin.firestore()
+
+// Subscription tier config for Stripe subscription checkout
+const SUBSCRIPTION_TIERS: Record<
+  'pro' | 'premium',
+  { devPriceId: string; prodPriceId: string; entitlementId: string }
+> = {
+  pro: {
+    devPriceId: DEV_PRO_SUBSCRIPTION_STRIPE_PRICE_ID,
+    prodPriceId: PROD_PRO_SUBSCRIPTION_STRIPE_PRICE_ID,
+    entitlementId: 'supporter-plus',
+  },
+  premium: {
+    devPriceId: DEV_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID,
+    prodPriceId: PROD_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID,
+    entitlementId: 'supporter-premium',
+  },
+}
+
+// Creates a Stripe Checkout session for a recurring subscription (Pro or Premium tier)
+export const createsubscriptioncheckoutsession = async (
+  req: Request,
+  res: Response
+) => {
+  const userId = req.query.userId?.toString()
+  const tier = req.query.tier?.toString() as 'pro' | 'premium' | undefined
+
+  if (!userId) {
+    res.status(400).send('Invalid user ID')
+    return
+  }
+  if (!tier || !SUBSCRIPTION_TIERS[tier]) {
+    res.status(400).send('Must specify a valid tier (pro or premium)')
+    return
+  }
+
+  const tierConfig = SUBSCRIPTION_TIERS[tier]
+  const priceId = isProd() ? tierConfig.prodPriceId : tierConfig.devPriceId
+
+  if (priceId.startsWith('TODO_')) {
+    res
+      .status(503)
+      .send('Subscriptions not yet configured. Please check back soon.')
+    return
+  }
+
+  const referrer =
+    req.query.referer || req.headers.referer || 'https://predictarena.com'
+
+  const stripe = initStripe()
+  const session = await stripe.checkout.sessions.create({
+    metadata: {
+      userId,
+      subscriptionTier: tier,
+      entitlementId: tierConfig.entitlementId,
+    },
+    line_items: [
+      {
+        price: priceId,
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    allow_promotion_codes: true,
+    success_url: `${referrer}?subscriptionSuccess=true&tier=${tier}`,
+    cancel_url: `${referrer}?subscriptionSuccess=false`,
+  })
+
+  res.redirect(303, session.url || '')
+}

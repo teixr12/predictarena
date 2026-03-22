@@ -124,10 +124,10 @@ function MyApp({ Component, pageProps }: AppProps<ManifoldPageProps>) {
     }
   }, [router.events])
 
-  const title = 'Manifold'
-  const description = `Manifold is a social prediction game. ${capitalize(
+  const title = 'PREDICTA Arena'
+  const description = `The safe simulator that trains you for Kalshi & Polymarket. ${capitalize(
     TRADE_TERM
-  )} on news, politics, tech, & AI with play money. Or create your own prediction market.`
+  )} on news, politics, tech, & AI with play money. Build your forecasting skills risk-free.`
 
   return (
     <>
@@ -147,41 +147,34 @@ function MyApp({ Component, pageProps }: AppProps<ManifoldPageProps>) {
           content={description}
           key="description2"
         />
-        <meta property="og:url" content="https://manifold.markets" key="url" />
-        <meta property="og:site_name" content="Manifold" />
+        <meta property="og:url" content="https://predictarena.com" key="url" />
+        <meta property="og:site_name" content="PREDICTA Arena" />
         <meta name="twitter:card" content="summary" key="card" />
-        <meta name="twitter:site" content="@manifoldmarkets" />
+        <meta name="twitter:site" content="@predictarena" />
         <meta
           name="twitter:image"
-          content="https://manifold.markets/logo.png"
+          content="https://predictarena.com/logo.png"
           key="image2"
         />
         <meta
           property="og:image"
-          content="https://manifold.markets/logo-cover.png"
+          content="https://predictarena.com/logo-cover.png"
           key="image1"
         />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover user-scalable=no"
         />
-        <meta name="apple-itunes-app" content="app-id=6444136749" />
-        {/* set safari overscroll/address bar to canvas-0. TODO: change based on site theme preference */}
+        {/* set safari overscroll/address bar to canvas-0 */}
         <meta
           name="theme-color"
-          content="#1e293b"
+          content="#0a0e14"
           media="(prefers-color-scheme: dark)"
         />
         <meta
           name="theme-color"
           content="#fdfeff"
           media="(prefers-color-scheme: light)"
-        />
-        <link
-          rel="search"
-          type="application/opensearchdescription+xml"
-          href="https://manifold.markets/opensearch.xml"
-          title="Manifold"
         />
       </Head>
       <style>
@@ -198,8 +191,7 @@ function MyApp({ Component, pageProps }: AppProps<ManifoldPageProps>) {
         <div
           className={'flex h-screen flex-col items-center justify-center p-4'}
         >
-          You cannot use developer tools with manifold. Please close them and
-          refresh.
+          Developer tools are disabled. Please close them and refresh.
         </div>
       ) : (
         <ThemeProvider>
@@ -217,7 +209,7 @@ function MyApp({ Component, pageProps }: AppProps<ManifoldPageProps>) {
 
       <GoogleOneTapSetup />
 
-      {/* Umami, for pageview analytics on https://analytics.umami.is/share/ARwUIC9GWLNyowjq/Manifold%20Markets */}
+      {/* Umami analytics */}
       <Script
         src="https://analytics.umami.is/script.js"
         data-website-id="ee5d6afd-5009-405b-a69f-04e3e4e3a685"

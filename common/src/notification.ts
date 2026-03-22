@@ -199,8 +199,8 @@ export const NOTIFICATION_DESCRIPTIONS: notification_descriptions = {
     detailed: 'A user followed you',
   },
   onboarding_flow: {
-    simple: 'Emails to help you get started using Manifold',
-    detailed: 'Emails to help you learn how to use Manifold',
+    simple: 'Emails to help you get started using PREDICTA Arena',
+    detailed: 'Emails to help you learn how to use PREDICTA Arena',
   },
   probability_updates_on_watched_markets: {
     simple: 'Large changes in probability on questions that you watch',
@@ -337,16 +337,16 @@ export const NOTIFICATION_DESCRIPTIONS: notification_descriptions = {
       'When another user supports a relationship between you and someone else',
   },
   airdrop: {
-    simple: 'You received a gift of mana',
-    detailed: 'Manifold has sent you a gift of mana',
+    simple: 'You received a gift of credits',
+    detailed: 'PREDICTA Arena has sent you a gift of credits',
   },
   manifest_airdrop: {
     simple: 'You received a gift for attending Manifest',
-    detailed: 'Manifold has sent you a gift for attending Manifest',
+    detailed: 'PREDICTA Arena has sent you a gift for attending Manifest',
   },
   extra_purchased_mana: {
-    simple: 'You just received 9x your purchased mana in 2024',
-    detailed: 'Manifold has sent you a gift of 9x your purchased mana in 2024.',
+    simple: 'You just received 9x your purchased credits in 2024',
+    detailed: 'PREDICTA Arena has sent you a gift of 9x your purchased credits in 2024.',
   },
   payment_status: {
     simple: 'Payment updates',
@@ -369,7 +369,7 @@ export const NOTIFICATION_DESCRIPTIONS: notification_descriptions = {
   },
   admin: {
     simple: 'Admin notifications',
-    detailed: 'Notifications from the Manifold team',
+    detailed: 'Notifications from the PREDICTA Arena team',
   },
   all_comments_on_followed_posts: {
     simple: 'All new comments on posts you follow',

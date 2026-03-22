@@ -32,18 +32,18 @@ export const getAnte = (
   return liquidityTier
 }
 
-/* Sweeps bonuses */
-export const KYC_VERIFICATION_BONUS_CASH = 3
-export const BETTING_STREAK_SWEEPS_BONUS_AMOUNT = 0.05
-export const BETTING_STREAK_SWEEPS_BONUS_MAX = 0.25
+/* Sweeps bonuses (disabled for PREDICTA Arena) */
+export const KYC_VERIFICATION_BONUS_CASH = 0
+export const BETTING_STREAK_SWEEPS_BONUS_AMOUNT = 0
+export const BETTING_STREAK_SWEEPS_BONUS_MAX = 0
 
-/* Mana bonuses */
-export const STARTING_BALANCE = 1000
+/* Credits bonuses */
+export const STARTING_BALANCE = 500
 // for sus users, i.e. multiple sign ups for same person
 export const SUS_STARTING_BALANCE = 10
-export const PHONE_VERIFICATION_BONUS = 1000
+export const PHONE_VERIFICATION_BONUS = 500
 
-export const REFERRAL_AMOUNT = 1_000
+export const REFERRAL_AMOUNT = 500
 
 const uniqueBettorBonusAmounts = [3, 10, 15, 20]
 export const getUniqueBettorBonusAmount = (
@@ -66,41 +66,34 @@ export const MAX_TRADERS_FOR_BONUS = 10000
 
 export const SUBSIDY_FEE = 0
 
-export const BETTING_STREAK_BONUS_AMOUNT = 5
-export const BETTING_STREAK_BONUS_MAX = 25
+export const BETTING_STREAK_BONUS_AMOUNT = 50
+export const BETTING_STREAK_BONUS_MAX = 50
 
-export const MANACHAN_TWEET_COST = 250
-export const PUSH_NOTIFICATION_BONUS = 1000
+export const MANACHAN_TWEET_COST = 0 // Disabled for PREDICTA Arena
+export const PUSH_NOTIFICATION_BONUS = 500
 export const BURN_MANA_USER_ID = 'SlYWAUtOzGPIYyQfXfvmHPt8eu22'
 
 const PaymentAmounts = [
   {
     mana: 500,
-    priceInDollars: 5,
+    priceInDollars: 4.99,
     bonusInDollars: 0,
-    devStripeId: 'price_1QrTemGdoFKoCJW7meXJDJLt',
-    prodStripeId: 'price_1QrTeRGdoFKoCJW7I0AZVVIm',
+    devStripeId: 'TODO_DEV_PRICE_500', // TODO: Create in Stripe Dashboard
+    prodStripeId: 'TODO_PROD_PRICE_500',
   },
   {
-    mana: 2_500,
-    priceInDollars: 25,
+    mana: 1_200,
+    priceInDollars: 9.99,
     bonusInDollars: 0,
-    devStripeId: 'price_1QrTUhGdoFKoCJW7VIWwpLD8',
-    prodStripeId: 'price_1QrTRIGdoFKoCJW776dK3ZDo',
+    devStripeId: 'TODO_DEV_PRICE_1200',
+    prodStripeId: 'TODO_PROD_PRICE_1200',
   },
   {
-    mana: 11_000,
-    priceInDollars: 100,
+    mana: 3_000,
+    priceInDollars: 19.99,
     bonusInDollars: 0,
-    devStripeId: 'price_1QrTU0GdoFKoCJW7OLzDtdaM',
-    prodStripeId: 'price_1QrTPCGdoFKoCJW7aXHQAGy4',
-  },
-  {
-    mana: 120_000,
-    priceInDollars: 1_000,
-    bonusInDollars: 0,
-    devStripeId: 'price_1QrTT7GdoFKoCJW79y4VgggM',
-    prodStripeId: 'price_1N0TeXGdoFKoCJW7htfCrFd7',
+    devStripeId: 'TODO_DEV_PRICE_3000',
+    prodStripeId: 'TODO_PROD_PRICE_3000',
   },
 ]
 export type PaymentAmount = (typeof PaymentAmounts)[number] & {
@@ -152,6 +145,16 @@ export const MANI_IOS_PRICES = [
     sku: 'S100',
   },
 ] as PaymentAmount[]
+
+// Pro subscription Stripe Price IDs ($4.99/mo recurring)
+// TODO: Create these in Stripe Dashboard and replace the placeholder values
+export const DEV_PRO_SUBSCRIPTION_STRIPE_PRICE_ID = 'TODO_DEV_PRO_SUB_PRICE'
+export const PROD_PRO_SUBSCRIPTION_STRIPE_PRICE_ID = 'TODO_PROD_PRO_SUB_PRICE'
+// Premium subscription Stripe Price IDs ($9.99/mo recurring)
+export const DEV_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID =
+  'TODO_DEV_PREMIUM_SUB_PRICE'
+export const PROD_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID =
+  'TODO_PROD_PREMIUM_SUB_PRICE'
 
 export const SWEEPIES_CASHOUT_FEE = 5
 export const MIN_CASHOUT_AMOUNT = 25

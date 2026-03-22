@@ -70,7 +70,7 @@ export const requestLoan: APIHandler<'request-loan'> = async (props, auth) => {
   if (!canAccessMarginLoans(entitlements)) {
     throw new APIError(
       403,
-      'Margin loans require a Manifold membership. Upgrade at manifold.markets/shop'
+      'Margin loans require an Arena membership. Upgrade at predictarena.com/shop'
     )
   }
 

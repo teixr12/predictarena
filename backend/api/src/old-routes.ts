@@ -3,7 +3,11 @@ import { health } from './health'
 import { claimmanalink } from './claim-manalink'
 import { creategroup } from './create-group'
 import { unsubscribe } from './unsubscribe'
-import { stripewebhook, createcheckoutsession } from './stripe-endpoints'
+import {
+  stripewebhook,
+  createcheckoutsession,
+  createsubscriptioncheckoutsession,
+} from './stripe-endpoints'
 import { markallnotifications } from './mark-all-notifications'
 import { updatememberrole } from './update-group-member-role'
 import { updategroupprivacy } from './update-group-privacy'
@@ -83,6 +87,11 @@ export const addOldRoutes = (app: express.Application) => {
     '/createcheckoutsession',
     allowCorsUnrestricted,
     createcheckoutsession
+  )
+  app.post(
+    '/createsubscriptioncheckoutsession',
+    allowCorsUnrestricted,
+    createsubscriptioncheckoutsession
   )
   app.post(
     '/stripewebhook',

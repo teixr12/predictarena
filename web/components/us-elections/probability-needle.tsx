@@ -200,7 +200,7 @@ export function ProbabilityNeedle(props: {
         opacity={0.3}
         fontWeight={'semibold'}
       >
-        Source: manifold.markets
+        Source: predictarena.com
       </text>
     </svg>
   )

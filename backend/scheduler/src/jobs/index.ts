@@ -53,6 +53,7 @@ import { unbanUsers } from './unban-users'
 import { updateLeague } from './update-league'
 import { updateLeagueRanks } from './update-league-ranks'
 import { updateStatsCore } from './update-stats'
+import { generateDailyMarkets } from './generate-daily-markets'
 
 export function createJobs() {
   return [
@@ -295,6 +296,11 @@ export function createJobs() {
       'downsample-portfolio-history',
       '0 50 4 * * *', // every day at 4:50am
       downsamplePortfolioHistory
+    ),
+    createJob(
+      'generate-daily-markets',
+      '0 0 9 * * *', // 9 AM UTC daily (1 AM PT) — new markets for the day
+      generateDailyMarkets
     ),
   ]
 }

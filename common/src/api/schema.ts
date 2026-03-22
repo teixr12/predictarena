@@ -3508,6 +3508,16 @@ export const API = (_apiTypeCheck = {
       }[]
     },
   },
+  'get-ai-market-hint': {
+    method: 'GET',
+    visibility: 'private',
+    authed: true,
+    props: z.object({ contractId: z.string() }),
+    returns: {} as {
+      hint: string
+      contractId: string
+    },
+  },
 } as const)
 
 export type APIPath = keyof typeof API

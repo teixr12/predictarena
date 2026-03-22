@@ -38,7 +38,7 @@ export default function TwitchLandingPage() {
   return (
     <Page trackPageView={'twitch landing page'}>
       <SEO
-        title="Manifold on Twitch"
+        title="PREDICTA Arena on Twitch"
         description={`Get more out of Twitch with play-money ${TRADING_TERM} questions.`}
       />
       <div className="px-4 pt-2 md:mt-0 lg:hidden">
@@ -460,7 +460,7 @@ function SetUpBot(props: {
         )}
         <div>
           Need help? Contact SirSalty#5770 in Discord or email
-          david@manifold.markets
+          david@predictarena.com
         </div>
         {user && (
           <Col className="mb-8 p-4">
@@ -471,7 +471,7 @@ function SetUpBot(props: {
             </div>
 
             <CopyLinkRow
-              url={'https://manifold.markets/twitch?referrer=' + user?.username}
+              url={'https://predictarena.com/twitch?referrer=' + user?.username}
               eventTrackingName="copy twitch link"
             />
           </Col>

@@ -1,11 +1,11 @@
-import { IS_PRIVATE_MANIFOLD } from 'common/envs/constants'
+import { IS_PRIVATE_PREDICTA } from 'common/envs/constants'
 import { Col } from 'web/components/layout/col'
 import { Page } from 'web/components/layout/page'
 import { ExternalLink } from 'web/components/widgets/external-link'
 import { Title } from 'web/components/widgets/title'
 
 export default function Custom404(props: { customText?: string }) {
-  if (IS_PRIVATE_MANIFOLD) {
+  if (IS_PRIVATE_PREDICTA) {
     // Since private Manifolds are client-side rendered, they'll blink the 404
     // So we just show a blank page here:
     return <Page trackPageView={'404'}></Page>

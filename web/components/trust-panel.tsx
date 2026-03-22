@@ -58,7 +58,7 @@ export const ManipulationAndHype = ({
       >
         Scott Alexander's failed manipulation attempt
       </a>{' '}
-      on Manifold.
+      on PREDICTA Arena.
     </div>
   </ExpandSection>
 )
@@ -98,7 +98,7 @@ export const LowTraders = ({
       <a
         className="text-primary-700 hover:underline"
         target="_blank"
-        href="https://manifold.markets/vluzko/after-how-many-unique-traders-will#EiWKtYBZaWvQbj27W6tT"
+        href="https://predictarena.com/vluzko/after-how-many-unique-traders-will#EiWKtYBZaWvQbj27W6tT"
       >
         data
       </a>

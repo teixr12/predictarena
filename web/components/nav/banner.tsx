@@ -57,7 +57,7 @@ export function PivotBanner(props: { hideBanner: () => void }) {
   return (
     <Banner
       className="border-primary-300 from-primary-100 to-primary-200 border bg-gradient-to-b"
-      link="https://news.manifold.markets/p/exploring-cash-prizes-for-good-predictions"
+      link="https://news.predictarena.com/p/exploring-cash-prizes-for-good-predictions"
       setShowBanner={hideBanner}
     >
       <Row className="gap-2">
@@ -154,7 +154,7 @@ export function StateOfTheUnionBanner() {
   return (
     <Banner
       className="border-primary-300 from-primary-100 to-primary-200 my-2 border bg-gradient-to-b py-2"
-      link="https://manifold.markets/tv/86"
+      link="https://predictarena.com/tv/86"
       target="_self"
     >
       🇺🇸 Join our State of the Union watch party{' '}
@@ -173,7 +173,7 @@ export function StateOfTheUnion2026Banner() {
   return (
     <Banner
       className="my-2 items-center border border-blue-300 bg-gradient-to-r from-red-50 via-white to-blue-50 py-3 transition-colors hover:from-red-100 hover:via-white hover:to-blue-100 dark:from-red-950/30 dark:via-slate-900/30 dark:to-blue-950/30"
-      link="https://manifold.markets/tv/109"
+      link="https://predictarena.com/tv/109"
       target="_self"
       setShowBanner={hideBanner}
     >
@@ -230,7 +230,7 @@ export const TwombaBanner = () => {
   return (
     <Banner
       className="bg-primary-100 hover:bg-primary-200  dark:text-primary-800 text-primary-700 hover:text-primary-900 items-center py-2 transition-colors"
-      link="https://news.manifold.markets/p/cash-prizes-are-here"
+      link="https://news.predictarena.com/p/cash-prizes-are-here"
       setShowBanner={hideBanner}
     >
       <Row className=" items-center gap-2">

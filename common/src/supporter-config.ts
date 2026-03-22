@@ -30,7 +30,7 @@ export const SUPPORTER_TIERS: Record<
   basic: {
     id: 'supporter-basic',
     name: 'Plus',
-    displayName: 'Manifold Plus',
+    displayName: 'Arena Plus',
     price: 500,
     color: 'gray',
     textColor: 'text-gray-500',
@@ -41,7 +41,7 @@ export const SUPPORTER_TIERS: Record<
   plus: {
     id: 'supporter-plus',
     name: 'Pro',
-    displayName: 'Manifold Pro',
+    displayName: 'Arena Pro',
     price: 2500,
     color: 'indigo',
     textColor: 'text-indigo-500',
@@ -52,7 +52,7 @@ export const SUPPORTER_TIERS: Record<
   premium: {
     id: 'supporter-premium',
     name: 'Premium',
-    displayName: 'Manifold Premium',
+    displayName: 'Arena Premium',
     price: 10000,
     color: 'amber',
     textColor: 'text-amber-500',
@@ -289,7 +289,7 @@ export const BENEFIT_DEFINITIONS = [
     id: 'quests',
     icon: '🎯',
     title: 'Quest Rewards',
-    description: 'Multiplied mana from daily and weekly quests',
+    description: 'Multiplied credits from daily and weekly quests',
     getValueForTier: (tier: SupporterTier) =>
       `${SUPPORTER_BENEFITS[tier].questMultiplier}x`,
     baseValue: '1x',
@@ -298,7 +298,7 @@ export const BENEFIT_DEFINITIONS = [
     id: 'referrals',
     icon: '👥',
     title: 'Referral Bonus',
-    description: 'Multiplied mana when you refer new users',
+    description: 'Multiplied credits when you refer new users',
     getValueForTier: (tier: SupporterTier) =>
       `${SUPPORTER_BENEFITS[tier].referralMultiplier}x`,
     baseValue: '1x',

@@ -27,7 +27,7 @@ export default function PressPage() {
   const badges: BadgeInfo[] = [
     {
       title: 'Core Team',
-      description: 'Manifold team members',
+      description: 'PREDICTA Arena team members',
       icon: (
         <Foldy
           className="h-5 w-5 stroke-indigo-700 dark:stroke-indigo-300"
@@ -604,10 +604,10 @@ export default function PressPage() {
                 <p className="text-ink-600">
                   For press inquiries and additional assets, please contact:{' '}
                   <a
-                    href="mailto:info@manifold.markets"
+                    href="mailto:info@predictarena.com"
                     className="text-primary-500 hover:text-primary-600 underline"
                   >
-                    info@manifold.markets
+                    info@predictarena.com
                   </a>
                 </p>
               </div>
@@ -857,7 +857,7 @@ function MockMarket() {
     'Who will win the 2025 MLB World Series MVP?'
   )
   const [probability, setProbability] = useState(52)
-  const [creatorName, setCreatorName] = useState('Manifold')
+  const [creatorName, setCreatorName] = useState('PREDICTA Arena')
   const [volume, setVolume] = useState('27k')
   const [traders, setTraders] = useState('1.7k')
   const [scale, setScale] = useState(100)
@@ -1575,7 +1575,7 @@ function MiniMockMarket() {
     'Will this be the best press kit ever created?'
   )
   const [probability, setProbability] = useState(87)
-  const [creatorName, setCreatorName] = useState('Manifold')
+  const [creatorName, setCreatorName] = useState('PREDICTA Arena')
   const [volume, setVolume] = useState('1,234')
   const [traders, setTraders] = useState('56')
   const [scale, setScale] = useState(100)

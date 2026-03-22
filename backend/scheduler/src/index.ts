@@ -35,8 +35,8 @@ async function start() {
       users: { admin: process.env.SCHEDULER_AUTH_PASSWORD ?? '' },
       challenge: true,
       realm: prod
-        ? 'scheduler.manifold.markets'
-        : 'scheduler.dev.manifold.markets',
+        ? 'scheduler.predictarena.com'
+        : 'scheduler.dev.predictarena.com',
     })
   )
 

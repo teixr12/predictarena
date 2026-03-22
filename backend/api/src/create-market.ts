@@ -71,6 +71,8 @@ import {
 import { z } from 'zod'
 import { APIError, AuthedUser, type APIHandler } from './helpers/endpoint'
 import { onlyUsersWhoCanPerformAction } from './helpers/rate-limit'
+import { getActiveSupporterEntitlements } from 'shared/supabase/entitlements'
+import { isSupporter } from 'common/supporter-config'
 type Body = ValidatedAPIParams<'market'>
 
 export const createMarket: APIHandler<'market'> = onlyUsersWhoCanPerformAction(
@@ -200,6 +202,17 @@ export async function createMarketHelper(body: Body, auth: AuthedUser) {
       )
       const user = first(userAndSlugResult[0].map(convertUser))
       if (!user) throw new APIError(401, 'Your account was not found')
+
+      // Gate private markets behind any supporter tier (Arena Plus, Pro, or Premium)
+      if (visibility === 'private') {
+        const entitlements = await getActiveSupporterEntitlements(tx, userId)
+        if (!isSupporter(entitlements)) {
+          throw new APIError(
+            403,
+            'Private markets require an Arena membership. Upgrade at /supporter'
+          )
+        }
+      }
 
       const isFree = userId === FREE_MARKET_USER_ID && totalMarketCost <= 100
       if (!isFree && totalMarketCost > user.balance)

@@ -110,7 +110,7 @@ export default function Charity(props: {
   return (
     <Page trackPageView={'charity'}>
       <SEO
-        title="Manifold for Charity"
+        title="PREDICTA Arena for Charity"
         description="Donate your prediction market earnings to charity on Manifold."
         url="/old-charity"
       />

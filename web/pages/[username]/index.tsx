@@ -41,6 +41,7 @@ import { Spacer } from 'web/components/layout/spacer'
 import { QueryUncontrolledTabs, Tabs } from 'web/components/layout/tabs'
 import { SendMessageButton } from 'web/components/messaging/send-message-button'
 import { BalanceChangeTable } from 'web/components/portfolio/balance-change-table'
+import { ForesightPortfolioButton } from 'web/components/portfolio/foresight-portfolio'
 import { PortfolioSummary } from 'web/components/portfolio/portfolio-summary'
 import { PortfolioValueSection } from 'web/components/portfolio/portfolio-value-section'
 import { BlockedUser } from 'web/components/profile/blocked-user'
@@ -639,8 +640,8 @@ function AchievementsSection(props: { userId: string }) {
     },
     {
       id: 'totalReferrals',
-      title: 'Manifold Hype Man',
-      desc: 'Friends you brought to Manifold.',
+      title: 'PREDICTA Hype Man',
+      desc: 'Friends you brought to PREDICTA Arena.',
       fmt: () => formatWithCommas(data.totalReferrals),
     },
     {
@@ -811,8 +812,12 @@ function AchievementsSection(props: { userId: string }) {
     byBucket[bucketOf(a.rank)].push(a as any)
   })
 
+  const resolvedCount =
+    (data.profitableMarketsCount ?? 0) + (data.unprofitableMarketsCount ?? 0)
+
   return (
     <Col className="gap-6">
+      <ForesightPortfolioButton resolvedCount={resolvedCount} userId={userId} />
       {bucketOrder.map((bucket) => {
         const items = byBucket[bucket]
         if (!items.length) return null

@@ -49,7 +49,7 @@ export default function ReferralsPage() {
     <Page trackPageView={'referrals'} className="p-3">
       <SEO
         title="Refer a friend"
-        description={`Invite new users to Manifold and get ${formatMoney(
+        description={`Invite new users to PREDICTA Arena and get ${formatMoney(
           REFERRAL_AMOUNT
         )} if they sign up and place a trade!`}
         url="/referrals"
@@ -71,7 +71,7 @@ export default function ReferralsPage() {
             </Row>
 
             <p className="mb-6 max-w-md text-white/90">
-              Invite friends to join Manifold and earn{' '}
+              Invite friends to join PREDICTA Arena and earn{' '}
               <span className="font-semibold text-white">
                 {formatMoney(REFERRAL_AMOUNT)}
               </span>{' '}
@@ -138,7 +138,7 @@ export default function ReferralsPage() {
             <HowItWorksStep
               number={2}
               title="Friend signs up"
-              description="Your friend creates a Manifold account using your link."
+              description="Your friend creates a PREDICTA Arena account using your link."
             />
             <HowItWorksStep
               number={3}

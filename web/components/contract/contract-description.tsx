@@ -52,7 +52,7 @@ export function ContractDescription(props: {
           )}
         >
           <LogoIcon className="h-5 w-5 text-indigo-600" />
-          <span>This question is managed and resolved by Manifold.</span>
+          <span>This question is managed and resolved by PREDICTA Arena.</span>
           <LogoIcon className="h-5 w-5 text-indigo-600" />
         </div>
       </div>

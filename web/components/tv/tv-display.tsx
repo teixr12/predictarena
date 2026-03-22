@@ -86,7 +86,7 @@ export function TVDisplay(props: {
         <Col className={clsx('bg-canvas-0 w-full rounded-b ')}>
           <iframe
             src={streamSrc}
-            title="Manifold Live video"
+            title="PREDICTA Live video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="bg-canvas-0 h-[300px] w-full lg:h-[500px]"

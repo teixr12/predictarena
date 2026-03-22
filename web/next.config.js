@@ -1,4 +1,4 @@
-const API_DOCS_URL = 'https://docs.manifold.markets/api'
+const API_DOCS_URL = 'https://docs.predictarena.com/api'
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -24,8 +24,8 @@ module.exports = {
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
-      { hostname: 'manifold.markets' },
-      { hostname: 'dev.manifold.markets' },
+      { hostname: 'predictarena.com' },
+      { hostname: 'dev.predictarena.com' },
       { hostname: 'oaidalleapiprodscus.blob.core.windows.net' },
       { hostname: 'lh3.googleusercontent.com' },
       { hostname: 'i.imgur.com' },
@@ -102,22 +102,22 @@ module.exports = {
       },
       {
         source: '/privacy',
-        destination: 'https://docs.manifold.markets/privacy-policy',
+        destination: 'https://docs.predictarena.com/privacy-policy',
         permanent: true,
       },
       {
         source: '/terms',
-        destination: 'https://docs.manifold.markets/terms',
+        destination: 'https://docs.predictarena.com/terms',
         permanent: true,
       },
       {
         source: '/mana-only-terms',
-        destination: 'https://docs.manifold.markets/terms',
+        destination: 'https://docs.predictarena.com/terms',
         permanent: true,
       },
       {
         source: '/sweepstakes-rules',
-        destination: 'https://docs.manifold.markets/sweepstakes-rules',
+        destination: 'https://docs.predictarena.com/sweepstakes-rules',
         permanent: true,
       },
       {

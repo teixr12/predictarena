@@ -5,14 +5,17 @@ export const LogoIcon = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    strokeWidth="0.6"
+    strokeWidth="0.8"
     stroke="currentColor"
     {...props}
   >
-    <path
-      d="M5.24854 17.0952L18.7175 6.80301L14.3444 20M5.24854 17.0952L9.79649 18.5476M5.24854 17.0952L4.27398 6.52755M14.3444 20L9.79649 18.5476M14.3444 20L22 12.638L16.3935 13.8147M9.79649 18.5476L12.3953 15.0668M4.27398 6.52755L10.0714 13.389M4.27398 6.52755L2 9.0818L4.47389 8.85643M12.9451 11.1603L10.971 5L8.65369 11.6611"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    {/* Target/crosshair icon representing prediction accuracy */}
+    <circle cx="12" cy="12" r="9" strokeWidth="1" />
+    <circle cx="12" cy="12" r="5.5" strokeWidth="0.8" />
+    <circle cx="12" cy="12" r="2" strokeWidth="0.8" fill="currentColor" fillOpacity="0.3" />
+    <line x1="12" y1="2" x2="12" y2="5" strokeWidth="0.8" />
+    <line x1="12" y1="19" x2="12" y2="22" strokeWidth="0.8" />
+    <line x1="2" y1="12" x2="5" y2="12" strokeWidth="0.8" />
+    <line x1="19" y1="12" x2="22" y2="12" strokeWidth="0.8" />
   </svg>
 )

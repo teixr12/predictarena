@@ -29,7 +29,7 @@ export default function Elections(props: ElectionsPageProps) {
   return (
     <Page trackPageView="us elections page 2024">
       <SEO
-        title="Manifold 2024 Election Forecast"
+        title="PREDICTA Arena 2024 Election Forecast"
         description="Live prediction market odds on the 2024 US election"
         image="/election-map24.png"
       />

@@ -66,7 +66,7 @@ const isInternalHref = (href: string) => href.startsWith('/')
 export const getLinkTarget = (href: string, newTab?: boolean) => {
   if (
     href.startsWith('http') &&
-    !href.startsWith(`https://manifold`) // covers manifold.markets and manifold.love
+    !href.startsWith(`https://predictarena`) // covers predictarena.com
   )
     return '_blank'
   const { isNative } = useNativeInfo()

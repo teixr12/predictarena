@@ -287,8 +287,8 @@ export default function ManaAuctionPage() {
     <Page trackPageView={'mana auction'}>
       <Col className="gap-4 px-4 sm:px-8 sm:pb-4">
         <SEO
-          title="Mana auction"
-          description="To celebrate April 1st and to give back to the community, Manifold is
+          title="Credits auction"
+          description="To celebrate April 1st and to give back to the community, PREDICTA Arena is
           hosting an auction for M10,000."
         />
         <Title className="mx-2 !mb-0 mt-2 sm:mx-0 lg:mt-0">
@@ -296,7 +296,7 @@ export default function ManaAuctionPage() {
         </Title>
 
         <div>
-          To celebrate April 1st and to give back to the community, Manifold is
+          To celebrate April 1st and to give back to the community, PREDICTA Arena is
           hosting an auction for {formatMoney(10000)}.
         </div>
 

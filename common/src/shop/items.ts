@@ -186,7 +186,7 @@ export const SHOP_ITEMS: ShopItem[] = [
   // Membership tiers - Plus/Pro/Premium
   {
     id: 'supporter-basic',
-    name: 'Manifold Plus',
+    name: 'Arena Plus',
     description: '1.5x quest rewards, 1% daily free loans, margin loans (2x leverage)',
     price: 500,
     type: 'time-limited',
@@ -198,7 +198,7 @@ export const SHOP_ITEMS: ShopItem[] = [
   },
   {
     id: 'supporter-plus',
-    name: 'Manifold Pro',
+    name: 'Arena Pro',
     description: '2x quest rewards, 5% shop discount, 2% daily free loans, margin loans (3x leverage)',
     price: 2500,
     type: 'time-limited',
@@ -210,7 +210,7 @@ export const SHOP_ITEMS: ShopItem[] = [
   },
   {
     id: 'supporter-premium',
-    name: 'Manifold Premium',
+    name: 'Arena Premium',
     description: '3x quest rewards, 10% shop discount, 3% daily free loans, margin loans (4x leverage), animated badge',
     price: 10000,
     type: 'time-limited',
@@ -781,7 +781,7 @@ export const SHOP_ITEMS: ShopItem[] = [
     id: 'merch-aggc-tshirt',
     hidden: true,
     name: 'AGGC T-Shirt',
-    description: 'Embroidered Manifold logo on front, "Anti Gambling Gambling Club" print on back',
+    description: 'Embroidered PREDICTA Arena logo on front, "Anti Gambling Gambling Club" print on back',
     price: 5000,
     type: 'instant',
     limit: 'one-time',
@@ -805,7 +805,7 @@ export const SHOP_ITEMS: ShopItem[] = [
     id: 'merch-cap-white-logo',
     hidden: true,
     name: 'White Logo Cap',
-    description: 'Black dad cap with white embroidered Manifold logo',
+    description: 'Black dad cap with white embroidered PREDICTA Arena logo',
     price: 3000,
     type: 'instant',
     limit: 'one-time',
@@ -824,7 +824,7 @@ export const SHOP_ITEMS: ShopItem[] = [
     id: 'merch-cap-purple-logo',
     hidden: true,
     name: 'Purple Logo Cap',
-    description: 'White dad cap with purple embroidered Manifold logo',
+    description: 'White dad cap with purple embroidered PREDICTA Arena logo',
     price: 3000,
     type: 'instant',
     limit: 'one-time',

@@ -11,13 +11,13 @@ export default function AddFundsPage() {
   return (
     <Page trackPageView={'add funds'}>
       <SEO
-        title="Get mana"
-        description="Buy mana to trade in your favorite questions on Manifold"
+        title="Get Credits"
+        description="Buy credits to trade in your favorite questions on PREDICTA Arena"
         url="/add-funds"
       />
 
       <Col className="bg-canvas-0 mx-auto max-w-[700px] rounded p-4 py-8 sm:p-8 sm:shadow-md">
-        <Title>Get Mana</Title>
+        <Title>Get Credits</Title>
 
         <BuyManaTab />
       </Col>

@@ -18,7 +18,7 @@ export const guidelinesPrompt = `
 A prediction market is a contract that users can trade based on the likelihood of future events. 
 Users buy and sell shares based on their forecasts, with prices reflecting the crowd's collective prediction of how likely an event is to occur.
 Markets resolve when the outcome is known, with winning positions paying out.
-The user is interested in creating prediction markets on Manifold, and has asked you for help coming up with market ideas.
+The user is interested in creating prediction markets on PREDICTA Arena, and has asked you for help coming up with market ideas.
 
 When designing market suggestions for the user, follow these guidelines:
 EVIDENCE-BASED
@@ -79,11 +79,11 @@ export const addAnswersModeDescription = `
 - "DISABLED" means that the answers list covers all possible outcomes and no more answers can be added after the market is created
 - "ONLY_CREATOR" means that only the creator can add answers after the market is created
 - "ANYONE" means that anyone can add answers after the market is created
-- If the addAnswersMode is "ONLY_CREATOR" or "ANYONE", while the outcomeType is "DEPENDENT_MULTIPLE_CHOICE", then Manifold will automatically add the 'Other' option to the answers list, so you do not need to include it in the array.
+- If the addAnswersMode is "ONLY_CREATOR" or "ANYONE", while the outcomeType is "DEPENDENT_MULTIPLE_CHOICE", then PREDICTA Arena will automatically add the 'Other' option to the answers list, so you do not need to include it in the array.
 `
 
 export const formattingPrompt = `
-    Convert these prediction market ideas into valid JSON objects that abide by the following Manifold Market schema. Each object should include:
+    Convert these prediction market ideas into valid JSON objects that abide by the following PREDICTA Arena Market schema. Each object should include:
     - question (string with 120 characters or less, required)
       - Question should be worded as a statement, i.e. Stock price of Tesla above $420 by x date, not Will the stock price of Tesla be above $420 by x date?
     - descriptionMarkdown (markdown string, required)
@@ -97,7 +97,7 @@ export const formattingPrompt = `
       ${addAnswersModeDescription}
     - reasoning (string, required - extract the reasoning section from each market suggestion)`
 
-export const perplexitySystemPrompt = `You are a helpful assistant that creates engaging prediction markets on Manifold Markets.
+export const perplexitySystemPrompt = `You are a helpful assistant that creates engaging prediction markets on PREDICTA Arena Markets.
 Your role is to transform a user's prompt into at least approximately 6 well-structured prediction markets that encourage participation and meaningful forecasting.
 `
-export const claudeSystemPrompt = `You are a helpful assistant that refines and converts market ideas into valid JSON objects following Manifold's schema. ONLY return a valid JSON array of market objects.`
+export const claudeSystemPrompt = `You are a helpful assistant that refines and converts market ideas into valid JSON objects following PREDICTA Arena's schema. ONLY return a valid JSON array of market objects.`

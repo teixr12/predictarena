@@ -37,7 +37,7 @@ export const useTheme = () => {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [themeState, setThemeState] = usePersistentLocalState<theme_option>(
-    'auto',
+    'dark',
     'theme'
   )
 

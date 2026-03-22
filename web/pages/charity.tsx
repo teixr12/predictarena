@@ -302,7 +302,7 @@ export default function CharityGiveawayPage() {
   return (
     <Page trackPageView={'charity giveaway'}>
       <SEO
-        title="Manifold Charity Giveaway"
+        title="PREDICTA Arena Charity Giveaway"
         description="Buy tickets for your favorite charity to win $1,000!"
         url="/charity"
       />
@@ -313,11 +313,11 @@ export default function CharityGiveawayPage() {
           <Row className="items-center gap-3">
             <span className="text-3xl">🎟️</span>
             <h1 className="text-ink-900 text-3xl font-bold tracking-tight">
-              Manifold Charity Giveaway
+              PREDICTA Arena Charity Giveaway
             </h1>
           </Row>
           <p className="text-ink-600 text-lg leading-relaxed">
-            Manifold is giving ${giveaway.prizeAmountUsd.toLocaleString()} to
+            PREDICTA Arena is giving ${giveaway.prizeAmountUsd.toLocaleString()} to
             charity—you decide which one. Buy tickets to boost a charity's odds,
             and on March 1st, we'll draw one lucky ticket to determine the
             winning charity.

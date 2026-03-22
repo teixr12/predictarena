@@ -11,7 +11,7 @@ export const CONFIGS: { [env: string]: EnvConfig } = {
   DEV: DEV_CONFIG,
 }
 
-export const TWOMBA_CASHOUT_ENABLED = true
+export const TWOMBA_CASHOUT_ENABLED = false
 export const SWEEP_PRODUCTION_ENABLED = false
 export const SPICE_PRODUCTION_ENABLED = false
 export const SPICE_TO_MANA_CONVERSION_RATE = 1
@@ -22,16 +22,16 @@ export const CASH_TO_CHARITY_DOLLARS = 1
 export const NY_FL_CASHOUT_LIMIT = 5000
 export const DOLLAR_PURCHASE_LIMIT = 5000
 
-export const SPICE_NAME = 'Prize Point'
-export const SWEEPIES_NAME = 'sweepcash'
-export const SPICE_MARKET_TOOLTIP = `Prize market! Earn ${SPICE_NAME}s on resolution`
-export const SWEEPIES_MARKET_TOOLTIP = `Sweepstakes market! Win real cash prizes.`
+export const SPICE_NAME = 'Bonus Credit'
+export const SWEEPIES_NAME = 'credits'
+export const SPICE_MARKET_TOOLTIP = `Bonus market! Earn extra credits on resolution`
+export const SWEEPIES_MARKET_TOOLTIP = `Practice market! Sharpen your prediction skills.`
 export const CASH_SUFFIX = '--cash'
 
-export const TRADE_TERM = 'bet'
-export const TRADED_TERM = 'bet'
-export const TRADING_TERM = 'betting'
-export const TRADER_TERM = 'trader'
+export const TRADE_TERM = 'predict'
+export const TRADED_TERM = 'predicted'
+export const TRADING_TERM = 'predicting'
+export const TRADER_TERM = 'predictor'
 
 export const ENV_CONFIG = CONFIGS[ENV]
 
@@ -48,14 +48,14 @@ export function isSweepstakesModId(id: string) {
 export const DOMAIN = ENV_CONFIG.domain
 export const FIREBASE_CONFIG = ENV_CONFIG.firebaseConfig
 export const PROJECT_ID = ENV_CONFIG.firebaseConfig.projectId
-export const IS_PRIVATE_MANIFOLD = ENV_CONFIG.visibility === 'PRIVATE'
+export const IS_PRIVATE_PREDICTA = ENV_CONFIG.visibility === 'PRIVATE'
 
 export const AUTH_COOKIE_NAME = `FBUSER_${PROJECT_ID.toUpperCase().replace(
   /-/g,
   '_'
 )}`
 
-// Manifold's domain or any subdomains thereof
+// PREDICTA Arena domain or any subdomains thereof
 export const CORS_ORIGIN_MANIFOLD = new RegExp(
   '^https?://(?:[a-zA-Z0-9\\-]+\\.)*' + escapeRegExp(ENV_CONFIG.domain) + '$'
 )
@@ -66,7 +66,7 @@ export const CORS_ORIGIN_CHARITY = new RegExp(
 
 // Vercel deployments, used for testing.
 export const CORS_ORIGIN_VERCEL = new RegExp(
-  '^https?://[a-zA-Z0-9\\-]+' + escapeRegExp('mantic.vercel.app') + '$'
+  '^https?://[a-zA-Z0-9\\-]+' + escapeRegExp('predicta-arena.vercel.app') + '$'
 )
 // Any localhost server on any port
 export const CORS_ORIGIN_LOCALHOST = /^http:\/\/localhost:\d+$/
@@ -433,15 +433,13 @@ export function supabaseConsoleTxnPath(txnId: string) {
   return `https://supabase.com/dashboard/project/${ENV_CONFIG.supabaseInstanceId}/editor/${tableId}?filter=id%3Aeq%3A${txnId}`
 }
 
-export const GOOGLE_PLAY_APP_URL =
-  'https://play.google.com/store/apps/details?id=com.markets.manifold'
-export const APPLE_APP_URL =
-  'https://apps.apple.com/us/app/manifold-markets/id6444136749'
+export const GOOGLE_PLAY_APP_URL = '' // TODO: Add if mobile app is built
+export const APPLE_APP_URL = '' // TODO: Add if mobile app is built
 
 export const TEN_YEARS_SECS = 60 * 60 * 24 * 365 * 10
 
 export const DESTINY_GROUP_SLUG = 'destinygg'
-export const PROD_MANIFOLD_LOVE_GROUP_SLUG = 'manifoldlove-relationships'
+export const PROD_MANIFOLD_LOVE_GROUP_SLUG = 'predictarena-relationships'
 
 export const RATING_GROUP_SLUGS = ['nonpredictive', 'unsubsidized']
 
@@ -510,9 +508,8 @@ export const GROUP_SLUGS_TO_NOT_INTRODUCE_IN_FEED = [
 
 export const EXTERNAL_REDIRECTS = ['/umami']
 
-export const DISCORD_INVITE_LINK = 'https://discord.com/invite/eHQBNBqXuh'
-export const DISCORD_BOT_INVITE_LINK =
-  'https://discord.com/api/oauth2/authorize?client_id=1074829857537663098&permissions=328565385280&scope=bot%20applications.commands'
+export const DISCORD_INVITE_LINK = '' // TODO: Create PREDICTA Arena Discord
+export const DISCORD_BOT_INVITE_LINK = '' // TODO: Create PREDICTA Arena Discord bot
 
 export const YES_GRAPH_COLOR = '#11b981'
 
@@ -558,6 +555,7 @@ export const RESERVED_PATHS = [
   'help',
   'home',
   'jobs',
+  'kalshi-prep',
   'lab',
   'leaderboard',
   'leaderboards',
@@ -625,5 +623,5 @@ export const RESERVED_PATHS = [
   'yc-s23',
 ]
 
-export const MANA_PURCHASE_RATE_CHANGE_DATE = new Date('2024-05-16T18:20:00Z')
-export const MANA_PURCHASE_RATE_REVERT_DATE = new Date('2024-09-17T17:06:00Z') // commit date of sweepcash - PR #2840 5e8b46d8
+export const CREDITS_PURCHASE_RATE_CHANGE_DATE = new Date('2024-05-16T18:20:00Z')
+export const CREDITS_PURCHASE_RATE_REVERT_DATE = new Date('2024-09-17T17:06:00Z')

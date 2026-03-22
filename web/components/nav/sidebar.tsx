@@ -42,7 +42,7 @@ import { ManifoldLogo } from './manifold-logo'
 import { ProfileSummary } from './profile-summary'
 import { NavItem, SidebarItem } from './sidebar-item'
 
-export const SPEND_MANA_ENABLED = true
+export const SPEND_CREDITS_ENABLED = true
 
 // Bump this number to re-show the NEW badge on Shop for all users
 const SHOP_NEW_VERSION = 1
@@ -189,14 +189,19 @@ const getDesktopNav = (
         href: `/notifications`,
         icon: NotificationsIcon,
       },
-      { name: 'Leagues', href: '/leagues', icon: TrophyIcon },
+      { name: 'Arena Seasons', href: '/leagues', icon: TrophyIcon },
+      {
+        name: 'Kalshi Prep',
+        href: '/kalshi-prep',
+        icon: SparklesIcon,
+      },
       {
         name: 'Forum',
         href: '/posts',
         icon: ChatIcon,
       },
       // Show shop when enabled OR for admins (testing)
-      (SPEND_MANA_ENABLED || options.isAdminOrMod) && {
+      (SPEND_CREDITS_ENABLED || options.isAdminOrMod) && {
         name: 'Shop',
         href: '/shop',
         icon: LuGem,
@@ -258,7 +263,7 @@ const getMobileNav = (
       icon: ReportsIcon,
     },
     // Show shop when enabled OR for admins (testing)
-    (SPEND_MANA_ENABLED || isAdminOrMod) && {
+    (SPEND_CREDITS_ENABLED || isAdminOrMod) && {
       name: 'Shop',
       href: '/shop',
       icon: LuGem,

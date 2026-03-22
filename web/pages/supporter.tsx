@@ -14,6 +14,7 @@ import {
   getSupporterEntitlement,
 } from 'common/supporter-config'
 import { Button } from 'web/components/buttons/button'
+import { subscriptionCheckoutURL } from 'web/lib/service/stripe'
 import { Col } from 'web/components/layout/col'
 import { Page } from 'web/components/layout/page'
 import { Row } from 'web/components/layout/row'
@@ -34,7 +35,7 @@ import {
   PurchaseConfirmation,
   TIER_ITEMS,
 } from 'web/components/shop/supporter'
-import { SPEND_MANA_ENABLED } from 'web/components/nav/sidebar'
+import { SPEND_CREDITS_ENABLED } from 'web/components/nav/sidebar'
 import Custom404 from 'web/pages/404'
 
 export default function SupporterPage() {
@@ -42,7 +43,7 @@ export default function SupporterPage() {
   const isAdminOrMod = useAdminOrMod()
 
   // Allow admins to access supporter page for testing even when feature flag is off
-  if (!SPEND_MANA_ENABLED && !isAdminOrMod) {
+  if (!SPEND_CREDITS_ENABLED && !isAdminOrMod) {
     return <Custom404 />
   }
   const [purchasing, setPurchasing] = useState<string | null>(null)
@@ -118,8 +119,8 @@ export default function SupporterPage() {
   return (
     <Page trackPageView="supporter page" className="p-3">
       <SEO
-        title="Manifold Membership"
-        description="Unlock premium benefits with Manifold Plus, Pro, or Premium"
+        title="PREDICTA Arena Membership"
+        description="Unlock premium benefits with Arena Plus, Pro, or Premium"
         url="/supporter"
       />
 
@@ -176,7 +177,7 @@ export default function SupporterPage() {
                       .textColor
                   )}
                 >
-                  Manifold{' '}
+                  PREDICTA Arena{' '}
                   {
                     SUPPORTER_TIERS[hoveredTier ?? currentTier ?? activeTier]
                       .name
@@ -214,7 +215,7 @@ export default function SupporterPage() {
             ) : (
               <Col className="hidden items-end gap-0.5 sm:flex">
                 <span className="text-ink-600 text-sm font-medium">
-                  Support Manifold
+                  Support PREDICTA Arena
                 </span>
                 <span className="text-ink-500 text-xs">
                   Unlock premium benefits
@@ -251,6 +252,43 @@ export default function SupporterPage() {
             isAutoRenewing={isAutoRenewing}
           />
         )}
+
+        {/* Stripe subscription option for Pro and Premium tiers */}
+        {activeTier && activeTier !== 'basic' && !isSupporter && user && (
+          <div className="border-ink-800 rounded-xl border p-4 text-center">
+            <p className="text-ink-400 mb-3 text-sm">
+              Or subscribe with a credit card — no credits needed
+            </p>
+            <button
+              onClick={() => {
+                const tier = activeTier === 'plus' ? 'pro' : 'premium'
+                window.location.href = subscriptionCheckoutURL(
+                  user.id,
+                  tier,
+                  window.location.href
+                )
+              }}
+              className="bg-primary-600 hover:bg-primary-700 w-full rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors"
+            >
+              Subscribe for ${activeTier === 'plus' ? '4.99' : '9.99'}/mo →
+            </button>
+            <p className="text-ink-500 mt-2 text-xs">
+              Powered by Stripe. Cancel anytime.
+            </p>
+          </div>
+        )}
+
+        {/* Handle successful subscription redirect */}
+        {typeof window !== 'undefined' &&
+          new URLSearchParams(window.location.search).get(
+            'subscriptionSuccess'
+          ) === 'true' && (
+            <div className="bg-primary-500/10 border-primary-500/30 rounded-xl border p-4 text-center">
+              <p className="text-primary-400 font-semibold">
+                ✓ Subscription activated! Your Arena membership is now active.
+              </p>
+            </div>
+          )}
 
         {/* Benefits Comparison Table with Column Highlight */}
         <BenefitsTable currentTier={currentTier} activeTier={activeTier} />
@@ -296,7 +334,7 @@ export default function SupporterPage() {
                   tier={purchasedTier}
                   animate={purchasedTier === 'premium'}
                 />{' '}
-                Manifold {SUPPORTER_TIERS[purchasedTier].name}
+                PREDICTA Arena {SUPPORTER_TIERS[purchasedTier].name}
               </>
             )}{' '}
             member!
@@ -345,7 +383,7 @@ export default function SupporterPage() {
           </Col>
 
           <Button color="amber" onClick={() => setShowCelebration(false)}>
-            Continue to Manifold
+            Continue to PREDICTA Arena
           </Button>
         </Col>
       </Modal>

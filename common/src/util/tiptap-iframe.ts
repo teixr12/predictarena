@@ -68,7 +68,7 @@ export default Node.create<IframeOptions>({
 
     // This is a hack to prevent native from opening the iframe in an in-app browser
     // and mobile in another tab. In native, links with target='_blank' open in the in-app browser.
-    if (src.includes('manifold.markets/embed/')) {
+    if (src.includes('predictarena.com/embed/')) {
       return [
         'div',
         {

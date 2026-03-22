@@ -38,7 +38,7 @@ export function UpdatedTermsModal() {
         <p className="text-ink-700">
           As part of our launch of sweepstakes, we have updated our{' '}
           <a
-            href="https://docs.manifold.markets/terms-and-conditions"
+            href="https://predictarena.com/docs/terms-and-conditions"
             className="text-primary-700 font-semibold underline"
             target="_blank"
           >
@@ -46,7 +46,7 @@ export function UpdatedTermsModal() {
           </a>
           ,{' '}
           <a
-            href="https://docs.manifold.markets/privacy-policy"
+            href="https://predictarena.com/docs/privacy-policy"
             className="text-primary-700 font-semibold underline"
             target="_blank"
           >
@@ -54,7 +54,7 @@ export function UpdatedTermsModal() {
           </a>
           , and{' '}
           <a
-            href="https://docs.manifold.markets/rules"
+            href="https://predictarena.com/docs/rules"
             className="text-primary-700 font-semibold underline"
             target="_blank"
           >

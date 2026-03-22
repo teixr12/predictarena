@@ -10,3 +10,14 @@ export const checkoutURL = (
     referer
   )}`
 }
+
+export const subscriptionCheckoutURL = (
+  userId: string,
+  tier: 'pro' | 'premium',
+  referer = ''
+) => {
+  const endpoint = getApiUrl('createsubscriptioncheckoutsession')
+  return `${endpoint}?userId=${userId}&tier=${tier}&referer=${encodeURIComponent(
+    referer
+  )}`
+}

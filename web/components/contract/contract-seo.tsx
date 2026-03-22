@@ -45,7 +45,7 @@ export function ContractSEO(props: {
   const jsonLd = buildMarketQAPage({
     question: contract.question,
     description: descriptionText,
-    url: `https://manifold.markets${contractPath(contract)}`,
+    url: `https://predictarena.com${contractPath(contract)}`,
     creatorName: contract.creatorName,
     creatorUsername: contract.creatorUsername,
     createdTime: contract.createdTime,
@@ -64,10 +64,10 @@ export function ContractSEO(props: {
 
   const breadcrumbs = jsonLd
     ? buildBreadcrumbs([
-        { name: 'Home', url: 'https://manifold.markets' },
+        { name: 'Home', url: 'https://predictarena.com' },
         {
           name: contract.creatorName,
-          url: `https://manifold.markets/${contract.creatorUsername}`,
+          url: `https://predictarena.com/${contract.creatorUsername}`,
         },
         { name: contract.question }, // Last item omits URL per Google docs
       ])

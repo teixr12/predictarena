@@ -129,7 +129,7 @@ export function PriceTile(props: {
       <Col className={' w-full items-center rounded-t px-4 pb-2 pt-4'}>
         <Image
           src={imgSrc}
-          alt={`${shortenNumber(mana)} mana`}
+          alt={`${shortenNumber(mana)} credits`}
           className="100%"
           width={120}
           height={120}
@@ -174,7 +174,7 @@ export function PriceTile(props: {
       </div>
     </button>
   )
-  const [url, setUrl] = useState('https://manifold.markets')
+  const [url, setUrl] = useState('https://predictarena.com')
   useEffect(() => setUrl(window.location.href), [])
   return (
     <form
@@ -212,7 +212,7 @@ export const SpiceToManaForm = (props: {
 
   return (
     <>
-      <div className="my-4">Convert at a rate of 1 prize point to 1 mana.</div>
+      <div className="my-4">Convert at a rate of 1 prize point to 1 credit.</div>
       <div className="text-ink-500 mb-2 text-sm">Amount</div>
       <AmountInput amount={amount} onChangeAmount={setAmount} />
       <div className="mt-4 flex gap-2">

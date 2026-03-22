@@ -42,7 +42,7 @@ export const LinkPreviewNodeView = (props: LinkPreviewProps) => {
         className="block"
         key={id}
         href={url}
-        target={url.includes('manifold.markets') ? '_self' : '_blank'}
+        target={url.includes('predictarena.com') ? '_self' : '_blank'}
         rel="noreferrer ugc"
       >
         <img

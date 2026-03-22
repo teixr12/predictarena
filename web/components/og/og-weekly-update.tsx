@@ -45,11 +45,11 @@ export function OgWeeklyUpdate(props: WeeklyPortfolioUpdateOGCardProps) {
       <div className="absolute right-24 top-8 flex">
         <img
           className="mr-3 h-12 w-12"
-          src="https:&#x2F;&#x2F;manifold.markets&#x2F;logo.svg"
+          src="https:&#x2F;&#x2F;predictarena.com&#x2F;logo.svg"
           width="40"
           height="40"
         />
-        <div className="mt-3 flex text-3xl lowercase">Manifold</div>
+        <div className="mt-3 flex text-3xl">PREDICTA</div>
       </div>
 
       <div className={'relative mt-[6rem] flex w-full flex-row justify-center'}>

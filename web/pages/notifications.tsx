@@ -72,7 +72,7 @@ export default function NotificationsPage() {
       <div className="w-full">
         {shouldShowBanner && <NotificationsAppBanner />}
         <Title className="hidden lg:block">Notifications</Title>
-        <SEO title="Notifications" description="Manifold user notifications" />
+        <SEO title="Notifications" description="PREDICTA Arena user notifications" />
         {privateUser && user && router.isReady ? (
           <NotificationsContent
             user={user}
@@ -489,7 +489,7 @@ function NotificationGroupItem(props: {
               {notifications[0].sourceUserName}
             </>
           ) : onboardingNotifs ? (
-            <>Welcome to Manifold!</>
+            <>Welcome to PREDICTA Arena!</>
           ) : questNotifs ? (
             <>
               {notifications.length}{' '}

@@ -4,7 +4,7 @@ import { log } from './utils'
 
 const initMailgun = () => {
   const apiKey = process.env.MAILGUN_KEY as string
-  return mailgun({ apiKey, domain: 'mg.manifold.markets' })
+  return mailgun({ apiKey, domain: process.env.MAILGUN_DOMAIN ?? 'mg.predictarena.com' })
 }
 
 export const sendTextEmail = async (
@@ -15,7 +15,7 @@ export const sendTextEmail = async (
 ) => {
   const data: mailgun.messages.SendData = {
     ...options,
-    from: options?.from ?? 'Manifold <info@manifold.markets>',
+    from: options?.from ?? 'PREDICTA Arena <noreply@predictarena.com>',
     to,
     subject,
     text,
@@ -39,7 +39,7 @@ export const sendTemplateEmail = async (
 ) => {
   const data: mailgun.messages.SendTemplateData = {
     ...options,
-    from: options?.from ?? 'Manifold <info@manifold.markets>',
+    from: options?.from ?? 'PREDICTA Arena <noreply@predictarena.com>',
     to,
     subject,
     template: templateId,

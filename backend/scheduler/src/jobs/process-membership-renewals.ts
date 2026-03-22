@@ -99,7 +99,8 @@ export async function processMembershipRenewals() {
      WHERE entitlement_id = ANY($1)
      AND auto_renew = true
      AND expires_time IS NOT NULL
-     AND expires_time <= NOW()`,
+     AND expires_time <= NOW()
+     AND (stripe_managed IS NULL OR stripe_managed = false)`,
     [[...SUPPORTER_ENTITLEMENT_IDS]]
   )
 

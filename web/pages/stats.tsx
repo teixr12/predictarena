@@ -21,8 +21,8 @@ import { average } from 'common/util/math'
 import { useCallback, useState } from 'react'
 import { Button } from 'web/components/buttons/button'
 import {
-  MANA_PURCHASE_RATE_CHANGE_DATE,
-  MANA_PURCHASE_RATE_REVERT_DATE,
+  CREDITS_PURCHASE_RATE_CHANGE_DATE,
+  CREDITS_PURCHASE_RATE_REVERT_DATE,
   TRADE_TERM,
   TRADED_TERM,
 } from 'common/envs/constants'
@@ -638,7 +638,7 @@ function ManaSupplyTab(props: {
               <>
                 &Delta; mana_supply_stats.total_value
                 <br />
-                minus net sum txns to or from Manifold
+                minus net sum txns to or from PREDICTA Arena
               </>
             }
           />
@@ -662,10 +662,10 @@ function ManaSupplyTab(props: {
         />
       )}
       <Spacer h={8} />
-      <Title>Transactions from Manifold</Title>
+      <Title>Transactions from PREDICTA Arena</Title>
       <BonusSummary txnSummaryStats={fromBankSummaryMana} days={days} />
       <Spacer h={8} />
-      <Title>Transactions to Manifold</Title>
+      <Title>Transactions to PREDICTA Arena</Title>
       <span className="text-ink-500">(Ignores mana purchases)</span>
       <BonusSummary txnSummaryStats={toBankSummaryMana} days={days} />
     </Col>
@@ -708,15 +708,15 @@ function ManaSalesTab(props: { stats: rowfor<'daily_stats'>[] }) {
       <Spacer h={8} />
       <span className="text-ink-500 italic">
         mana purchased divided by 100, except from{' '}
-        <DateTimeTooltip time={MANA_PURCHASE_RATE_CHANGE_DATE.valueOf()}>
+        <DateTimeTooltip time={CREDITS_PURCHASE_RATE_CHANGE_DATE.valueOf()}>
           <span>
-            {formatTimeShort(MANA_PURCHASE_RATE_CHANGE_DATE.valueOf())}
+            {formatTimeShort(CREDITS_PURCHASE_RATE_CHANGE_DATE.valueOf())}
           </span>
         </DateTimeTooltip>{' '}
         to{' '}
-        <DateTimeTooltip time={MANA_PURCHASE_RATE_REVERT_DATE.valueOf()}>
+        <DateTimeTooltip time={CREDITS_PURCHASE_RATE_REVERT_DATE.valueOf()}>
           <span>
-            {formatTimeShort(MANA_PURCHASE_RATE_REVERT_DATE.valueOf())}
+            {formatTimeShort(CREDITS_PURCHASE_RATE_REVERT_DATE.valueOf())}
           </span>
         </DateTimeTooltip>{' '}
         it is divided by 1000

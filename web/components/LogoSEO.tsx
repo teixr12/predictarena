@@ -4,11 +4,12 @@ export function LogoSEO() {
   const orgData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Manifold Markets',
-    url: 'https://manifold.markets',
-    logo: 'https://manifold.markets/logo.svg',
-    description: 'Create your own prediction market. Unfold the future.',
-    sameAs: ['https://twitter.com/ManifoldMarkets'],
+    name: 'PREDICTA Arena',
+    url: 'https://predictarena.com',
+    logo: 'https://predictarena.com/logo.svg',
+    description:
+      'The safe simulator that trains you for Kalshi & Polymarket. Practice prediction markets risk-free.',
+    sameAs: ['https://twitter.com/predictarena'],
   }
 
   return <JsonLd data={orgData} id="organization" />

@@ -25,17 +25,17 @@
     --color-canvas-50: 244 243 251;
     --color-canvas-100: 210 212 224;
 
-    --color-primary-50: 238 242 255;
-    --color-primary-100: 224 231 255;
-    --color-primary-200: 199 210 254;
-    --color-primary-300: 165 180 252;
-    --color-primary-400: 129 140 248;
-    --color-primary-500: 99 102 241;
-    --color-primary-600: 79 70 229;
-    --color-primary-700: 67 56 202;
-    --color-primary-800: 55 48 163;
-    --color-primary-900: 49 46 129;
-    --color-primary-950: 30 27 75;
+    --color-primary-50: 236 253 245;
+    --color-primary-100: 209 250 229;
+    --color-primary-200: 167 243 208;
+    --color-primary-300: 110 231 183;
+    --color-primary-400: 52 211 153;
+    --color-primary-500: 16 185 129;
+    --color-primary-600: 5 150 105;
+    --color-primary-700: 4 120 87;
+    --color-primary-800: 6 95 70;
+    --color-primary-900: 6 78 59;
+    --color-primary-950: 2 44 34;
 
     --color-no-50: 255 243 241;
     --color-no-100: 255 235 231;
@@ -78,21 +78,21 @@
     --color-ink-50: 10 8 43;
     --color-ink-0: 0 0 0;
 
-    --color-canvas-0: 15 23 41;
-    --color-canvas-50: 30 41 59;
-    --color-canvas-100: 51 65 85;
+    --color-canvas-0: 10 14 20;
+    --color-canvas-50: 18 24 38;
+    --color-canvas-100: 30 41 59;
 
-    --color-primary-950: 238 242 255;
-    --color-primary-900: 224 231 255;
-    --color-primary-800: 199 210 254;
-    --color-primary-700: 165 180 252;
-    --color-primary-600: 129 140 248;
-    --color-primary-500: 99 102 241;
-    --color-primary-400: 79 70 229;
-    --color-primary-300: 67 56 202;
-    --color-primary-200: 55 48 163;
-    --color-primary-100: 49 46 129;
-    --color-primary-50: 30 27 75;
+    --color-primary-950: 236 253 245;
+    --color-primary-900: 209 250 229;
+    --color-primary-800: 167 243 208;
+    --color-primary-700: 110 231 183;
+    --color-primary-600: 52 211 153;
+    --color-primary-500: 16 185 129;
+    --color-primary-400: 5 150 105;
+    --color-primary-300: 4 120 87;
+    --color-primary-200: 6 95 70;
+    --color-primary-100: 6 78 59;
+    --color-primary-50: 2 44 34;
 
     --color-no-950: 255 243 241;
     --color-no-900: 255 235 231;
@@ -184,6 +184,14 @@
 
 .icon-mana_3:before {
   content: '\1e40';
+}
+
+/* PREDICTA Arena blueprint grid background */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 /* For Webkit-inkd browsers (Chrome, Safari and Opera) */
@@ -314,12 +322,12 @@ text {
 @keyframes glow-indigo {
   0%,
   100% {
-    box-shadow: 0 0 12px rgba(99, 102, 241, 0.6),
-      0 0 24px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.6),
+      0 0 24px rgba(16, 185, 129, 0.4);
   }
   50% {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.8),
-      0 0 40px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.8),
+      0 0 40px rgba(16, 185, 129, 0.5);
   }
 }
 
@@ -347,10 +355,10 @@ text {
 @keyframes glow-indigo-subtle {
   0%,
   100% {
-    box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
   }
 }
 

@@ -117,7 +117,7 @@ const checkForNaughtyEmbeds = (content: JSONContent) => {
     (content.content?.filter((c) => c.type === 'iframe').length ?? 0) > 1 ||
     !!content.content?.find((c) => c.type === 'gridCardsComponent') ||
     !!content.content?.find(
-      (c) => c.type === 'iframe' && c.attrs?.src.includes('manifold.markets')
+      (c) => c.type === 'iframe' && c.attrs?.src.includes('predictarena.com')
     )
   ) {
     throw new APIError(

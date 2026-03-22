@@ -31,7 +31,7 @@ export default function LabsPage() {
       </div>
       <LabSection>
         <LabCard
-          title="💌 Manifold.love"
+          title="💌 PREDICTA Arena Love"
           description="Crowd source your long term matches!"
           href="https://manifold.love"
         />
@@ -60,7 +60,7 @@ export default function LabsPage() {
         <LabCard
           title="🏆 CSPI/Salem tournament"
           description="Separate site hosting special contest"
-          href="https://salemcenter.manifold.markets/"
+          href="https://salemcenter.predictarena.com/"
           target="_blank"
         />
         <LabCard
@@ -79,7 +79,7 @@ export default function LabsPage() {
           href="/VersusBot?tab=questions"
         />
         <LabCard
-          title="🎴 Manifold: The Gambling"
+          title="🎴 PREDICTA Arena: The Gambling"
           description="Match each question to its creator"
           href="/cards"
         />

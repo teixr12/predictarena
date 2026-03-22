@@ -20,7 +20,7 @@ export const getTestUsers = async (pg: SupabaseDirectClient, limit: number) => {
         email: 'manifoldTestNewUser+' + randomString() + '@gmail.com',
         password: randomString(16),
         emailVerified: true,
-        displayName: 'Manifold Test User',
+        displayName: 'PREDICTA Arena Test User',
       })
       log('success creating firebase user', userCredential.uid)
       await createUserMain(

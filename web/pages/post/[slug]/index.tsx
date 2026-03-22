@@ -468,7 +468,7 @@ function PostJsonLd(props: { post: TopLevelPost; comments: PostComment[] }) {
   const data = buildPostDiscussion({
     title: post.title,
     body: richTextToString(post.content),
-    url: `https://manifold.markets/post/${post.slug}`,
+    url: `https://predictarena.com/post/${post.slug}`,
     creatorName: post.creatorName,
     creatorUsername: post.creatorUsername,
     createdTime: post.createdTime,

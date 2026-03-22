@@ -50,7 +50,7 @@ export function Socials(props: { className?: string; hideTitle?: boolean }) {
         </SocialLink>
         <SocialLink
           Icon={NewspaperIcon}
-          href="https://news.manifold.markets"
+          href="https://news.predictarena.com"
           target="_blank"
         >
           Newsletter
@@ -64,7 +64,7 @@ export function Socials(props: { className?: string; hideTitle?: boolean }) {
         </SocialLink>
         <SocialLink
           Icon={MailIcon}
-          href="mailto:info@manifold.markets"
+          href="mailto:support@predictarena.com"
           target="_blank"
         >
           Email

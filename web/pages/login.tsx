@@ -2,7 +2,7 @@ import { Page } from 'web/components/layout/page'
 import { Col } from 'web/components/layout/col'
 import { Row } from 'web/components/layout/row'
 import { useRedirectIfSignedIn } from 'web/hooks/use-redirect-if-signed-in'
-import { ManifoldLogo } from 'web/components/nav/manifold-logo'
+import { LogoIcon } from 'web/components/icons/logo-icon'
 import { LogoSEO } from 'web/components/LogoSEO'
 import { Button } from 'web/components/buttons/button'
 import { firebaseLogin, loginWithApple } from 'web/lib/firebase/users'
@@ -60,8 +60,9 @@ export default function LoginPage() {
   return (
     <Page trackPageView={'login page'} hideSidebar>
       <Col className="mx-auto mt-8 w-full max-w-md gap-8 px-4">
-        <Row className="items-center justify-center">
-          <ManifoldLogo className="!w-auto" />
+        <Row className="items-center justify-center gap-2">
+          <LogoIcon className="text-primary-400 h-8 w-8" />
+          <span className="text-xl font-bold">PREDICTA Arena</span>
           <LogoSEO />
         </Row>
 

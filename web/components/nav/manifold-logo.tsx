@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import clsx from 'clsx'
-import Image from 'next/image'
 import { useUser } from 'web/hooks/use-user'
 import { ENV } from 'common/envs/constants'
 import { LogoIcon } from '../icons/logo-icon'
@@ -19,13 +18,13 @@ export function ManifoldLogo(props: { className?: string; twoLine?: boolean }) {
         )}
       >
         <LogoIcon
-          className="h-10 w-10 shrink-0 stroke-indigo-700 transition-transform group-hover:rotate-12 dark:stroke-white"
+          className="h-10 w-10 shrink-0 stroke-emerald-500 transition-transform group-hover:rotate-12 dark:stroke-emerald-400"
           aria-hidden
         />
         <div
-          className={clsx('text-xl font-thin text-indigo-700 dark:text-white')}
+          className={clsx('text-xl font-thin text-emerald-600 dark:text-emerald-400')}
         >
-          {ENV == 'DEV' ? 'DEVIFOLD' : 'MANIFOLD'}
+          {ENV == 'DEV' ? 'PREDICTA DEV' : 'PREDICTA'}
         </div>
       </Link>
     </div>

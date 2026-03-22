@@ -1,5 +1,9 @@
 import clsx from 'clsx'
 import { ReactNode, memo, useEffect, useState } from 'react'
+import Link from 'next/link'
+import { SparklesIcon } from '@heroicons/react/outline'
+import { api } from 'web/lib/api/api'
+import { isSupporter } from 'common/supporter-config'
 
 import { usePersistentInMemoryState } from 'client-common/hooks/use-persistent-in-memory-state'
 import { Answer, MultiSort, getDefaultSort } from 'common/answer'
@@ -87,6 +91,84 @@ import { AlertBox } from '../widgets/alert-box'
 import { GradientContainer } from '../widgets/gradient-container'
 import { LoadingIndicator } from '../widgets/loading-indicator'
 import { Tooltip } from '../widgets/tooltip'
+
+function AIHintPanel({ contractId }: { contractId: string }) {
+  const user = useUser()
+  const [hint, setHint] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
+  const hasAccess = isSupporter(user?.entitlements)
+
+  const fetchHint = async () => {
+    if (!hasAccess || loading) return
+    setLoading(true)
+    try {
+      const res = await api('get-ai-market-hint', { contractId })
+      setHint(res.hint)
+    } catch (e: any) {
+      setHint('Could not load AI insight. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (!user) return null
+
+  return (
+    <div className="border-ink-200 dark:border-ink-800 mt-4 rounded-xl border">
+      <button
+        onClick={() => {
+          setOpen(!open)
+          if (!open && !hint && hasAccess) fetchHint()
+        }}
+        className="flex w-full items-center gap-2 px-4 py-3 text-left"
+      >
+        <SparklesIcon className="text-primary-400 h-4 w-4 shrink-0" />
+        <span className="text-ink-700 dark:text-ink-300 text-sm font-medium">
+          AI Insight
+        </span>
+        {!hasAccess && (
+          <span className="bg-primary-500/10 text-primary-500 ml-2 rounded-full px-2 py-0.5 text-xs">
+            Pro
+          </span>
+        )}
+        <span className="text-ink-400 ml-auto text-xs">{open ? '▲' : '▼'}</span>
+      </button>
+
+      {open && (
+        <div className="border-ink-200 dark:border-ink-800 border-t px-4 py-3">
+          {!hasAccess ? (
+            <p className="text-ink-500 text-sm">
+              AI market insights are available for{' '}
+              <Link
+                href="/supporter"
+                className="text-primary-400 hover:underline"
+              >
+                Arena Plus members
+              </Link>
+              .
+            </p>
+          ) : loading ? (
+            <p className="text-ink-400 animate-pulse text-sm">
+              Analyzing market...
+            </p>
+          ) : hint ? (
+            <p className="text-ink-600 dark:text-ink-300 text-sm leading-relaxed">
+              {hint}
+            </p>
+          ) : (
+            <button
+              onClick={fetchHint}
+              className="text-primary-400 text-sm hover:underline"
+            >
+              Click to load insight
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export const ContractOverview = memo(
   (props: {
@@ -334,6 +416,7 @@ export const BinaryOverview = (props: {
         zoomY={zoomY}
       />
       {tradingAllowed(contract) && <BinaryBetPanel contract={contract} />}
+      <AIHintPanel contractId={contract.id} />
     </>
   )
 }

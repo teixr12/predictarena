@@ -19,11 +19,11 @@ export function SEO<
     (ogProps &&
       buildOgUrl(removeUndefinedProps(ogProps.props) as any, ogProps.endpoint))
 
-  const absUrl = 'https://manifold.markets' + url
+  const absUrl = 'https://predictarena.com' + url
 
   return (
     <Head>
-      <title>{`${title} | Manifold`}</title>
+      <title>{`${title} | PREDICTA Arena`}</title>
 
       <meta
         property="og:title"
@@ -44,12 +44,7 @@ export function SEO<
 
       {url && <meta property="og:url" content={absUrl} key="url" />}
 
-      {url && (
-        <meta
-          name="apple-itunes-app"
-          content={'app-id=6444136749, app-argument=' + absUrl}
-        />
-      )}
+      {/* No mobile app yet */}
 
       {imageUrl && (
         <>
