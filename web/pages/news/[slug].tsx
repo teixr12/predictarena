@@ -16,13 +16,11 @@ export async function getStaticProps(ctx: { params: { slug: string } }) {
       props,
     }
   } catch (e) {
-    if (typeof e === 'object' && e !== null && 'code' in e && e.code === 404) {
-      return {
-        props: { state: 'not found' },
-        revalidate: 60,
-      }
+    console.error('getStaticProps failed:', e)
+    return {
+      props: { state: 'not found' },
+      revalidate: 60,
     }
-    throw e
   }
 }
 

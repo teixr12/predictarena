@@ -15,25 +15,33 @@ import { PromotionalPanel } from 'web/components/promotional-panel'
 const revalidate = 60
 
 export async function getStaticProps() {
-  if (ENV === 'DEV') {
+  try {
+    if (ENV === 'DEV') {
+      return {
+        props: {},
+        revalidate,
+      }
+    }
+    const adminDb = await initSupabaseAdmin()
+    const complexSystemsContract = await getContractFromSlug(
+      adminDb,
+      'who-will-be-on-the-complex-systems'
+    )
+
+    const electionsPageProps = await getElectionsPageProps()
+    return {
+      props: {
+        ...electionsPageProps,
+        complexSystemsContract: complexSystemsContract,
+      },
+      revalidate,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
     return {
       props: {},
       revalidate,
     }
-  }
-  const adminDb = await initSupabaseAdmin()
-  const complexSystemsContract = await getContractFromSlug(
-    adminDb,
-    'who-will-be-on-the-complex-systems'
-  )
-
-  const electionsPageProps = await getElectionsPageProps()
-  return {
-    props: {
-      ...electionsPageProps,
-      complexSystemsContract: complexSystemsContract,
-    },
-    revalidate,
   }
 }
 

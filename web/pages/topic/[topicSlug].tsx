@@ -31,30 +31,37 @@ import { removeEmojis } from 'common/util/string'
 import { formatWithCommas } from 'common/util/format'
 
 export async function getStaticProps(ctx: { params: { topicSlug: string } }) {
-  const { topicSlug } = ctx.params
-  const topic = await getGroupFromSlug(topicSlug)
+  try {
+    const { topicSlug } = ctx.params
+    const topic = await getGroupFromSlug(topicSlug)
 
-  if (!topic) {
+    if (!topic) {
+      return { notFound: true }
+    }
+
+    const { above, below } = await api('group/:slug/groups', {
+      slug: topicSlug,
+    })
+    const dashboards = await api('group/:slug/dashboards', { slug: topicSlug })
+    const topQuestions = await api('search-markets', {
+      sort: 'score',
+      topicSlug,
+      limit: 3,
+    })
+
+    return {
+      props: {
+        topic: removeUndefinedProps(topic),
+        above,
+        below,
+        dashboards,
+        topQuestions: topQuestions.map((m) => m.question),
+      },
+      revalidate: 3600 * 12, // 12 hours
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
     return { notFound: true }
-  }
-
-  const { above, below } = await api('group/:slug/groups', { slug: topicSlug })
-  const dashboards = await api('group/:slug/dashboards', { slug: topicSlug })
-  const topQuestions = await api('search-markets', {
-    sort: 'score',
-    topicSlug,
-    limit: 3,
-  })
-
-  return {
-    props: {
-      topic: removeUndefinedProps(topic),
-      above,
-      below,
-      dashboards,
-      topQuestions: topQuestions.map((m) => m.question),
-    },
-    revalidate: 3600 * 12, // 12 hours
   }
 }
 

@@ -6,8 +6,8 @@ import { getSupabaseInstanceId } from './db'
 // the vercel names for these secrets
 let key =
   ENV == 'PROD'
-    ? process.env.PROD_ADMIN_SUPABASE_KEY
-    : process.env.DEV_ADMIN_SUPABASE_KEY
+    ? (process.env.PROD_ADMIN_SUPABASE_KEY ?? process.env.SUPABASE_KEY)
+    : (process.env.DEV_ADMIN_SUPABASE_KEY ?? process.env.SUPABASE_KEY)
 
 export async function initSupabaseAdmin() {
   if (key == null) {

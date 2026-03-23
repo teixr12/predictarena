@@ -13,39 +13,54 @@ import { db } from 'web/lib/supabase/db'
 const revalidate = 60
 
 export async function getStaticProps() {
-  if (ENV === 'DEV') {
+  try {
+    if (ENV === 'DEV') {
+      return {
+        props: {},
+        revalidate,
+      }
+    }
+
+    const [{ data: contractData }, { data: politicsData }] = await Promise.all([
+      db
+        .from('contracts')
+        .select(contractFields)
+        .eq('id', 'Z8R0SPSdIy')
+        .single(),
+      db
+        .from('contracts')
+        .select(contractFields)
+        .not(
+          'outcome_type',
+          'in',
+          `(${['STONK', 'BOUNTIED_QUESTION', 'POLL'].join(',')})`
+        )
+        .is('resolution', null)
+        .eq('token', 'MANA')
+        .eq('visibility', 'public')
+        .order('importance_score', { ascending: false })
+        .limit(10),
+    ])
+
+    const contract = contractData ? convertContract(contractData) : null
+    const politicsMarkets = (politicsData ?? []).map(convertContract)
+
     return {
-      props: {},
+      props: {
+        contract,
+        politicsMarkets,
+      },
       revalidate,
     }
-  }
-
-  const [{ data: contractData }, { data: politicsData }] = await Promise.all([
-    db.from('contracts').select(contractFields).eq('id', 'Z8R0SPSdIy').single(),
-    db
-      .from('contracts')
-      .select(contractFields)
-      .not(
-        'outcome_type',
-        'in',
-        `(${['STONK', 'BOUNTIED_QUESTION', 'POLL'].join(',')})`
-      )
-      .is('resolution', null)
-      .eq('token', 'MANA')
-      .eq('visibility', 'public')
-      .order('importance_score', { ascending: false })
-      .limit(10),
-  ])
-
-  const contract = contractData ? convertContract(contractData) : null
-  const politicsMarkets = (politicsData ?? []).map(convertContract)
-
-  return {
-    props: {
-      contract,
-      politicsMarkets,
-    },
-    revalidate,
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return {
+      props: {
+        contract: null,
+        politicsMarkets: [],
+      },
+      revalidate,
+    }
   }
 }
 

@@ -88,7 +88,7 @@ export function ForesightPortfolioButton(props: {
         }
       )
 
-      const resolvedMetrics = (metricsResp as any[]).filter(
+      const resolvedMetrics = (metricsResp as unknown as any[]).filter(
         (m: any) => m.contract?.resolution
       )
 

@@ -33,15 +33,25 @@ export default function ElectionNeedlePage({
 }
 
 export async function getStaticProps() {
-  const adminDb = await initSupabaseAdmin()
-  const electionPartyContract = await getContractFromSlug(
-    adminDb,
-    ELECTION_PARTY_CONTRACT_SLUG
-  )
-  return {
-    props: {
-      electionPartyContract,
-    },
-    revalidate: 60,
+  try {
+    const adminDb = await initSupabaseAdmin()
+    const electionPartyContract = await getContractFromSlug(
+      adminDb,
+      ELECTION_PARTY_CONTRACT_SLUG
+    )
+    return {
+      props: {
+        electionPartyContract,
+      },
+      revalidate: 60,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return {
+      props: {
+        electionPartyContract: null,
+      },
+      revalidate: 60,
+    }
   }
 }

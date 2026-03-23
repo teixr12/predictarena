@@ -25,14 +25,24 @@ import { useUser } from 'web/hooks/use-user'
 import { track } from 'web/lib/service/analytics'
 
 export async function getStaticProps() {
-  const bestPosts = await unauthedApi('get-posts', {
-    sortBy: 'importance_score',
-  })
-  return {
-    props: {
-      bestPosts,
-    },
-    revalidate: 60,
+  try {
+    const bestPosts = await unauthedApi('get-posts', {
+      sortBy: 'importance_score',
+    })
+    return {
+      props: {
+        bestPosts,
+      },
+      revalidate: 60,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return {
+      props: {
+        bestPosts: [],
+      },
+      revalidate: 60,
+    }
   }
 }
 

@@ -11,34 +11,46 @@ export async function getStaticPaths() {
 export async function getStaticProps(props: {
   params: { scheduleId: string[] }
 }) {
-  const db = await initSupabaseAdmin()
-  const scheduleId = props.params.scheduleId?.[0] ?? null
+  try {
+    const db = await initSupabaseAdmin()
+    const scheduleId = props.params.scheduleId?.[0] ?? null
 
-  const cutoff = new Date(Date.now() - HOUR_MS).toISOString()
-  let query = db
-    .from('tv_schedule')
-    .select('*')
-    .order('start_time', { ascending: true })
+    const cutoff = new Date(Date.now() - HOUR_MS).toISOString()
+    let query = db
+      .from('tv_schedule')
+      .select('*')
+      .order('start_time', { ascending: true })
 
-  if (scheduleId) {
-    query = query.or(`end_time.gt.${cutoff},id.eq.${scheduleId}`)
-  } else {
-    query = query.gt('end_time', cutoff)
-  }
+    if (scheduleId) {
+      query = query.or(`end_time.gt.${cutoff},id.eq.${scheduleId}`)
+    } else {
+      query = query.gt('end_time', cutoff)
+    }
 
-  const { data } = await query
-  const schedule = (data ?? []) as ScheduleItem[]
+    const { data } = await query
+    const schedule = (data ?? []) as ScheduleItem[]
 
-  const contractIds = schedule.map((s) => s.contract_id)
-  const contracts = await getContracts(db, contractIds)
+    const contractIds = schedule.map((s) => s.contract_id)
+    const contracts = await getContracts(db, contractIds)
 
-  return {
-    props: {
-      contracts,
-      schedule,
-      scheduleId,
-    },
-    revalidate: 60,
+    return {
+      props: {
+        contracts,
+        schedule,
+        scheduleId,
+      },
+      revalidate: 60,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return {
+      props: {
+        contracts: [],
+        schedule: [],
+        scheduleId: null,
+      },
+      revalidate: 60,
+    }
   }
 }
 
