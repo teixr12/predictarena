@@ -78,22 +78,22 @@ const PaymentAmounts = [
     mana: 500,
     priceInDollars: 4.99,
     bonusInDollars: 0,
-    devStripeId: 'TODO_DEV_PRICE_500', // TODO: Create in Stripe Dashboard
-    prodStripeId: 'TODO_PROD_PRICE_500',
+    devStripeId: 'price_1TE8vTF2z6lW0LUvf2hVrjMJ',
+    prodStripeId: 'price_1TE8vTF2z6lW0LUvf2hVrjMJ',
   },
   {
     mana: 1_200,
     priceInDollars: 9.99,
     bonusInDollars: 0,
-    devStripeId: 'TODO_DEV_PRICE_1200',
-    prodStripeId: 'TODO_PROD_PRICE_1200',
+    devStripeId: 'price_1TE8x0F2z6lW0LUvoes9qLUz',
+    prodStripeId: 'price_1TE8x0F2z6lW0LUvoes9qLUz',
   },
   {
     mana: 3_000,
-    priceInDollars: 19.99,
+    priceInDollars: 24.99,
     bonusInDollars: 0,
-    devStripeId: 'TODO_DEV_PRICE_3000',
-    prodStripeId: 'TODO_PROD_PRICE_3000',
+    devStripeId: 'price_1TE90MF2z6lW0LUvgvaNNZCg',
+    prodStripeId: 'price_1TE90MF2z6lW0LUvgvaNNZCg',
   },
 ]
 export type PaymentAmount = (typeof PaymentAmounts)[number] & {
@@ -146,15 +146,16 @@ export const MANI_IOS_PRICES = [
   },
 ] as PaymentAmount[]
 
-// Pro subscription Stripe Price IDs ($4.99/mo recurring)
-// TODO: Create these in Stripe Dashboard and replace the placeholder values
-export const DEV_PRO_SUBSCRIPTION_STRIPE_PRICE_ID = 'TODO_DEV_PRO_SUB_PRICE'
-export const PROD_PRO_SUBSCRIPTION_STRIPE_PRICE_ID = 'TODO_PROD_PRO_SUB_PRICE'
-// Premium subscription Stripe Price IDs ($9.99/mo recurring)
+// Arena Plus subscription Stripe Price IDs ($9.99/mo recurring)
+export const DEV_PRO_SUBSCRIPTION_STRIPE_PRICE_ID =
+  'price_1TE90aF2z6lW0LUv72ePYY5T'
+export const PROD_PRO_SUBSCRIPTION_STRIPE_PRICE_ID =
+  'price_1TE90aF2z6lW0LUv72ePYY5T'
+// Arena Premium subscription Stripe Price IDs ($19.99/mo recurring)
 export const DEV_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID =
-  'TODO_DEV_PREMIUM_SUB_PRICE'
+  'price_1TE90bF2z6lW0LUvfLThafND'
 export const PROD_PREMIUM_SUBSCRIPTION_STRIPE_PRICE_ID =
-  'TODO_PROD_PREMIUM_SUB_PRICE'
+  'price_1TE90bF2z6lW0LUvfLThafND'
 
 export const SWEEPIES_CASHOUT_FEE = 5
 export const MIN_CASHOUT_AMOUNT = 25
