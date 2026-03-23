@@ -12,6 +12,11 @@
     "target": "es2023",
     "incremental": true,
     "isolatedModules": true,
+    "typeRoots": [
+      "../node_modules/@types",
+      "../common/node_modules/@types",
+      "./node_modules/@types"
+    ],
     "paths": {
       "client-common/*": ["./src/*", "../lib/*"],
       "common/*": ["../common/src/*", "../common/lib/*"]
