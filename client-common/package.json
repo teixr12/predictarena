@@ -9,6 +9,7 @@
     "dayjs": "1.11.4"
   },
   "devDependencies": {
+    "@types/lodash": "4.14.178",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
