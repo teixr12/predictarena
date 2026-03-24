@@ -6,25 +6,30 @@ import { type Group } from 'common/group'
 import { api } from 'web/lib/api/api'
 // should match topic page's getStaticProps.
 export async function getStaticProps(ctx: { params: { topicSlug: string } }) {
-  const { topicSlug } = ctx.params
-  const topic = await getGroupFromSlug(topicSlug)
+  try {
+    const { topicSlug } = ctx.params
+    const topic = await getGroupFromSlug(topicSlug)
 
-  if (!topic) {
-    return { notFound: true }
-  }
+    if (!topic) {
+      return { notFound: true }
+    }
 
-  const topQuestions = await api('search-markets', {
-    sort: 'score',
-    topicSlug,
-    limit: 3,
-  })
+    const topQuestions = await api('search-markets', {
+      sort: 'score',
+      topicSlug,
+      limit: 3,
+    })
 
-  return {
-    props: {
-      topic: removeUndefinedProps(topic),
-      topQuestions: topQuestions.map((m) => m.question),
-    },
-    revalidate: 60,
+    return {
+      props: {
+        topic: removeUndefinedProps(topic),
+        topQuestions: topQuestions.map((m) => m.question),
+      },
+      revalidate: 60,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return { notFound: true, revalidate: 60 }
   }
 }
 

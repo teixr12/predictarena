@@ -84,32 +84,45 @@ export const getStaticProps = async (props: {
 }) => {
   const { username } = props.params
 
-  const user = await getUserForStaticProps(db, username)
+  try {
+    const user = await getUserForStaticProps(db, username)
 
-  const [contracts, posts] = user
-    ? await Promise.all([
-        db.from('contracts').select('id').eq('creator_id', user.id).limit(1),
-        db.from('old_posts').select('id').eq('creator_id', user.id).limit(1),
-      ])
-    : []
-  const hasCreatedQuestion = contracts?.data?.length || posts?.data?.length
-  const { count, rating } = (user ? await getUserRating(user.id) : null) ?? {}
-  const averageRating = user ? await getAverageUserRating(user.id) : undefined
-  const shouldIgnoreUser = user
-    ? await shouldIgnoreUserPage(user, !!hasCreatedQuestion)
-    : false
+    const [contracts, posts] = user
+      ? await Promise.all([
+          db.from('contracts').select('id').eq('creator_id', user.id).limit(1),
+          db.from('old_posts').select('id').eq('creator_id', user.id).limit(1),
+        ])
+      : []
+    const hasCreatedQuestion = contracts?.data?.length || posts?.data?.length
+    const { count, rating } = (user ? await getUserRating(user.id) : null) ?? {}
+    const averageRating = user ? await getAverageUserRating(user.id) : undefined
+    const shouldIgnoreUser = user
+      ? await shouldIgnoreUserPage(user, !!hasCreatedQuestion)
+      : false
 
-  return {
-    props: removeUndefinedProps({
-      user,
-      username,
-      rating: rating,
-      reviewCount: count,
-      averageRating: averageRating,
-      shouldIgnoreUser,
-      hasCreatedQuestion,
-    }),
-    revalidate: 60,
+    return {
+      props: removeUndefinedProps({
+        user,
+        username,
+        rating: rating,
+        reviewCount: count,
+        averageRating: averageRating,
+        shouldIgnoreUser,
+        hasCreatedQuestion,
+      }),
+      revalidate: 60,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return {
+      props: {
+        user: null,
+        username,
+        shouldIgnoreUser: false,
+        hasCreatedQuestion: false,
+      },
+      revalidate: 60,
+    }
   }
 }
 

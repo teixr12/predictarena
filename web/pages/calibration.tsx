@@ -22,9 +22,8 @@ const TRADER_THRESHOLD = 15
 const SAMPLING_P = 0.02
 
 export const getStaticProps = async () => {
-  const db = await initSupabaseAdmin()
-
   try {
+    const db = await initSupabaseAdmin()
     const result = await db
       .from('platform_calibration')
       .select('*')

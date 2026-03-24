@@ -53,16 +53,28 @@ export async function getStaticProps(ctx: { params: { charitySlug: string } }) {
       revalidate: 60,
     }
   }
-  const stats = (await getDonationsByCharity())[charity.id] ?? {
-    numSupporters: 0,
-    total: 0,
-  }
-  const donations = await getDonationsPageQuery(charity.id)({
-    limit: PAGE_SIZE,
-  })
-  return {
-    props: { charity, donations, stats },
-    revalidate: 60,
+  try {
+    const stats = (await getDonationsByCharity())[charity.id] ?? {
+      numSupporters: 0,
+      total: 0,
+    }
+    const donations = await getDonationsPageQuery(charity.id)({
+      limit: PAGE_SIZE,
+    })
+    return {
+      props: { charity, donations, stats },
+      revalidate: 60,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return {
+      props: {
+        charity,
+        donations: [],
+        stats: { numSupporters: 0, total: 0 },
+      },
+      revalidate: 60,
+    }
   }
 }
 

@@ -4,15 +4,20 @@ import { getContracts } from 'common/supabase/contracts'
 import { initSupabaseAdmin } from 'web/lib/supabase/admin-db'
 
 export async function getStaticProps(props: { params: { slugs: string[] } }) {
-  const { slugs } = props.params
-  const adminDb = await initSupabaseAdmin()
-  const contracts = await getContracts(adminDb, slugs, 'slug')
+  try {
+    const { slugs } = props.params
+    const adminDb = await initSupabaseAdmin()
+    const contracts = await getContracts(adminDb, slugs, 'slug')
 
-  return {
-    props: {
-      contracts,
-    },
-    revalidate: 60, // regenerate after a minute
+    return {
+      props: {
+        contracts,
+      },
+      revalidate: 60, // regenerate after a minute
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return { props: { contracts: [] }, revalidate: 60 }
   }
 }
 

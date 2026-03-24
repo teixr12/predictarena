@@ -24,39 +24,44 @@ type Company = {
 }
 
 export async function getStaticProps() {
-  const contracts = await searchContracts({
-    term: '',
-    // yc-s23
-    topicSlug: 'yc-s23',
-    // Manifold
-    creatorId: 'IPTOzEqrpkWmEzh6hwvAyY9PqFb2',
-    limit: 1000,
-  }).catch(() => [])
+  try {
+    const contracts = await searchContracts({
+      term: '',
+      // yc-s23
+      topicSlug: 'yc-s23',
+      // Manifold
+      creatorId: 'IPTOzEqrpkWmEzh6hwvAyY9PqFb2',
+      limit: 1000,
+    }).catch(() => [])
 
-  const companies: Company[] = contracts
-    .filter(
-      (c) =>
-        c.question.includes('Exit valuation of ') &&
-        c.mechanism === 'cpmm-multi-1'
-    )
-    .map((contract) => {
-      const name = contract.question
-        .split('Exit valuation of ')[1]
-        .split(' (YC S23)?')[0]
-      const valuation = getValuation((contract as CPMMMultiContract).answers)
-      return {
-        name,
-        valuation,
-        slug: contract.slug,
-        contractId: contract.id,
-      }
-    })
+    const companies: Company[] = contracts
+      .filter(
+        (c) =>
+          c.question.includes('Exit valuation of ') &&
+          c.mechanism === 'cpmm-multi-1'
+      )
+      .map((contract) => {
+        const name = contract.question
+          .split('Exit valuation of ')[1]
+          .split(' (YC S23)?')[0]
+        const valuation = getValuation((contract as CPMMMultiContract).answers)
+        return {
+          name,
+          valuation,
+          slug: contract.slug,
+          contractId: contract.id,
+        }
+      })
 
-  return {
-    props: {
-      companies: sortBy(companies, (c) => -c.valuation),
-    },
-    revalidate: 60,
+    return {
+      props: {
+        companies: sortBy(companies, (c) => -c.valuation),
+      },
+      revalidate: 60,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return { props: { companies: [] }, revalidate: 60 }
   }
 }
 

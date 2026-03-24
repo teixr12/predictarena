@@ -16,45 +16,37 @@ export async function getStaticProps(ctx: {
   params: { username: string; contractSlug: string }
 }) {
   const { contractSlug } = ctx.params
-  const adminDb = await initSupabaseAdmin()
 
-  let contract
   try {
-    contract = await getContractFromSlug(adminDb, contractSlug)
-  } catch (error) {
-    console.error('DB error fetching contract:', contractSlug, error)
-    // Throw so ISR serves the previous static page and retries later.
-    throw error
-  }
+    const adminDb = await initSupabaseAdmin()
 
-  if (!contract) {
-    return { notFound: true }
-  }
+    const contract = await getContractFromSlug(adminDb, contractSlug)
 
-  if (contract.deleted) {
+    if (!contract) {
+      return { notFound: true }
+    }
+
+    if (contract.deleted) {
+      return {
+        props: {
+          state: 'deleted',
+          slug: contract.slug,
+          visibility: contract.visibility,
+        },
+      }
+    }
+
+    const props = await getContractParams(contract, adminDb)
+
     return {
       props: {
-        state: 'deleted',
-        slug: contract.slug,
-        visibility: contract.visibility,
+        state: 'authed',
+        params: removeUndefinedProps(props),
       },
     }
-  }
-
-  let props
-  try {
-    props = await getContractParams(contract, adminDb)
-  } catch (error) {
-    console.error('DB error fetching contract params:', contractSlug, error)
-    // Throw so ISR serves the previous static page and retries later.
-    throw error
-  }
-
-  return {
-    props: {
-      state: 'authed',
-      params: removeUndefinedProps(props),
-    },
+  } catch (e) {
+    console.error('getStaticProps failed:', contractSlug, e)
+    return { notFound: true, revalidate: 60 }
   }
 }
 

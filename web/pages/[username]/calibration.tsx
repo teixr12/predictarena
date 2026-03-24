@@ -33,13 +33,24 @@ export const getStaticProps = async (props: {
   }
 }) => {
   const { username } = props.params
-  const user = await getFullUserByUsername(username)
 
-  return {
-    props: {
-      user,
-    },
-    revalidate: 60 * 60 * 24, // Regenerate after 24 hours
+  try {
+    const user = await getFullUserByUsername(username)
+
+    return {
+      props: {
+        user,
+      },
+      revalidate: 60 * 60 * 24, // Regenerate after 24 hours
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return {
+      props: {
+        user: null,
+      },
+      revalidate: 60,
+    }
   }
 }
 

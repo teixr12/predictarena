@@ -13,10 +13,15 @@ export async function getStaticPaths() {
 const revalidate = 60
 
 export async function getStaticProps() {
-  const electionsPageProps = await getElectionsPageProps()
-  return {
-    props: electionsPageProps,
-    revalidate,
+  try {
+    const electionsPageProps = await getElectionsPageProps()
+    return {
+      props: electionsPageProps,
+      revalidate,
+    }
+  } catch (e) {
+    console.error('getStaticProps failed:', e)
+    return { props: {}, revalidate }
   }
 }
 
