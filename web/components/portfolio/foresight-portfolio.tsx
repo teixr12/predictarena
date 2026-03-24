@@ -2,15 +2,15 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useUser } from 'web/hooks/use-user'
 import { Button } from 'web/components/buttons/button'
+import { Col } from 'web/components/layout/col'
+import { Row } from 'web/components/layout/row'
+import { formatMoney } from 'common/util/format'
+import { api } from 'web/lib/api/api'
 
 const ForesightPDFButton = dynamic(
   () => import('./foresight-pdf').then((m) => m.ForesightPDFButton),
   { ssr: false, loading: () => <span>Loading PDF...</span> }
 )
-import { Col } from 'web/components/layout/col'
-import { Row } from 'web/components/layout/row'
-import { formatMoney } from 'common/util/format'
-import { api } from 'web/lib/api/api'
 
 export type ForesightData = {
   accuracy: number // 0-100
