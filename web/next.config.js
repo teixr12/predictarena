@@ -17,7 +17,7 @@ module.exports = {
       transform: 'lodash/{{member}}',
     },
   },
-  transpilePackages: ['common'],
+  transpilePackages: ['common', 'client-common'],
   experimental: {
     scrollRestoration: true,
   },

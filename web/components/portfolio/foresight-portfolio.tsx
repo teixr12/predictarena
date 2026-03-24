@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useUser } from 'web/hooks/use-user'
-import { ForesightPDFButton } from './foresight-pdf'
 import { Button } from 'web/components/buttons/button'
+
+const ForesightPDFButton = dynamic(
+  () => import('./foresight-pdf').then((m) => m.ForesightPDFButton),
+  { ssr: false, loading: () => <span>Loading PDF...</span> }
+)
 import { Col } from 'web/components/layout/col'
 import { Row } from 'web/components/layout/row'
 import { formatMoney } from 'common/util/format'

@@ -33,7 +33,7 @@ export const TRADED_TERM = 'predicted'
 export const TRADING_TERM = 'predicting'
 export const TRADER_TERM = 'predictor'
 
-export const ENV_CONFIG = CONFIGS[ENV]
+export const ENV_CONFIG = CONFIGS[ENV] ?? PROD_CONFIG
 
 export function isAdminId(id: string) {
   return ENV_CONFIG.adminIds.includes(id)
