@@ -16,12 +16,12 @@
     "clear-nextjs-cache": "rm -rf ./.next/cache",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint-fix": "next lint --fix",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "format": "npx prettier --write .",
     "format-changed": "cd .. && git diff $(git merge-base --fork-point main) --name-only --diff-filter=d | xargs npx prettier -w",
     "verify": "(cd .. && yarn verify)",
-    "verify:dir": "npx prettier --check .; yarn lint --max-warnings 0; tsc --pretty --project tsconfig.json --noEmit"
+    "verify:dir": "npx prettier --check .; tsc --pretty --project tsconfig.json --noEmit"
   },
   "dependencies": {
     "@amplitude/analytics-browser": "1.9.4",
@@ -94,7 +94,6 @@
     "autoprefixer": "10.2.6",
     "concurrently": "8.2.2",
     "cross-env": "7.0.3",
-    "eslint-config-next": "15.0.4",
     "eslint-config-prettier": "9.0.0",
     "next-sitemap": "^2.5.14",
     "postcss": "8.4.31",

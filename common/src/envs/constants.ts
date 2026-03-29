@@ -2,9 +2,9 @@ import { escapeRegExp } from 'lodash'
 import { DEV_CONFIG } from './dev'
 import { EnvConfig, PROD_CONFIG } from './prod'
 
-export const ENV = (process.env.NEXT_PUBLIC_FIREBASE_ENV ?? 'PROD') as
-  | 'PROD'
-  | 'DEV'
+const requestedEnv = process.env.NEXT_PUBLIC_FIREBASE_ENV ?? 'PROD'
+const isVercelProd = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+export const ENV = (isVercelProd ? 'PROD' : requestedEnv) as 'PROD' | 'DEV'
 
 export const CONFIGS: { [env: string]: EnvConfig } = {
   PROD: PROD_CONFIG,
@@ -72,344 +72,35 @@ export const CORS_ORIGIN_VERCEL = new RegExp(
 export const CORS_ORIGIN_LOCALHOST = /^http:\/\/localhost:\d+$/
 
 // TODO: These should maybe be part of the env config?
-export const BOT_USERNAMES = [
-  'TenShinoBot',
-  'JDVance1',
-  'Merchant',
-  'benedict',
-  'subooferbot',
-  'pos',
-  'v',
-  'acc',
-  'jerk',
-  'snap',
-  'ArbitrageBot',
-  'MarketManagerBot',
-  'Botlab',
-  'JuniorBot',
-  'ManifoldDream',
-  'ManifoldBugs',
-  'ACXBot',
-  'JamesBot',
-  'jimbot',
-  'RyanBot',
-  'trainbot',
-  'runebot',
-  'LiquidityBonusBot',
-  '538',
-  'FairlyRandom',
-  'Anatolii',
-  'JeremyK',
-  'Botmageddon',
-  'GenAIBot',
-  'SmartBot',
-  'ShifraGazsi',
-  'NiciusBot',
-  'Bot',
-  'Mason',
-  'VersusBot',
-  'GPT4',
-  'EntropyBot',
-  'veat',
-  'ms_test',
-  'arb',
-  'Turbot',
-  'MetaculusBot',
-  'burkebot',
-  'Botflux',
-  '7',
-  'hyperkaehler',
-  'NcyBot',
-  'ithaca',
-  'GigaGaussian',
-  'BottieMcBotface',
-  'Seldon',
-  'OnePercentBot',
-  'arrbit',
-  'ManaMaximizer',
-  'rita',
-  'uhh',
-  'ArkPoint',
-  'EliBot',
-  'manifestussy',
-  'mirrorbot',
-  'JakeBot',
-  'loopsbot',
-  'breezybot',
-  'echo',
-  'Sayaka',
-  'cc7',
-  'Yuna',
-  'ManifoldLove',
-  'a',
-  'bonkbot',
-  'NermitBundaloy',
-  'FirstBot',
-  'bawt',
-  'FireTheCEO',
-  'JointBot',
-  'WrenTec',
-  'TigerMcBot',
-  'Euclidean',
-  'manakin',
-  'LUCAtheory',
-  'TunglBot',
-  'timetraveler',
-  'bayesianbot',
-  'CharlesLienBot',
-  'JaguarMcBot',
-  'AImogus',
-  'HakariBot',
-  'brake',
-  'brontobot',
-  'OracleBot',
-  'spacedroplet',
-  'AriZernerBot',
-  'PV_bot',
-  'draaglom_bot',
-  'SiriusBOT',
-  'bradbot',
-  'ShrimpLute',
-  'kbot',
-  'ataribot',
-  'RISKBOT',
-  'harmonia',
-  'Dagonet',
-  'Galahad',
-  'zn_bot',
-  'abot',
-  'GoodheartLabsBot',
-  'Evansbot',
-  'PugBot',
-  'cot',
-]
+// TODO: Add PREDICTA Arena bot usernames as they are created
+export const BOT_USERNAMES: string[] = []
 
-export const MOD_IDS = [
-  'qnIAzz9RamaodeiJSiGZO6xRGC63', // Agh
-  'srFlJRuVlGa7SEJDM4cY9B5k4Lj2', // bayesian
-  'EJQOCF3MfLTFYbhiKncrNefQDBz1', // chrisjbillington
-  'MV9fTVHetcfp3h6CVYzpypIsbyN2', // CodeandSolder
-  'HTbxWFlzWGeHUTiwZvvF0qm8W433', // Conflux
-  '9dAaZrNSx5OT0su6rpusDoG9WPN2', // dglid
-  '5XMvQhA3YgcTzyoJRiNqGWyuB9k2', // dreev
-  '946iB1LqFIR06G7d8q89um57PHh2', // egroj
-  'hqdXgp0jK2YMMhPs067eFK4afEH3', // Eliza
-  'kbHiTAGBahXdX9Z4sW29JpNrB0l2', // Ernie
-  'W4yEF6idSMcNWEVUquowziSCZFI3', // EvanDaniel
-  '2VhlvfTaRqZbFn2jqxk2Am9jgsE2', // Gabrielle
-  'cA1JupYR5AR8btHUs2xvkui7jA93', // Gen
-  'YGZdZUSFQyM8j2YzPaBqki8NBz23', // jack
-  'cgrBqe2O3AU4Dnng7Nc9wuJHLKb2', // jskf
-  '4juQfJkFnwX9nws3dFOpz4gc1mi2', // jacksonpolack
-  'XeQf3ygmrGM1MxdsE3JSlmq8vL42', // Jacy
-  'eSqS9cD5mzYcP2o7FrST8aC5IWn2', // PlasmaBallin (previously JosephNoonan)
-  'JlVpsgzLsbOUT4pajswVMr0ZzmM2', // Joshua
-  '7HhTMy4xECaVKvl5MmEAfVUkRCS2', // KevinBurke
-  'jO7sUhIDTQbAJ3w86akzncTlpRG2', // MichaelWheatley
-  'lkkqZxiWCpOgtJ9ztJcAKz4d9y33', // NathanpmYoung
-  'fSrex43BDjeneNZ4ZLfxllSb8b42', // NcyRocks
-  'BgCeVUcOzkexeJpSPRNomWQaQaD3', // SemioticRivalry
-  'KHX2ThSFtLQlau58hrjtCX7OL2h2', // shankypanky (stefanie)
-  'hUM4SO8a8qhfqT1gEZ7ElTCGSEz2', // Stralor
-  'tO4DwIsujySUwtSnrr2hnU1WJtJ3', // WieDan
-  'oPxjIzlvC5fRbGCaVgkvAiyoXBB2', // mattyb
-  'Iua2KQvL6KYcfGLGNI6PVeGkseo1', // Ziddletwix
-  'Gg7t9vPD4WPD1iPgj9RUFLYTxgH2', // nikki
-  'XNrWcIrA22hpv20fHn4ApoTPsh63', // bagelfan
-  '0k1suGSJKVUnHbCPEhHNpgZPkUP2', // Sinclair
-  'sCOvPc5J2sOacn0DYjwL7OAMzcV2', // bens
-]
+// TODO: Add PREDICTA Arena moderator user IDs
+export const MOD_IDS: string[] = []
 
-export const SWEEPSTAKES_MOD_IDS = [
-  'uglwf3YKOZNGjjEXKc5HampOFRE2', // SirSalty
-  'KHX2ThSFtLQlau58hrjtCX7OL2h2', // shankypanky (stefanie)
-  '2VhlvfTaRqZbFn2jqxk2Am9jgsE2', // Gabrielle
-  'HTbxWFlzWGeHUTiwZvvF0qm8W433', // Conflux
-  'YGZdZUSFQyM8j2YzPaBqki8NBz23', // jack
-  'JlVpsgzLsbOUT4pajswVMr0ZzmM2', // Joshua
-]
+// TODO: Add PREDICTA Arena sweepstakes moderator IDs
+export const SWEEPSTAKES_MOD_IDS: string[] = []
 
-export const MVP = ['Eliza', 'Gabrielle', 'jacksonpolack']
+// TODO: Add PREDICTA Arena MVP users
+export const MVP: string[] = []
 
-export const VERIFIED_USERNAMES = [
-  'EliezerYudkowsky',
-  'ScottAlexander',
-  'Aella',
-  'ZviMowshowitz',
-  'GavrielK',
-  'CGPGrey',
-  'LexFridman',
-  'patio11',
-  'RichardHanania',
-  'Qualy',
-  'Roko',
-  'JonathanBlow',
-  'DwarkeshPatel',
-  'ByrneHobart',
-  'RobertWiblin',
-  'KelseyPiper',
-  'SpencerGreenberg',
-  'PaulChristiano',
-  'BuckShlegeris',
-  'Natalia',
-  'zero',
-  'OzzieGooen',
-  'OliverHabryka',
-  'Alicorn',
-  'RazibKhan',
-  'JamesMedlock',
-  'Writer',
-  'geohot',
-  'ShayneCoplan',
-  'SanghyeonSeo',
-  'KatjaGrace',
-  'EmmettShear',
-  'CateHall',
-  'RobertSKMiles',
-  'TarekMansour',
-  'DylanMatthews',
-  'RobinHanson',
-  'KevinRoose18ac',
-  'KnowNothing',
-  'SantaPawsSSB',
-  'AndersSandberg',
-  'JosephWeisenthal',
-  'LawrenceLessig',
-  'NatFriedman',
-  'patrissimo',
-  'postjawline',
-  'MatthewYglesias',
-  'MatthewYglesiasvuyf',
-  'BillyMcRascal',
-  'kyootbot',
-  'MaximLott',
-  'liron',
-  'LarsDoucet',
-  'PeterWildeford',
-  'SneakySly',
-  'ConorSen',
-  'transmissions11',
-  'DanHendrycks',
-  'Cremieux',
-  'tracewoodgrains',
-  'LuigiMangione',
-  'LeahLibresco',
-  'ModernDayDebate',
-  'NickyCase',
-  'TamayBesiroglu',
-]
+// TODO: Add PREDICTA Arena verified usernames
+export const VERIFIED_USERNAMES: string[] = []
 
-export const BANNED_TRADING_USER_IDS = [
-  'zgCIqq8AmRUYVu6AdQ9vVEJN8On1', // firstuserhere aka _deleted_
-  'LIBAoi7tpqeNLYM1xxJ1QJBQqW32', // lastuserhere
-  'p3ADzwIUS3fk0ka80XYEE3OM3S32', // PC
-  '4JuXgDx47xPagH5mcLDqLzUSN5g2', // BTE
-  'iD1ObV4sInhkBXs3Ten96j4Co6O2', // BTE alt
-  'zRMxfUt51RcEIcZkuw6ySiNJYBE3', // BTE alt
-  'wo2LRCvgaNSllK3q0Wnv8hlusTa2', // BTE alt
-  'os2ilMb1d8WDeXxiQAo6btlig1Z2', // BTE alt
-  'zRMxfUt51RcEIcZkuw6ySiNJYBE3', // BTE alt
-  'fnuHBW8dHwZp2TbEt2MKJY9d28V2', // Klob (Caleb)
-  'RK6Nd7IBfMVOcLekfqcN9Ys17qJ2', // PeterNjeim
-  // Start of ghost of evan accounts:
-  'Vw4wQTRZp3hKTENjWa8OaTs76kg1',
-  'ZWttBVb1BFU54kGE2ff49ebinVG2',
-  'Vb0fUDViyCXZvZBp88bJ9aNFjdh2',
-  'LUijikhdrfa9FzxQF5hwqRuN36Z2',
-  'ZhV8MUIS9JSTCxp33eavKP2gSgE3',
-  '16rOdWFFXFc6idTenMn100azjIr2',
-  'Yc1HwZkeqDN0yVdRD0drVRpQml43',
-  'HZYHxhextKRmr2ys6Cn4yDkta0U2',
-  'Eiz9zq5BcTNRggZuAXOPPfCuzgI3',
-  '4yoKkFh6HFUPnMBwF2NrjlrIQ5a2',
-  'C9roFyyxahOzmPN6zWm4Un2oMyi2',
-  'JXhsE372TkSSJOdtzORFJyivI9V2',
-  'NDn1pN4cPkYrW3A64vWZ7aLZrzw1',
-  'H0VWQhrLxEOnTLpypd8TMstkzY42',
-  'j5nPUVKJQNQVPU3uP2SEBDo1khg1',
-  '2uKT2CCmGJZ2ZVrzp3pj28HHAlm2',
-  'oyrIZrv7nqcdMEj4LTsdJsIsWPq2',
-  'n5H3UfiMgcc4rgbm4i3IOewc1EA3',
-  'fGfp30EWMBUP4CYtBW8ZFTXvsA82',
-  '0jBoNTUqm3RJGddAVlcSaOoHc4m2',
-  '6oYZ83MbxqScz5ANhz0R5QEeolL2',
-  'a9ZUA2eGquTxoTCTXjvPxLqAq2X2',
-  '6Bf1GgbE7MdiGh4F4NCgkLCF9Mm1',
-  'smzdPGfW29XzWkyfJfE0rDr3qYm2',
-  // End of ghost of evan accounts
-]
+export const BANNED_TRADING_USER_IDS: string[] = []
 
-export const PARTNER_USER_IDS: string[] = [
-  'sTUV8ejuM2byukNZp7qKP2OKXMx2', // NFL
-  'rFJu0EIdR6RP8d1vHKSh62pbnbH2', // SimonGrayson
-  'cb6PJqGOSVPEUhprDHCKWWMuJqu1', // DanMan314
-  'HTbxWFlzWGeHUTiwZvvF0qm8W433', // Conflux
-  'YGZdZUSFQyM8j2YzPaBqki8NBz23', // jack
-  'hDq0cvn68jbAUVd6aWIU9aSv9ZA2', // strutheo
-  'OEbsAczmbBc4Sl1bacYZNPJLLLc2', // SirCryptomind
-  'JlVpsgzLsbOUT4pajswVMr0ZzmM2', // Joshua
-  'xQqqZqlgcoSxTgPe03BiXmVE2JJ2', // Soli
-  'Iiok8KHMCRfUiwtMq1tl5PeDbA73', // Lion
-  'SqOJYkeySMQjqP3UAypw6DxPx4Z2', // Shump
-  'hqdXgp0jK2YMMhPs067eFK4afEH3', // Eliza
-  'BgCeVUcOzkexeJpSPRNomWQaQaD3', // SemioticRivalry
-  'X1xu1kvOxuevx09xuR2urWfzf7i1', // KeenenWatts
-  '4juQfJkFnwX9nws3dFOpz4gc1mi2', // jacksonpolack
-  '8WEiWcxUd7QLeiveyI8iqbSIffU2', // goblinodds
-  'Iua2KQvL6KYcfGLGNI6PVeGkseo1', // Ziddletwix
-  'GRaWlYn2fNah0bvr6OW28l28nFn1', // cash
-  'ZKkL3lFRFaYfiaT9ZOdiv2iUJBM2', // mint
-  'hRbPwezgxnat6GpJQxoFxq1xgUZ2', // AmmonLam
-  'foOeshHZOET3yMvRTMPINpnb8Bj2', // PunishedFurry
-  'EBGhoFSxRtVBu4617SLZUe1FeJt1', // FranklinBaldo
-  '4xOTMCIOkGesdJft50wVFZFb5IB3', // Tripping
-  'srFlJRuVlGa7SEJDM4cY9B5k4Lj2', // Bayesian
-  'H6b5PWELWfRV6HhyHAlCGq7yJJu2', // AndrewG
-  'EJQOCF3MfLTFYbhiKncrNefQDBz1', // chrisjbillington
-  '7HhTMy4xECaVKvl5MmEAfVUkRCS2', // KevinBurke
-  'oPxjIzlvC5fRbGCaVgkvAiyoXBB2', // mattyb
-  'OdBj5DW6PbYtnImvybpyZzfhb133', // jim
-  'm5K4FlZLo0aeDd5Z7W4xX3TAGHs1', // JeffBerman
-  'LmtawaGf6jO0oFGzth1UCrUXFW82', // AaronSimansky
-]
+export const PARTNER_USER_IDS: string[] = []
 
-export const NEW_USER_HERLPER_IDS = [
-  '2VhlvfTaRqZbFn2jqxk2Am9jgsE2', // Gabrielle
-  'BgCeVUcOzkexeJpSPRNomWQaQaD3', // SemioticRivalry
-  'rQPOELuW5zaapaNPnBYQBMoonk92', // Tumbles
-  'tlmGNz9kjXc2EteizMORes4qvWl2', // Stephen
-  'AJwLWoo3xue32XIiAVrL5SyR1WB2', // Ian
-  'uglwf3YKOZNGjjEXKc5HampOFRE2', // D4vid
-  'cA1JupYR5AR8btHUs2xvkui7jA93', // Genzy
-  'srFlJRuVlGa7SEJDM4cY9B5k4Lj2', // Bayesian
-  'Gg7t9vPD4WPD1iPgj9RUFLYTxgH2', // nikki
-  'OdBj5DW6PbYtnImvybpyZzfhb133', // jim
-]
+// TODO: Add PREDICTA Arena new user helper IDs
+export const NEW_USER_HERLPER_IDS: string[] = []
 
-export const OPTED_OUT_OF_LEAGUES = [
-  'vuI5upWB8yU00rP7yxj95J2zd952', // ManifoldPolitics
-  '8lZo8X5lewh4hnCoreI7iSc0GxK2', // ManifoldAI
-  'IPTOzEqrpkWmEzh6hwvAyY9PqFb2', // Manifold
-  'tRZZ6ihugZQLXPf6aPRneGpWLmz1', // ManifoldLove
-  'BhNkw088bMNwIFF2Aq5Gg9NTPzz1', // acc
-  'JlVpsgzLsbOUT4pajswVMr0ZzmM2', // Joshua
-  'oPxjIzlvC5fRbGCaVgkvAiyoXBB2', // mattyb
-  'NndHcEmeJhPQ6n7e7yqAPa3Oiih2', // josh
-]
+export const OPTED_OUT_OF_LEAGUES: string[] = []
 
-export const HIDE_FROM_LEADERBOARD_USER_IDS = [
-  'BhNkw088bMNwIFF2Aq5Gg9NTPzz1', // acc
-  'tRZZ6ihugZQLXPf6aPRneGpWLmz1', // ManifoldLove
-]
+export const HIDE_FROM_LEADERBOARD_USER_IDS: string[] = []
 
 export const INSTITUTIONAL_PARTNER_USER_IDS: string[] = []
 
-export const BEING_DEAD_HEADS = [
-  '6hHpzvRG0pMq8PNJs7RZj2qlZGn2',
-  'AJwLWoo3xue32XIiAVrL5SyR1WB2',
-  'D8O4yNtFhEU8Y7Taf3BilznJOcu2',
-  'tlmGNz9kjXc2EteizMORes4qvWl2',
-]
+export const BEING_DEAD_HEADS: string[] = []
 
 export const HOUSE_BOT_USERNAME = 'acc'
 
