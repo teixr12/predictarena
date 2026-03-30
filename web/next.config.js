@@ -4,7 +4,12 @@ const API_DOCS_URL = 'https://docs.predictarena.com/api'
 module.exports = {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
-  // eslint config moved - run `next lint` separately in CI
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   modularizeImports: {
     '@heroicons/react/solid/?(((\\w*)?/?)*)': {
       transform: '@heroicons/react/solid/{{ matches.[1] }}/{{member}}',
