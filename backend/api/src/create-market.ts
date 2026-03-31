@@ -204,7 +204,7 @@ export async function createMarketHelper(body: Body, auth: AuthedUser) {
       if (!user) throw new APIError(401, 'Your account was not found')
 
       // Gate private markets behind any supporter tier (Arena Plus, Pro, or Premium)
-      if (visibility === 'private') {
+      if ((visibility as string) === 'private') {
         const entitlements = await getActiveSupporterEntitlements(tx, userId)
         if (!isSupporter(entitlements)) {
           throw new APIError(

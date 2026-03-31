@@ -85,7 +85,12 @@ export const getSecrets = async (credentials?: any, ...ids: SecretId[]) => {
 
 // Fetches all secrets and loads them into process.env.
 // Useful for running random backend code.
+// On non-GCP platforms (Render, etc.), secrets are injected as env vars directly.
 export const loadSecretsToEnv = async (credentials?: any) => {
+  if (!process.env.GOOGLE_CLOUD_PROJECT && !credentials) {
+    console.log('No GCP project detected; using environment variables directly.')
+    return
+  }
   const allSecrets = await getSecrets(credentials)
   for (const [key, value] of Object.entries(allSecrets)) {
     if (key && value) {

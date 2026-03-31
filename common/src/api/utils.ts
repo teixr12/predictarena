@@ -32,7 +32,9 @@ export function pathWithPrefix(path: APIPath) {
 
 export function getWebsocketUrl() {
   if (process.env.NEXT_PUBLIC_API_URL) {
-    return `ws://${process.env.NEXT_PUBLIC_API_URL}/ws`
+    const host = process.env.NEXT_PUBLIC_API_URL
+    const protocol = host.startsWith('localhost') ? 'ws' : 'wss'
+    return `${protocol}://${host}/ws`
   } else {
     const { apiEndpoint } = ENV_CONFIG
     return `wss://${apiEndpoint}/ws`
@@ -46,7 +48,9 @@ export function getApiUrl(path: string) {
   }
 
   if (process.env.NEXT_PUBLIC_API_URL) {
-    return `http://${process.env.NEXT_PUBLIC_API_URL}/${path}`
+    const host = process.env.NEXT_PUBLIC_API_URL
+    const protocol = host.startsWith('localhost') ? 'http' : 'https'
+    return `${protocol}://${host}/${path}`
   } else {
     const { apiEndpoint } = ENV_CONFIG
     return `https://${apiEndpoint}/${path}`

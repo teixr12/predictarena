@@ -110,7 +110,7 @@ async function checkAndDeductUsage(
     )
     if (!updated[0]) {
       throw new APIError(
-        402,
+        403,
         `Insufficient credits. AI hints cost ${AI_HINT_COST_MANA} mana. ` +
           `Buy credits at /shop or subscribe at /supporter for unlimited access.`
       )
@@ -154,7 +154,7 @@ export const getAiMarketHint: APIHandler<'get-ai-market-hint'> = async (
   }
 
   const isPremium = entitlements.some((e) =>
-    (e.entitlement_id ?? '').toLowerCase().includes('premium')
+    ((e as any).entitlement_id ?? (e as any).entitlementId ?? '').toLowerCase().includes('premium')
   )
 
   const contract = await getContract(pg, contractId)
@@ -173,7 +173,7 @@ export const getAiMarketHint: APIHandler<'get-ai-market-hint'> = async (
       })
     : 'unknown'
 
-  const currentProb = Math.round((contract.probability ?? 0.5) * 100)
+  const currentProb = Math.round(((contract as any).probability ?? 0.5) * 100)
 
   const prompt = `Analyze this prediction market question and provide a concise forecasting hint.
 

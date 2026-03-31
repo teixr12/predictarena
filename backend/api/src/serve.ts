@@ -8,14 +8,24 @@ import { listen as webSocketListen } from 'shared/websockets/server'
 
 log('Api server starting up...')
 
-if (LOCAL_DEV) {
-  initAdmin()
-} else {
+if (process.env.GOOGLE_CLOUD_PROJECT) {
+  // Running on GCP — use implicit credentials
   const projectId = process.env.GOOGLE_CLOUD_PROJECT
   admin.initializeApp({
     projectId,
     storageBucket: `${projectId}.appspot.com`,
   })
+} else if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  // Running on non-GCP platform (Render, etc.) with explicit service account
+  const sa = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+  admin.initializeApp({
+    projectId: sa.project_id,
+    credential: admin.credential.cert(sa),
+    storageBucket: `${sa.project_id}.appspot.com`,
+  })
+} else {
+  // Local development
+  initAdmin()
 }
 
 METRIC_WRITER.start()
