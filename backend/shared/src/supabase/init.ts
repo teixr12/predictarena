@@ -153,6 +153,8 @@ export function createSupabaseDirectClient(opts?: {
     max: parseInt(process.env.PG_POOL_MAX ?? '40'),
     // Force IPv4 on non-GCP deployments (e.g. Render free tier can't reach Supabase's IPv6 address)
     ...(process.env.DEPLOYMENT_ENV ? { family: 4 } : {}),
+    // Supabase Supavisor pooler requires SSL; rejectUnauthorized:false avoids cert issues
+    ...(process.env.SUPABASE_DB_HOST ? { ssl: { rejectUnauthorized: false } } : {}),
   })
   const pool = client.$pool
   pool.on('connect', () => metrics.inc('pg/connections_established'))
