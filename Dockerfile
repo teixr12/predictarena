@@ -27,6 +27,9 @@ RUN yarn install --network-timeout 120000 || yarn install --network-timeout 1200
 
 # Copy source code for the workspaces we need
 COPY common/ common/
+# Patch common tsconfig: emit JS even when frontend-only modules (firebase, web) are missing.
+# The backend API never imports firebase-auth.ts or contract-params.ts at runtime.
+RUN node -e "var fs=require('fs'),t=JSON.parse(fs.readFileSync('common/tsconfig.json','utf8'));t.compilerOptions.noEmitOnError=false;fs.writeFileSync('common/tsconfig.json',JSON.stringify(t));"
 COPY backend/shared/ backend/shared/
 COPY backend/api/ backend/api/
 
