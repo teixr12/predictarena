@@ -70,4 +70,6 @@ ENV PORT=8080
 EXPOSE 8080/tcp
 
 # Single process with 384MB heap (Render free tier has 512MB total)
-CMD ["node", "--max-old-space-size=384", "backend/api/lib/serve.js"]
+# --dns-result-order=ipv4first: Render free tier can't reach Supabase's IPv6 address;
+# force IPv4 so pg-promise connects to the IPv4 address of db.*.supabase.co
+CMD ["node", "--dns-result-order=ipv4first", "--max-old-space-size=384", "backend/api/lib/serve.js"]
