@@ -124,11 +124,17 @@ export function createSupabaseDirectClient(opts?: {
       "Can't connect to Supabase; no process.env.SUPABASE_PASSWORD."
     )
   }
+  // SUPABASE_DB_HOST overrides the direct connection host (e.g. use the IPv4-only Supavisor pooler)
+  // SUPABASE_DB_PORT overrides port (pooler uses 5432 session mode or 6543 transaction mode)
+  // SUPABASE_DB_USER overrides user (pooler requires postgres.{ref} as the username)
+  const dbHost = process.env.SUPABASE_DB_HOST ?? `db.${getInstanceHostname(instanceId)}`
+  const dbPort = parseInt(process.env.SUPABASE_DB_PORT ?? '5432')
+  const dbUser = process.env.SUPABASE_DB_USER ?? 'postgres'
   log('Connecting to postgres')
   const client = pgp({
-    host: `db.${getInstanceHostname(instanceId)}`,
-    port: 5432,
-    user: `postgres`,
+    host: dbHost,
+    port: dbPort,
+    user: dbUser,
     password: password,
 
     // ian: query_timeout doesn't cancel long-running queries, it just stops waiting for them
