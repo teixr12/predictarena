@@ -70,6 +70,8 @@ ENV PORT=8080
 EXPOSE 8080/tcp
 
 # Single process with 384MB heap (Render free tier has 512MB total)
-# --dns-result-order=ipv4first: Render free tier can't reach Supabase's IPv6 address;
-# force IPv4 so pg-promise connects to the IPv4 address of db.*.supabase.co
-CMD ["node", "--dns-result-order=ipv4first", "--max-old-space-size=384", "backend/api/lib/serve.js"]
+# --no-network-family-autoselection: disables Node.js 20 Happy Eyeballs (autoSelectFamily)
+#   which defaults to true in v20.6+ and tries IPv6 even when family:4 is set in pg config.
+# --dns-result-order=ipv4first: additionally prefer IPv4 in DNS lookups.
+# Both are needed because Render free tier cannot reach Supabase's IPv6 address.
+CMD ["node", "--no-network-family-autoselection", "--dns-result-order=ipv4first", "--max-old-space-size=384", "backend/api/lib/serve.js"]
