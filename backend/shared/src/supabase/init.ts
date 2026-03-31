@@ -145,6 +145,8 @@ export function createSupabaseDirectClient(opts?: {
     // from these connections. We should figure out the cause ASAP.
     idle_in_transaction_session_timeout: opts?.idleInTxnTimeout ?? 60_000, // 1 minute
     max: parseInt(process.env.PG_POOL_MAX ?? '40'),
+    // Force IPv4 on non-GCP deployments (e.g. Render free tier can't reach Supabase's IPv6 address)
+    ...(process.env.DEPLOYMENT_ENV ? { family: 4 } : {}),
   })
   const pool = client.$pool
   pool.on('connect', () => metrics.inc('pg/connections_established'))
