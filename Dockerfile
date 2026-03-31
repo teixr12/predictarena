@@ -25,11 +25,21 @@ RUN mkdir -p web client-common backend/discord-bot backend/scheduler backend/scr
 # Install dependencies (skip frozen lockfile since we stubbed workspaces)
 RUN yarn install --network-timeout 120000 || yarn install --network-timeout 120000 --no-lockfile
 
+# Create TypeScript declaration stubs for frontend-only modules not installed here.
+# firebase and web workspace are used by common/src/ but not by the backend API at runtime.
+# tsc -b refuses to build downstream projects when upstream (common) has TS2307 errors,
+# so we eliminate the errors with minimal stubs rather than suppressing them.
+RUN mkdir -p node_modules/firebase node_modules/@firebase/app && \
+    printf 'export interface User{uid:string;email?:string|null;getIdToken?(f?:boolean):Promise<string>;toJSON():object}\nexport interface Auth{currentUser:User|null}\nexport declare function getAuth(app?:any):Auth\nexport declare function updateCurrentUser(auth:Auth,user:User|null):Promise<void>\n' \
+      > node_modules/firebase/auth.d.ts && \
+    printf 'export interface FirebaseApp{name:string;options:Record<string,any>}\n' \
+      > node_modules/@firebase/app/index.d.ts && \
+    mkdir -p web/lib/supabase && \
+    printf 'export const getNumContractComments = async (_: string): Promise<number> => 0\n' \
+      > web/lib/supabase/comments.ts
+
 # Copy source code for the workspaces we need
 COPY common/ common/
-# Patch common tsconfig: emit JS even when frontend-only modules (firebase, web) are missing.
-# The backend API never imports firebase-auth.ts or contract-params.ts at runtime.
-RUN node -e "var fs=require('fs'),t=JSON.parse(fs.readFileSync('common/tsconfig.json','utf8'));t.compilerOptions.noEmitOnError=false;fs.writeFileSync('common/tsconfig.json',JSON.stringify(t));"
 COPY backend/shared/ backend/shared/
 COPY backend/api/ backend/api/
 
