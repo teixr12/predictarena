@@ -30,7 +30,7 @@ RUN yarn install --network-timeout 120000 || yarn install --network-timeout 1200
 # tsc -b refuses to build downstream projects when upstream (common) has TS2307 errors,
 # so we eliminate the errors with minimal stubs rather than suppressing them.
 RUN mkdir -p node_modules/firebase node_modules/@firebase/app && \
-    printf 'export interface User{uid:string;email?:string|null;getIdToken?(f?:boolean):Promise<string>;toJSON():object}\nexport interface Auth{currentUser:User|null}\nexport declare function getAuth(app?:any):Auth\nexport declare function updateCurrentUser(auth:Auth,user:User|null):Promise<void>\n' \
+    printf 'export interface User{uid:string;email?:string|null;displayName?:string|null;getIdToken(f?:boolean):Promise<string>;toJSON():object}\nexport interface Auth{currentUser:User|null}\nexport declare function getAuth(app?:any):Auth\nexport declare function updateCurrentUser(auth:Auth,user:User|null):Promise<void>\n' \
       > node_modules/firebase/auth.d.ts && \
     printf 'export interface FirebaseApp{name:string;options:Record<string,any>}\n' \
       > node_modules/@firebase/app/index.d.ts && \
