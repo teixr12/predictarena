@@ -127,13 +127,16 @@ export function createSupabaseDirectClient(opts?: {
   // SUPABASE_DB_HOST overrides the direct connection host (e.g. use the IPv4-only Supavisor pooler)
   // SUPABASE_DB_PORT overrides port (pooler uses 5432 session mode or 6543 transaction mode)
   // SUPABASE_DB_USER overrides user (pooler requires postgres.{ref} as the username)
+  // SUPABASE_DB_NAME overrides database name (default: 'postgres'; pooler needs explicit name)
   const dbHost = process.env.SUPABASE_DB_HOST ?? `db.${getInstanceHostname(instanceId)}`
   const dbPort = parseInt(process.env.SUPABASE_DB_PORT ?? '5432')
   const dbUser = process.env.SUPABASE_DB_USER ?? 'postgres'
+  const dbName = process.env.SUPABASE_DB_NAME ?? 'postgres'
   log('Connecting to postgres')
   const client = pgp({
     host: dbHost,
     port: dbPort,
+    database: dbName,
     user: dbUser,
     password: password,
 
