@@ -30,6 +30,11 @@ if (process.env.GOOGLE_CLOUD_PROJECT) {
 
 METRIC_WRITER.start()
 
+// Prevent pg-promise background connection failures from crashing the process
+process.on('unhandledRejection', (reason: any) => {
+  log.error('Unhandled promise rejection (non-fatal):', { reason })
+})
+
 import { app } from './app'
 
 const credentials = LOCAL_DEV
@@ -43,17 +48,7 @@ const startupProcess = async () => {
   await loadSecretsToEnv(credentials)
   log('Secrets loaded.')
 
-  log('Starting server <> postgres timeout')
-  const timeoutId = setTimeout(() => {
-    log.error(
-      `Server hasn't heard from postgres in ${DB_RESPONSE_TIMEOUT}ms. Exiting.`
-    )
-    throw new Error('Server startup timed out')
-  }, DB_RESPONSE_TIMEOUT)
-
-  await initCaches(timeoutId)
-  log('Caches loaded.')
-
+  // Start HTTP server first so Render health checks pass even if DB is unavailable
   const PORT = process.env.PORT ?? 8088
   const httpServer = app.listen(PORT, () => {
     log.info(`Serving API on port ${PORT}.`)
@@ -65,5 +60,24 @@ const startupProcess = async () => {
   }
 
   log('Server started successfully')
+
+  // Initialize DB caches in the background — DB-dependent endpoints will
+  // return errors until this completes, but the server stays alive.
+  log('Starting server <> postgres timeout')
+  const timeoutId = setTimeout(() => {
+    log.error(
+      `Server hasn't heard from postgres in ${DB_RESPONSE_TIMEOUT}ms. DB caches not loaded.`
+    )
+  }, DB_RESPONSE_TIMEOUT)
+
+  try {
+    await initCaches(timeoutId)
+    log('Caches loaded.')
+  } catch (err) {
+    clearTimeout(timeoutId)
+    log.error('Failed to initialize caches; DB-dependent endpoints may fail.', {
+      err,
+    })
+  }
 }
 startupProcess()
