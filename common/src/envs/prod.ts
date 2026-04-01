@@ -49,20 +49,20 @@ type FirebaseConfig = {
 export const PROD_CONFIG: EnvConfig = {
   domain: 'predictarena.com',
   amplitudeApiKey: '', // TODO: Add PREDICTA Arena Amplitude key
-  supabaseInstanceId: 'pxidrgkatumlvfqaxcll', // TODO: Replace with PREDICTA Arena Supabase instance
+  supabaseInstanceId: 'jipzwutdrjkleppaqlio',
   supabaseAnonKey:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4aWRyZ2thdHVtbHZmcWF4Y2xsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njg5OTUzOTgsImV4cCI6MTk4NDU3MTM5OH0.d_yYtASLzAoIIGdXUBIgRAGLBnNow7JG2SoaNMQ8ySg', // TODO: Replace with PREDICTA Arena Supabase anon key
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppcHp3dXRkcmprbGVwcGFxbGlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNzI2ODUsImV4cCI6MjA4OTg0ODY4NX0.9DNPgBepn_kP4QOVlpoJ_a6zvqHyUCAx5rIsG3OgsDI',
   googleAnalyticsId: '', // TODO: Add PREDICTA Arena GA ID
   firebaseConfig: {
-    apiKey: 'AIzaSyDp3J57vLeAZCzxLD-vcPaGIkAmBoGOSYw', // TODO: Replace with PREDICTA Arena Firebase config
-    authDomain: 'mantic-markets.firebaseapp.com', // TODO: Replace
-    projectId: 'mantic-markets', // TODO: Replace with predicta-arena
+    apiKey: 'AIzaSyAphygIg142JmBInknbAvkKFdIIQ7UYsMM',
+    authDomain: 'predicta-arena-dev.firebaseapp.com',
+    projectId: 'predicta-arena-dev',
     region: 'us-central1',
-    storageBucket: 'mantic-markets.appspot.com', // TODO: Replace
-    privateBucket: 'mantic-markets-private', // TODO: Replace
-    messagingSenderId: '128925704902', // TODO: Replace
-    appId: '1:128925704902:web:f61f86944d8ffa2a642dc7', // TODO: Replace
-    measurementId: 'G-SSFK1Q138D', // TODO: Replace
+    storageBucket: 'predicta-arena-dev.firebasestorage.app',
+    privateBucket: 'predicta-arena-dev-private',
+    messagingSenderId: '158987780292',
+    appId: '1:158987780292:web:ebf3c50a8265d57aa64991',
+    measurementId: '',
   },
   twitchBotEndpoint: '', // Removed - not used in PREDICTA Arena
   apiEndpoint: 'predictarena-api.onrender.com',
