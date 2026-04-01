@@ -56,7 +56,7 @@ export function LandingPage() {
             Kalshi Prep
           </Link>
           <Link
-            href="/sign-in"
+            href="/login"
             className="text-ink-400 hover:text-white text-sm transition-colors"
           >
             Sign in

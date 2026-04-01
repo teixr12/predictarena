@@ -117,7 +117,7 @@ export default function WrappedPage() {
   // Redirect to sign in if not logged in
   useEffect(() => {
     if (user === null) {
-      router.push('/sign-in?redirect=/wrapped')
+      router.push('/login?redirect=/wrapped')
     }
   }, [user, router])
 
