@@ -139,7 +139,7 @@ export default function Analytics(props: {
     shopStats,
   } = props
 
-  if (!stats) {
+  if (!stats || stats.length === 0) {
     return null
   }
 

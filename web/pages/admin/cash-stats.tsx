@@ -28,7 +28,7 @@ export const getStaticProps = async () => {
 export default function CashStats(props: { stats: Row<'daily_stats'>[] }) {
   const { stats } = props
 
-  if (!stats) {
+  if (!stats || stats.length === 0) {
     return null
   }
 
