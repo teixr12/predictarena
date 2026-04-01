@@ -65,7 +65,7 @@ export const PROD_CONFIG: EnvConfig = {
     measurementId: 'G-SSFK1Q138D', // TODO: Replace
   },
   twitchBotEndpoint: '', // Removed - not used in PREDICTA Arena
-  apiEndpoint: 'api.predictarena.com',
+  apiEndpoint: 'predictarena-api.onrender.com',
   cloudRunId: 'nggbo3neva', // TODO: Replace after deploying cloud functions
   cloudRunRegion: 'uc',
 

@@ -22,7 +22,7 @@ export const DEV_CONFIG: EnvConfig = {
   supabaseAnonKey:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppcHp3dXRkcmprbGVwcGFxbGlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNzI2ODUsImV4cCI6MjA4OTg0ODY4NX0.9DNPgBepn_kP4QOVlpoJ_a6zvqHyUCAx5rIsG3OgsDI',
   twitchBotEndpoint: '',
-  apiEndpoint: 'api.dev.predictarena.com',
+  apiEndpoint: 'predictarena-api.onrender.com',
   expoConfig: {},
   adminIds: [],
 }
