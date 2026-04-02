@@ -94,13 +94,23 @@ export const apiErrorHandler: ErrorRequestHandler = (
   } else {
     log.error(error)
     if (!res.headersSent) {
-      res.status(500).json({ message: error.stack, error })
+      res.status(500).json({ message: 'Internal server error' })
     }
   }
 }
 
 export const app = express()
 app.use(compression())
+
+// Security headers
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff')
+  res.setHeader('X-Frame-Options', 'DENY')
+  res.setHeader('X-XSS-Protection', '1; mode=block')
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin')
+  next()
+})
+
 app.use(requestMonitoring)
 
 app.options('*', allowCorsUnrestricted)
@@ -132,5 +142,13 @@ Object.entries(handlers).forEach(([path, handler]) => {
 
 // Add MCP POST endpoint
 app.post('/v0/mcp', express.json(), allowCorsUnrestricted, handleMcpRequest)
+
+// Handle JSON parse errors with a clean 400 instead of 500
+app.use(((err, _req, res, next) => {
+  if (err.type === 'entity.parse.failed') {
+    return res.status(400).json({ message: 'Invalid JSON in request body' })
+  }
+  next(err)
+}) as ErrorRequestHandler)
 
 addOldRoutes(app)
