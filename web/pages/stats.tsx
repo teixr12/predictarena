@@ -140,7 +140,21 @@ export default function Analytics(props: {
   } = props
 
   if (!stats || stats.length === 0) {
-    return null
+    return (
+      <Page trackPageView={'site stats page'}>
+        <SEO
+          title="Stats"
+          description="See site-wide usage statistics."
+          url="/stats"
+        />
+        <Col className="items-center justify-center px-4 py-20">
+          <Title>Stats</Title>
+          <p className="text-ink-500">
+            No statistics available yet. Start trading to generate data!
+          </p>
+        </Col>
+      </Page>
+    )
   }
 
   return (

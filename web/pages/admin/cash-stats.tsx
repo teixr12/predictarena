@@ -29,7 +29,21 @@ export default function CashStats(props: { stats: Row<'daily_stats'>[] }) {
   const { stats } = props
 
   if (!stats || stats.length === 0) {
-    return null
+    return (
+      <Page trackPageView={'cash stats page'}>
+        <SEO
+          title="Sweepcash Stats"
+          description="See sweepcash trading statistics."
+          url="/cash-stats"
+        />
+        <Col className="items-center justify-center px-4 py-20">
+          <Title>Cash Stats</Title>
+          <p className="text-ink-500">
+            No statistics available yet.
+          </p>
+        </Col>
+      </Page>
+    )
   }
 
   return (

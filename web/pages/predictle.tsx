@@ -752,6 +752,13 @@ export default function PredictlePage() {
 
   const { data, loading } = useAPIGetter('get-predictle-markets', {})
 
+  // Track loading timeout so we don't show an infinite spinner
+  const [timedOut, setTimedOut] = useState(false)
+  useEffect(() => {
+    const timer = setTimeout(() => setTimedOut(true), 10000)
+    return () => clearTimeout(timer)
+  }, [])
+
   // Detect iOS for background positioning workaround
   const [isIOS, setIsIOS] = useState(false)
   useEffect(() => {
@@ -832,17 +839,33 @@ export default function PredictlePage() {
           style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
         >
           {loading || !data ? (
-            <Col className="items-center gap-4 py-12">
-              <img
-                src="/predictle-logo.png"
-                alt="Predictle"
-                className="h-20 w-20 animate-pulse"
-              />
-              <LoadingIndicator />
-              <p className="text-slate-500 dark:text-slate-400">
-                Loading today's puzzle...
-              </p>
-            </Col>
+            timedOut ? (
+              <Col className="items-center gap-4 py-12">
+                <img
+                  src="/predictle-logo.png"
+                  alt="Predictle"
+                  className="h-20 w-20"
+                />
+                <p className="text-slate-600 dark:text-slate-300 text-lg font-semibold">
+                  No puzzle available today
+                </p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm">
+                  Check back tomorrow for a new challenge!
+                </p>
+              </Col>
+            ) : (
+              <Col className="items-center gap-4 py-12">
+                <img
+                  src="/predictle-logo.png"
+                  alt="Predictle"
+                  className="h-20 w-20 animate-pulse"
+                />
+                <LoadingIndicator />
+                <p className="text-slate-500 dark:text-slate-400">
+                  Loading today's puzzle...
+                </p>
+              </Col>
+            )
           ) : (
             <PredicteGame
               markets={data.markets}
