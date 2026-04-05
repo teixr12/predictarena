@@ -32,7 +32,16 @@ COPY backend/api/ backend/api/
 
 # Build TypeScript
 WORKDIR /build/backend/api
-RUN yarn compile || true
+RUN ls ../../node_modules/.bin/tsc* node_modules/.bin/tsc* 2>/dev/null || true; \
+    yarn compile 2>&1 || { \
+      echo "=== yarn compile failed, trying direct tsc ===" && \
+      ../../node_modules/.bin/tsc -b 2>&1 | tail -20 && \
+      (cd ../../common && ../../node_modules/.bin/tsc-alias) && \
+      (cd ../shared && ../../node_modules/.bin/tsc-alias) && \
+      ../../node_modules/.bin/tsc-alias; \
+    }
+# Verify serve.js was produced
+RUN ls -la lib/serve.js
 
 # Prepare dist (copy compiled JS into flat structure for production)
 RUN rm -rf dist && mkdir -p dist/common/lib dist/backend/shared/lib dist/backend/api/lib && \
