@@ -113,14 +113,14 @@ export default function PressPage() {
     <Page trackPageView={'press page'} className="!col-span-7">
       <SEO
         title="Press Kit"
-        description="Download Manifold Markets brand assets, logos, fonts, and marketing materials for press and media use."
+        description="Download PREDICTA Arena brand assets, logos, fonts, and marketing materials for press and media use."
         url="/press"
       />
 
       <Col className="p-4 pb-12">
         <Title className="mb-2">Press Kit</Title>
         <p className="text-ink-600 mb-4 text-lg">
-          Brand assets and marketing materials for Manifold Markets
+          Brand assets and marketing materials for PREDICTA Arena
         </p>
         <div className="bg-primary-100 border-primary-300 text-primary-800 mb-6 rounded-lg border p-4">
           <p className="text-sm">
@@ -141,7 +141,7 @@ export default function PressPage() {
                 strokeWidth="0.6"
               />
               <div className="text-3xl font-thin text-indigo-700 md:text-6xl">
-                MANIFOLD
+                PREDICTA
               </div>
             </div>
             <p className="text-ink-500 text-center text-sm">
@@ -214,7 +214,7 @@ export default function PressPage() {
                 />
                 <div className="bg-canvas-50 rounded-lg border p-4">
                   <p className="text-ink-600 text-sm">
-                    <strong>Wordmark Usage:</strong> The "MANIFOLD" wordmark
+                    <strong>Wordmark Usage:</strong> The "PREDICTA" wordmark
                     uses <strong>Figtree Thin (weight 300)</strong>. For proper
                     sizing, use{' '}
                     <code className="bg-ink-100 rounded px-1">font-thin</code>{' '}

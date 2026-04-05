@@ -17,6 +17,7 @@ export const AppBadgesOrGetAppButton = (props: {
   }, [])
 
   if (isNative || !navigatorReady) return <div />
+  if (!APPLE_APP_URL && !GOOGLE_PLAY_APP_URL) return null
 
   const isIOSDevice = isIOS()
   const isAndroidDevice = isAndroid()

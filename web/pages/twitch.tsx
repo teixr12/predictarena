@@ -138,7 +138,7 @@ function TwitchPlaysManifoldMarkets(props: {
           className="mb-[0.4rem] mr-4 inline h-10 w-10"
           alt=""
         />
-        <Title className={'!-my-0 md:block'}>Twitch plays manifold</Title>
+        <Title className={'!-my-0 md:block'}>Twitch plays PREDICTA Arena</Title>
       </Row>
       <Col className="mb-4 gap-4">
         Start {TRADING_TERM} on Twitch now by linking your account and typing
@@ -158,12 +158,12 @@ function TwitchPlaysManifoldMarkets(props: {
       <Col className="gap-4">
         <Subtitle text="How it works" />
         <div>
-          Similar to Twitch channel point predictions, Manifold allows you to
-          create a play-money prediction markets on any question you like and
+          Similar to Twitch channel point predictions, PREDICTA Arena allows you
+          to create play-money prediction markets on any question you like and
           feature it in your stream.
         </div>
         <div>
-          The key difference is that Manifold's questions function more like a
+          The key difference is that PREDICTA Arena's questions function more like a
           stock market and viewers can buy and sell shares over the course of
           the event and not just at the start. The question will eventually
           resolve to yes or no at which point the winning shareholders will

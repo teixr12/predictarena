@@ -133,8 +133,8 @@ export function DowntimeBanner() {
   if (!maintainanceBannerEnabled) return null
   return (
     <Banner className=" bg-primary-100 hover:bg-primary-200 dark:text-primary-800 text-primary-700  hover:text-primary-900 items-center py-2  transition-colors">
-      ⚠️ Manifold will be down at 9PM PT for about 2 hours, as we upgrade our
-      financial infrastructure.
+      ⚠️ PREDICTA Arena will be down at 9PM PT for about 2 hours, as we upgrade
+      our financial infrastructure.
     </Banner>
   )
 }
@@ -145,7 +145,7 @@ export function WatchPartyBanner() {
       className="border-primary-300 from-primary-100 to-primary-200 my-2 border bg-gradient-to-b py-2"
       link="/tv"
     >
-      🇺🇸 Join the presidential debate watch party on Manifold TV! 🇺🇸
+      🇺🇸 Join the presidential debate watch party on PREDICTA TV! 🇺🇸
     </Banner>
   )
 }
@@ -181,7 +181,7 @@ export function StateOfTheUnion2026Banner() {
         <span className="text-lg">🇺🇸</span>
         <div>
           <span className="font-semibold">State of the Union watch party</span>{' '}
-          on Manifold TV tonight at{' '}
+          on PREDICTA TV tonight at{' '}
           {new Date('2026-02-24T21:00:00-05:00').toLocaleString(undefined, {
             hour: 'numeric',
           })}

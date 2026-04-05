@@ -10,7 +10,9 @@ import { QuestType } from 'common/quest'
 import { run, SupabaseClient } from 'common/supabase/utils'
 import { Json } from 'common/supabase/schema'
 
-amplitude.init(ENV_CONFIG.amplitudeApiKey, undefined)
+if (ENV_CONFIG.amplitudeApiKey) {
+  amplitude.init(ENV_CONFIG.amplitudeApiKey, undefined)
+}
 
 type EventIds = {
   contractId?: string | null
