@@ -1,7 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { withSentryConfig } = require('@sentry/nextjs')
+
 const API_DOCS_URL = 'https://docs.predictarena.com/api'
 
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
   eslint: {
@@ -227,3 +230,13 @@ module.exports = {
     ]
   },
 }
+
+// Only wrap with Sentry when DSN is configured — no-op otherwise
+module.exports = process.env.NEXT_PUBLIC_SENTRY_DSN
+  ? withSentryConfig(nextConfig, {
+      silent: true,
+      // Disable source map upload until SENTRY_AUTH_TOKEN is set in CI
+      disableServerWebpackPlugin: !process.env.SENTRY_AUTH_TOKEN,
+      disableClientWebpackPlugin: !process.env.SENTRY_AUTH_TOKEN,
+    })
+  : nextConfig

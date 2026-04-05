@@ -64,13 +64,14 @@ export const PROD_CONFIG: EnvConfig = {
     appId: '1:158987780292:web:ebf3c50a8265d57aa64991',
     measurementId: '',
   },
-  twitchBotEndpoint: '', // Removed - not used in PREDICTA Arena
+  twitchBotEndpoint: '', // Not used in PREDICTA Arena
   apiEndpoint: 'predictarena-api.onrender.com',
-  cloudRunId: 'nggbo3neva', // TODO: Replace after deploying cloud functions
-  cloudRunRegion: 'uc',
+  cloudRunId: '', // Not used — API is on Render
+  cloudRunRegion: '', // Not used — API is on Render
 
   adminIds: [
-    // TODO: Add PREDICTA Arena admin user IDs after first sign-up
+    // Add your Firebase UID here after first sign-in
+    // Get it from: Supabase dashboard → users table → your row → id column
   ],
   visibility: 'PUBLIC',
 
