@@ -146,7 +146,8 @@ app.post('/v0/mcp', express.json(), allowCorsUnrestricted, handleMcpRequest)
 // Handle JSON parse errors with a clean 400 instead of 500
 app.use(((err, _req, res, next) => {
   if (err.type === 'entity.parse.failed') {
-    return res.status(400).json({ message: 'Invalid JSON in request body' })
+    res.status(400).json({ message: 'Invalid JSON in request body' })
+    return
   }
   next(err)
 }) as ErrorRequestHandler)

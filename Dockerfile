@@ -47,7 +47,9 @@ COPY backend/api/ backend/api/
 
 # Build TypeScript
 WORKDIR /build/backend/api
-RUN yarn compile || true
+RUN yarn compile
+# Verify serve.js was produced
+RUN ls -la lib/serve.js
 
 # Prepare dist (copy compiled JS into flat structure for production)
 RUN rm -rf dist && mkdir -p dist/common/lib dist/backend/shared/lib dist/backend/api/lib && \
