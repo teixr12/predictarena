@@ -14,9 +14,26 @@ import { handleMcpRequest } from './mcp'
 import { addOldRoutes } from './old-routes'
 import { handlers } from './routes'
 
+const ALLOWED_ORIGINS = [
+  'https://predictarena.com',
+  'https://www.predictarena.com',
+  'https://predictarena.vercel.app',
+]
+
 export const allowCorsUnrestricted: RequestHandler = cors({
-  origin: '*',
-  maxAge: 86400, // 24 hours
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true) // allow non-browser (curl, server-to-server)
+    if (
+      ALLOWED_ORIGINS.includes(origin) ||
+      /^https:\/\/predictarena-[a-z0-9-]+-apxlbs\.vercel\.app$/.test(origin) ||
+      /^http:\/\/localhost:\d+$/.test(origin)
+    ) {
+      callback(null, true)
+    } else {
+      callback(new Error(`CORS: origin ${origin} not allowed`))
+    }
+  },
+  maxAge: 86400,
 })
 
 function cacheController(policy?: string): RequestHandler {
@@ -92,9 +109,14 @@ export const apiErrorHandler: ErrorRequestHandler = (
       res.status(error.code).json(output)
     }
   } else {
-    log.error(error)
+    // Log full error server-side (including stack/pg details) but never expose to client
+    log.error('Unhandled server error:', {
+      message: error?.message,
+      stack: error?.stack,
+      name: error?.name,
+    })
     if (!res.headersSent) {
-      res.status(500).json({ message: 'Internal server error' })
+      res.status(500).json({ error: error?.message || 'Internal server error' })
     }
   }
 }
