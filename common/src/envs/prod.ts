@@ -48,7 +48,7 @@ type FirebaseConfig = {
 
 export const PROD_CONFIG: EnvConfig = {
   domain: 'predictarena.com',
-  amplitudeApiKey: '', // TODO: Add PREDICTA Arena Amplitude key
+  amplitudeApiKey: '2c9f3b24e11f282f951400dfada90d78',
   supabaseInstanceId: 'jipzwutdrjkleppaqlio',
   supabaseAnonKey:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppcHp3dXRkcmprbGVwcGFxbGlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNzI2ODUsImV4cCI6MjA4OTg0ODY4NX0.9DNPgBepn_kP4QOVlpoJ_a6zvqHyUCAx5rIsG3OgsDI',
