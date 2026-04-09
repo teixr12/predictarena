@@ -69,10 +69,7 @@ export const PROD_CONFIG: EnvConfig = {
   cloudRunId: '', // Not used — API is on Render
   cloudRunRegion: '', // Not used — API is on Render
 
-  adminIds: [
-    // Add your Firebase UID here after first sign-in
-    // Get it from: Supabase dashboard → users table → your row → id column
-  ],
+  adminIds: ['Q1p1thjviqU9Fd5yzT0mlgR2Jr53'],
   visibility: 'PUBLIC',
 
   moneyMoniker: 'C',
