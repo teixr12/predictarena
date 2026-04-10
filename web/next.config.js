@@ -7,12 +7,6 @@ const API_DOCS_URL = 'https://docs.predictarena.com/api'
 const nextConfig = {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   modularizeImports: {
     '@heroicons/react/solid/?(((\\w*)?/?)*)': {
       transform: '@heroicons/react/solid/{{ matches.[1] }}/{{member}}',

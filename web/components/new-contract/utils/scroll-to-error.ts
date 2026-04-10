@@ -54,13 +54,14 @@ export function scrollToFirstError(errors: ValidationErrors): void {
   element.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
   // Auto-focus if it's an input/textarea/button element
+  const focusable = element
   if (
-    element instanceof HTMLInputElement ||
-    element instanceof HTMLTextAreaElement ||
-    element instanceof HTMLButtonElement
+    focusable instanceof HTMLInputElement ||
+    focusable instanceof HTMLTextAreaElement ||
+    focusable instanceof HTMLButtonElement
   ) {
     setTimeout(() => {
-      element.focus()
+      focusable.focus()
     }, 300) // Delay to allow scroll animation to complete
   }
 }

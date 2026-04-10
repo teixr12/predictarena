@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
 import { AuthProvider, AuthUser } from 'web/components/auth-context'
+import { ErrorBoundary } from 'web/components/error-boundary'
 import { NativeMessageProvider } from 'web/components/native-message-provider'
 import { Sweepstakes } from 'web/components/sweepstakes-provider'
 import { OptimisticEntitlementsProvider } from 'web/hooks/use-optimistic-entitlements'
@@ -187,25 +188,27 @@ function MyApp({ Component, pageProps }: AppProps<ManifoldPageProps>) {
         ian: It would be nice to find a way to let people take screenshots of a crash + console log.
         One idea: just disable them for !user.sweepstakesVerified users.
         */}
-      {devToolsOpen ? (
-        <div
-          className={'flex h-screen flex-col items-center justify-center p-4'}
-        >
-          Developer tools are disabled. Please close them and refresh.
-        </div>
-      ) : (
-        <ThemeProvider>
-          <AuthProvider serverUser={pageProps.auth}>
-            <OptimisticEntitlementsProvider>
-              <Sweepstakes>
-                <NativeMessageProvider>
-                  <Component {...pageProps} />
-                </NativeMessageProvider>
-              </Sweepstakes>
-            </OptimisticEntitlementsProvider>
-          </AuthProvider>
-        </ThemeProvider>
-      )}
+      <ErrorBoundary>
+        {devToolsOpen ? (
+          <div
+            className={'flex h-screen flex-col items-center justify-center p-4'}
+          >
+            Developer tools are disabled. Please close them and refresh.
+          </div>
+        ) : (
+          <ThemeProvider>
+            <AuthProvider serverUser={pageProps.auth}>
+              <OptimisticEntitlementsProvider>
+                <Sweepstakes>
+                  <NativeMessageProvider>
+                    <Component {...pageProps} />
+                  </NativeMessageProvider>
+                </Sweepstakes>
+              </OptimisticEntitlementsProvider>
+            </AuthProvider>
+          </ThemeProvider>
+        )}
+      </ErrorBoundary>
 
       <GoogleOneTapSetup />
 
