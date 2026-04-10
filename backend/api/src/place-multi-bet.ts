@@ -11,8 +11,9 @@ import { betsQueue } from 'shared/helpers/fn-queue'
 import { runTransactionWithRetries } from 'shared/transact-with-retries'
 import { log } from 'shared/utils'
 import { APIError, type APIHandler } from './helpers/endpoint'
+import { onlyUsersWhoCanPerformAction } from './helpers/rate-limit'
 
-export const placeMultiBet: APIHandler<'multi-bet'> = async (props, auth) => {
+const placeMultiBetHandler: APIHandler<'multi-bet'> = async (props, auth) => {
   const isApi = auth.creds.kind === 'key'
 
   return await betsQueue.enqueueFn(
@@ -20,6 +21,11 @@ export const placeMultiBet: APIHandler<'multi-bet'> = async (props, auth) => {
     [auth.uid, props.contractId]
   )
 }
+
+export const placeMultiBet: APIHandler<'multi-bet'> = onlyUsersWhoCanPerformAction(
+  'bet',
+  placeMultiBetHandler
+)
 
 // Note: this returns a continuation function that should be run for consistency.
 export const placeMultiBetMain = async (

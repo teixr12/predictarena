@@ -72,8 +72,7 @@ export const CORS_ORIGIN_VERCEL = new RegExp(
 export const CORS_ORIGIN_LOCALHOST = /^http:\/\/localhost:\d+$/
 
 // TODO: These should maybe be part of the env config?
-// TODO: Add PREDICTA Arena bot usernames as they are created
-export const BOT_USERNAMES: string[] = []
+export const BOT_USERNAMES: string[] = ['PredictaBot']
 
 // TODO: Add PREDICTA Arena moderator user IDs
 export const MOD_IDS: string[] = ['Q1p1thjviqU9Fd5yzT0mlgR2Jr53']
@@ -199,7 +198,8 @@ export const GROUP_SLUGS_TO_NOT_INTRODUCE_IN_FEED = [
 
 export const EXTERNAL_REDIRECTS = ['/umami']
 
-export const DISCORD_INVITE_LINK = '' // TODO: Create PREDICTA Arena Discord
+// TODO: Add Discord invite link when community is set up
+export const DISCORD_INVITE_LINK = ''
 export const DISCORD_BOT_INVITE_LINK = '' // TODO: Create PREDICTA Arena Discord bot
 
 export const YES_GRAPH_COLOR = '#11b981'

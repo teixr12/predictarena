@@ -63,9 +63,10 @@ import {
   broadcastUpdatedContract,
 } from 'shared/websockets/helpers'
 import { APIError, AuthedUser, type APIHandler } from './helpers/endpoint'
+import { onlyUsersWhoCanPerformAction } from './helpers/rate-limit'
 import { redeemShares } from './redeem-shares'
 
-export const placeBet: APIHandler<'bet'> = async (props, auth) => {
+const placeBetHandler: APIHandler<'bet'> = async (props, auth) => {
   const isApi = auth.creds.kind === 'key'
   const { deps, contractId, dryRun } = props
 
@@ -79,6 +80,11 @@ export const placeBet: APIHandler<'bet'> = async (props, auth) => {
     return placeBetMain(props, auth.uid, isApi)
   }, fullDeps)
 }
+
+export const placeBet: APIHandler<'bet'> = onlyUsersWhoCanPerformAction(
+  'bet',
+  placeBetHandler
+)
 
 const queueDependenciesThenBet = async (
   props: ValidatedAPIParams<'bet'>,

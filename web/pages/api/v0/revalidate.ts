@@ -35,6 +35,7 @@ export default async function handler(
 
   const { apiSecret, pathToRevalidate } = params
 
+  // Requires API_SECRET env var in Vercel dashboard
   if (apiSecret !== process.env.API_SECRET) {
     return res.status(401).json({ message: 'Invalid api secret' })
   }
