@@ -76,10 +76,10 @@ export const CORS_ORIGIN_LOCALHOST = /^http:\/\/localhost:\d+$/
 export const BOT_USERNAMES: string[] = []
 
 // TODO: Add PREDICTA Arena moderator user IDs
-export const MOD_IDS: string[] = []
+export const MOD_IDS: string[] = ['Q1p1thjviqU9Fd5yzT0mlgR2Jr53']
 
 // TODO: Add PREDICTA Arena sweepstakes moderator IDs
-export const SWEEPSTAKES_MOD_IDS: string[] = []
+export const SWEEPSTAKES_MOD_IDS: string[] = ['Q1p1thjviqU9Fd5yzT0mlgR2Jr53']
 
 // TODO: Add PREDICTA Arena MVP users
 export const MVP: string[] = []
