@@ -847,10 +847,10 @@ export default function PredictlePage() {
                   className="h-20 w-20"
                 />
                 <p className="text-slate-600 dark:text-slate-300 text-lg font-semibold">
-                  No puzzle available today
+                  Today's challenge is temporarily unavailable.
                 </p>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">
-                  Check back tomorrow for a new challenge!
+                  Check back soon!
                 </p>
               </Col>
             ) : (

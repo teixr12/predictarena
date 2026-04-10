@@ -147,12 +147,11 @@ export default function Analytics(props: {
           description="See site-wide usage statistics."
           url="/stats"
         />
-        <Col className="items-center justify-center px-4 py-20">
-          <Title>Stats</Title>
-          <p className="text-ink-500">
-            No statistics available yet. Start trading to generate data!
-          </p>
-        </Col>
+        <div className="text-center py-16 text-gray-500">
+          <div className="text-4xl mb-4">📊</div>
+          <p className="text-lg font-medium">No stats yet</p>
+          <p className="text-sm">Platform stats will appear here as users trade.</p>
+        </div>
       </Page>
     )
   }

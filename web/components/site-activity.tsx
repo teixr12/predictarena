@@ -383,8 +383,10 @@ export function SiteActivity(props: { className?: string }) {
           {!allData ? (
             <LoadingIndicator />
           ) : items.length === 0 ? (
-            <div className="text-ink-500 mt-8 text-center">
-              No activity found with current filters
+            <div className="text-center py-16 text-gray-500">
+              <div className="text-4xl mb-4">🌟</div>
+              <p className="text-lg font-medium">No activity yet</p>
+              <p className="text-sm">Be the first to create a market or place a bet!</p>
             </div>
           ) : (
             groups.map(({ parentId, items }) => {
