@@ -57,7 +57,7 @@ export function Socials(props: { className?: string; hideTitle?: boolean }) {
         </SocialLink>
         <SocialLink
           Icon={TbBrandTwitter}
-          href="https://twitter.com/ManifoldMarkets"
+          href="https://twitter.com/PredictaArena"
           target="_blank"
         >
           Twitter

@@ -207,7 +207,7 @@ export const FeeBanner = () => {
   return (
     <Banner
       className="bg-primary-100 hover:bg-primary-200 dark:text-primary-800 text-primary-700 hover:text-primary-900 items-center py-2 transition-colors"
-      link="https://manifoldmarkets.notion.site/Fee-change-18b54492ea7a80a6b069d488fc3613ee"
+      link="https://docs.predictarena.com/fee-change"
       setShowBanner={hideBanner}
     >
       <Row className="items-center gap-2">
@@ -256,11 +256,11 @@ export const ManaForeverBanner = () => {
   return (
     <Banner
       className="bg-primary-100 hover:bg-primary-200  dark:text-primary-800 text-primary-700 hover:text-primary-900 items-center py-2 transition-colors"
-      link="https://manifoldmarkets.notion.site/Mana-forever-19154492ea7a80c08410ea8c64fac67e?pvs=74"
+      link="https://docs.predictarena.com/coins-forever"
       setShowBanner={hideBanner}
     >
       <div>
-        We are shutting down sweepstakes to focus on the manaverse! See more{' '}
+        We are shutting down sweepstakes to focus on PREDICTA Arena! See more{' '}
         <ArrowRightIcon className="ml-1 inline-block h-4 w-4" />
       </div>
     </Banner>
@@ -281,7 +281,7 @@ export const CyberMondayBanner = () => {
         <span className="text-lg">💻</span>
         <div className="font-medium text-white">
           <span className="font-bold text-cyan-400">Cyber Monday:</span> 25% off
-          mana using code{' '}
+          coins using code{' '}
           <span className="rounded bg-cyan-400 px-2 py-0.5 font-mono font-bold text-gray-900">
             CYBMON
           </span>
@@ -327,7 +327,7 @@ export const ShopBanner = () => {
       <Row className="items-center gap-2">
         <span>✨</span>
         <div className="text-ink-700">
-          <span className="font-semibold">Mana Shop is live!</span> Get
+          <span className="font-semibold">Coins Shop is live!</span> Get
           membership perks, cosmetics & merch
         </div>
         <ArrowRightIcon className="text-ink-600 ml-1 h-4 w-4" />

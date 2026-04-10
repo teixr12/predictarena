@@ -34,9 +34,9 @@ export function TVSchedulePage(props: {
         title="PREDICTA TV"
         description={`${capitalize(
           TRADE_TERM
-        )} on live video streams with Manifold TV`}
+        )} on live video streams with PREDICTA TV`}
       />
-      <Title>Manifold TV</Title>
+      <Title>PREDICTA TV</Title>
 
       <div>
         {capitalize(TRADE_TERM)} on live video streams with your friends!

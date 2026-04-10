@@ -77,8 +77,8 @@ export default function Pakman(props: {
   return (
     <Page trackPageView="Pakman page" className="!col-span-7">
       <SEO
-        title="Pakman Manifold"
-        description="The David Pakman Show on Manifold."
+        title="Pakman on PREDICTA Arena"
+        description="The David Pakman Show on PREDICTA Arena."
         url="/pakman"
       />
       <PromotionalPanel

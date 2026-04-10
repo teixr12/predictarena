@@ -24,7 +24,7 @@ export default function LabsPage() {
             Github
           </LabLink>
           <LabLink href="/api">API</LabLink>
-          <LabLink href="https://manifoldmarkets.notion.site/About-4a1e35b5cedf43998161609eea887679">
+          <LabLink href="https://docs.predictarena.com/about">
             More
           </LabLink>
         </div>
@@ -75,7 +75,7 @@ export default function LabsPage() {
         />
         <LabCard
           title="⚔️ Versus"
-          description="Create mana-battles between two ideas"
+          description="Create coin-battles between two ideas"
           href="/VersusBot?tab=questions"
         />
         <LabCard
@@ -84,13 +84,13 @@ export default function LabsPage() {
           href="/cards"
         />
         <LabCard
-          title="💰 Mana auction"
+          title="💰 Coins auction"
           description={`A dollar auction but for ${formatMoney(10000)}`}
           href="/mana-auction"
         />
         <LabCard
           title="👀 Classified Ads"
-          description="An old version of question boosts that let you advertise anything. View ads for mana!"
+          description="An old version of question boosts that let you advertise anything. View ads for coins!"
           href="/ad"
         />
         <LabCard title="🐮 Moolinda" description="???" href="/cowp" />

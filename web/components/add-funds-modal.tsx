@@ -54,10 +54,10 @@ export function AddFundsModal(props: {
             content: <BuyManaTab onClose={() => setOpen(false)} />,
           },
           {
-            title: 'Earn free mana',
+            title: 'Earn free coins',
             content: (
               <>
-                <div className="my-4">Other ways to earn mana:</div>
+                <div className="my-4">Other ways to earn coins:</div>
                 <OtherWaysToGetMana />
               </>
             ),

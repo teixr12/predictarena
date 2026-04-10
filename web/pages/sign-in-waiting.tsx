@@ -10,7 +10,7 @@ export default function SignInWaiting() {
   return (
     <Col style={{ width, height }} className="items-center justify-center">
       <Image
-        alt={'Flappy manifold bird'}
+        alt={'Flappy PREDICTA bird'}
         className="mb-6 block -scale-x-100 self-center"
         src="/logo-flapping-with-money.gif"
         width={200}

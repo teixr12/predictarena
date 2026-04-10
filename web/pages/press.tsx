@@ -650,7 +650,7 @@ function YesNoButtonShowcase() {
       <div className="flex flex-col items-center gap-8">
         <div className="w-full">
           <p className="text-ink-600 mb-4 text-center">
-            Manifold's signature Yes/No button design
+            PREDICTA Arena's signature Yes/No button design
           </p>
           <p className="text-ink-500 mb-2 text-center text-xs">
             Drag the edges to resize (both buttons mirror each other)
@@ -1195,7 +1195,7 @@ function MockMarket() {
               />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-ink-600 mb-1 text-sm">Manifold Markets</div>
+              <div className="text-ink-600 mb-1 text-sm">PREDICTA Arena</div>
               <h2 className="text-ink-1000 text-2xl font-semibold leading-tight">
                 {question}
               </h2>
@@ -1390,13 +1390,13 @@ function MockMarket() {
                       })}
                     </svg>
 
-                    {/* Manifold watermark */}
+                    {/* PREDICTA watermark */}
                     <div className="pointer-events-none absolute bottom-2 left-3 flex items-center gap-1.5 opacity-40">
                       <LogoIcon
                         className="stroke-ink-600 h-4 w-4"
                         strokeWidth="0.6"
                       />
-                      <span className="text-ink-600 text-xs">MANIFOLD</span>
+                      <span className="text-ink-600 text-xs">PREDICTA</span>
                     </div>
 
                     {/* Time period buttons */}

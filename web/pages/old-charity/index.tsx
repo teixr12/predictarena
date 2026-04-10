@@ -111,12 +111,12 @@ export default function Charity(props: {
     <Page trackPageView={'charity'}>
       <SEO
         title="PREDICTA Arena for Charity"
-        description="Donate your prediction market earnings to charity on Manifold."
+        description="Donate your prediction market earnings to charity on PREDICTA Arena."
         url="/old-charity"
       />
       <Col className="w-full rounded px-4 py-6 sm:px-8 xl:w-[125%]">
         <Col className="">
-          <Title>Manifold for Charity</Title>
+          <Title>PREDICTA Arena for Charity</Title>
 
           <div className="text-ink-500">
             Convert your <SweepiesCoin /> sweepcash into real charitable
@@ -126,7 +126,7 @@ export default function Charity(props: {
           <DonatedStats
             stats={[
               {
-                name: 'Raised by Manifold users',
+                name: 'Raised by PREDICTA Arena users',
                 stat: formatMoneyUSD(totalRaised),
               },
               {
@@ -168,13 +168,13 @@ export default function Charity(props: {
         <div className="prose text-ink-500 mt-10 max-w-none">
           <span className="text-lg font-semibold">Notes</span>
           <ul>
-            <li>Manifold is not affiliated with any of the above charities.</li>
+            <li>PREDICTA Arena is not affiliated with any of the above charities.</li>
             <li>
               Unfortunately, your contributions will not be tax deductible.
             </li>
             <li>Donations are wired once each quarter.</li>
             <li>
-              Manifold reserves the right to cancel its charity program at any
+              PREDICTA Arena reserves the right to cancel its charity program at any
               time.
             </li>
           </ul>

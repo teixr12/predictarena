@@ -343,7 +343,7 @@ export default function CharityGiveawayPage() {
             color="indigo"
           />
           <StatCard
-            label="Mana Spent"
+            label="Coins Spent"
             value={formatMoney(totalManaSpent)}
             color="violet"
           />

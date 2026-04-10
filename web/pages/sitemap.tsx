@@ -193,7 +193,7 @@ export default function SitemapPage() {
             <SitemapLink
               title="Community guidelines"
               description="Rules and expectations"
-              href="https://manifoldmarkets.notion.site/New-WIP-Community-Guidelines-2b986d33f0c646478d4921667c272f21"
+              href="https://docs.predictarena.com/community-guidelines"
               external
               icon={DocumentDuplicateIcon}
             />

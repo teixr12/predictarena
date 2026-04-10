@@ -33,7 +33,7 @@ function Calculator() {
     <div className="mx-auto flex w-full max-w-3xl flex-col">
       <Title>Maniswap Calculator</Title>
       <a
-        href="https://manifoldmarkets.notion.site/Maniswap-ce406e1e897d417cbd491071ea8a0c39"
+        href="https://docs.predictarena.com/maniswap"
         target="_blank"
         className="text-primary-700 hover:underline"
       >

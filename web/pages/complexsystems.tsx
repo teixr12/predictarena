@@ -57,8 +57,8 @@ export default function ComplexSystems(
   return (
     <Page trackPageView="Complex Systems page">
       <SEO
-        title="Complex Systems Manifold"
-        description="Complex Systems on Manifold."
+        title="Complex Systems on PREDICTA Arena"
+        description="Complex Systems on PREDICTA Arena."
         url="/complexsystems"
       />
       <PromotionalPanel

@@ -46,7 +46,7 @@ export default function TwitchLandingPage() {
       </div>
 
       <Col className="text-ink-600 bg-canvas-0 max-w-3xl gap-8 rounded p-4 shadow-md sm:mx-auto sm:p-10">
-        <TwitchPlaysManifoldMarkets user={user} privateUser={privateUser} />
+        <TwitchPlaysArenaMarkets user={user} privateUser={privateUser} />
         <TwitchChatCommands />
         <SetUpBot user={user} privateUser={privateUser} />
       </Col>
@@ -121,7 +121,7 @@ function ButtonGetStarted(props: {
   )
 }
 
-function TwitchPlaysManifoldMarkets(props: {
+function TwitchPlaysArenaMarkets(props: {
   user?: User | null
   privateUser?: PrivateUser | null
 }) {
@@ -405,7 +405,7 @@ function SetUpBot(props: {
         <img
           src="/twitch-bot-obs-screenshot.jpg"
           className="rounded-md border-l border-r border-t shadow-md"
-          alt='screenshot of a stream with a game on the right and Manifold console on the right above chat. The console says "Resolve market", the market name, YES NO N/A buttons, a resolve button, and an unfeature market button.'
+          alt='screenshot of a stream with a game on the right and PREDICTA Arena console on the right above chat. The console says "Resolve market", the market name, YES NO N/A buttons, a resolve button, and an unfeature market button.'
         />
         To add the bot to your stream make sure you have logged in then follow
         the steps below.
@@ -418,7 +418,7 @@ function SetUpBot(props: {
               }
             >
               Use the button above to add the bot to your channel. Then mod it
-              by typing in your Twitch chat: <b>/mod ManifoldBot</b>
+              by typing in your Twitch chat: <b>/mod PredictaBot</b>
               <br />
               If the bot is not modded it will not be able to respond to
               commands properly.

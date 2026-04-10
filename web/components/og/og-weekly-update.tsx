@@ -41,7 +41,7 @@ export function OgWeeklyUpdate(props: WeeklyPortfolioUpdateOGCardProps) {
         </div>
       </div>
 
-      {/* <!-- Manifold logo --> */}
+      {/* <!-- PREDICTA Arena logo --> */}
       <div className="absolute right-24 top-8 flex">
         <img
           className="mr-3 h-12 w-12"
