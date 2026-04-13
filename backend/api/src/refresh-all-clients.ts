@@ -7,7 +7,7 @@ export const refreshAllClients: APIHandler<'refresh-all-clients'> = async (
   auth
 ) => {
   if (!isAdminId(auth.uid))
-    throw new APIError(403, 'Only Manifold team members can refresh clients')
+    throw new APIError(403, 'Only PREDICTA team members can refresh clients')
 
   broadcast('refresh-all-clients', { time: Date.now(), message })
 }

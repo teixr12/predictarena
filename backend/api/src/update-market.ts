@@ -98,7 +98,7 @@ export const updateMarket: APIHandler<'market/:contractId/update'> =
     ) {
       throw new APIError(
         403,
-        'Only Manifold team or the question creator can update title/description of sweepcash questions'
+        'Only PREDICTA team or the question creator can update title/description of sweepcash questions'
       )
     }
 

@@ -78,7 +78,7 @@ export function SweepsWelcomePage() {
         polls.
       </div>
       <Image
-        src="/welcome/manifold-example.gif"
+        src="/welcome/predicta-example.gif"
         className="my-4 w-full max-w-xl self-center object-contain"
         alt={'PREDICTA Arena example animation'}
         width={200}

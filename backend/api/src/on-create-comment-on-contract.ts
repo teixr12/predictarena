@@ -295,7 +295,7 @@ ${answer.text}`
       : `If the creator is about to resolve an answer and detailing their reasoning, do not issue a clarification.`
   const prompt = `SYSTEM: You are analyzing a ${
     commentsContext ? 'comment thread' : 'comment'
-  } on a prediction market on Manifold Markets (that is managed by a creator) to determine if the creator's latest comment clarifies the resolution criteria.
+  } on a prediction market on PREDICTA Arena (that is managed by a creator) to determine if the creator's latest comment clarifies the resolution criteria.
 
 CONTEXT:
 Market question: ${contract.question}
@@ -311,7 +311,7 @@ ${richTextToString(comment.content)}
 SYSTEM: Please analyze if the creator's latest comment ${
     commentsContext ? '(in context of the comment thread)' : ''
   } is clarifying or adding important details about how the market will be resolved, that is not already covered by a reasonable interpretation of the market's description/question title. 
-  Here's info about how resolving a market works in Manifold Markets:
+  Here's info about how resolving a market works in PREDICTA Arena:
   ${ResolvingMarketsExplanation}
 
   The main point of a clarification is that traders understand what creator meant when creating the question, and how it will be resolved. Consider whether the provided comment might change anyone's anticipation about market outcome, as a major factor to determine if the comment is a clarification.
@@ -423,7 +423,7 @@ export const checkCommentNeedsResponse = async (
   const prompt = `
   Analyze the NEWEST COMMENT on a prediction market and determine if it requires a response from the market creator.
 
-  The creator is a user of Manifold Markets that created the market and resolves it using their judgement, along with the title and description of the market.
+  The creator is a user of PREDICTA Arena that created the market and resolves it using their judgement, along with the title and description of the market.
 
   The NEWEST COMMENT should be considered as needing a response if it:
   1. Asks for clarification about the market or its resolution criteria
@@ -468,12 +468,12 @@ export const checkCommentNeedsResponse = async (
 const ResolvingMarketsExplanation = `
 ### How does resolving markets work?
 
-Whoever created the market gets to resolve it! Manifold puts trust in its users to resolve their own markets in a timely and accurate manner. We encourage creators to set clear resolution criteria in advance. In exceptional circumstances, our team of moderators will overturn resolutions.
+Whoever created the market gets to resolve it! PREDICTA Arena puts trust in its users to resolve their own markets in a timely and accurate manner. We encourage creators to set clear resolution criteria in advance. In exceptional circumstances, our team of moderators will overturn resolutions.
 
 - The creator is free to use their judgment.
   - This allows for many new kinds of prediction markets to be created that are less objective. (E.g. "Will I enjoy participating in the Metaverse in 2023?")
 - Market creators who are known to be reputable will earn followers, positive reviews, and more activity on their questions.
-- Check out the [resolution section in the community guidelines](https://manifoldmarkets.notion.site/Community-Guidelines-f6c77b1af41749828df7dae5e8735400).
+- Check out the [resolution section in the community guidelines](https://predictarena.com/community-guidelines).
 
 ### How should I resolve a market?
 

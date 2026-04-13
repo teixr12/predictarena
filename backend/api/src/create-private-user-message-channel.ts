@@ -38,7 +38,7 @@ export const createprivateusermessagechannel = authEndpoint(
       if (!allRecipientsAreAdmins) {
         throw new APIError(
           403,
-          'You are banned from messaging. You can still message Manifold staff for support.'
+          'You are banned from messaging. You can still message PREDICTA support for help.'
         )
       }
     }

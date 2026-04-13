@@ -66,7 +66,7 @@ export const createcheckoutsession = async (req: Request, res: Response) => {
     return
   }
   if (!priceInDollars) {
-    res.status(400).send('Must specify manifold price in dollars')
+    res.status(400).send('Must specify a valid price in dollars')
     return
   }
   const price = WEB_PRICES.find(

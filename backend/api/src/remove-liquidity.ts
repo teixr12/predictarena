@@ -41,7 +41,7 @@ export const removeLiquidity: APIHandler<
         ) {
           throw new APIError(
             403,
-            'Only Manifold account is allowed to remove sweepcash liquidity. Complain to Sinclair'
+            'Only PREDICTA admin account is allowed to remove sweepcash liquidity.'
           )
         }
       } else {

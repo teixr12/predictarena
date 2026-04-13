@@ -36,7 +36,7 @@ export const getBestComments: APIHandler<'get-best-comments'> = rateLimitByUser(
     let commentsToReview: { comment: ContractComment; question: string }[] = []
 
     const introText = `
-      I am a user of Manifold. Manifold is a prediction market platform where
+      I am a user of PREDICTA Arena. PREDICTA Arena is a prediction market platform where
       users place bets on current events, politics, tech, sports, AI, and more.
       I have some comments that I would like you to rank in order of descending quality.
       Evaluate quality based on their informativeness relevant to the question, cogent analysis, and optionally humor. 

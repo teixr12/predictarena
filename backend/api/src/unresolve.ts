@@ -107,7 +107,7 @@ const verifyUserCanUnresolve = async (
   if (isProd() && token === 'CASH' && userId !== HOUSE_LIQUIDITY_PROVIDER_ID) {
     throw new APIError(
       403,
-      `Only the Manifold account can unresolve sweepcash markets`
+      `Only the PREDICTA admin account can unresolve sweepcash markets`
     )
   }
 

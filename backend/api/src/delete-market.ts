@@ -42,7 +42,7 @@ export const deleteMarket = authEndpoint(async (req, auth) => {
   // duplicate checks for sibling contract
   if (siblingContractId) {
     if (!isAdminId(auth.uid))
-      throw new APIError(403, 'Only Manifold admins can delete cash markets')
+      throw new APIError(403, 'Only PREDICTA admins can delete cash markets')
 
     const cashContract = await getContract(pg, siblingContractId)
     if (!cashContract)

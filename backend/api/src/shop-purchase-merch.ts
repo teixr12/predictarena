@@ -159,7 +159,7 @@ export const shopPurchaseMerch: APIHandler<'shop-purchase-merch'> = async (
     printfulOrder = await createPrintfulOrder(printfulToken, {
       variantId,
       shipping,
-      externalId: `manifold-${txnId}`,
+      externalId: `predicta-${txnId}`,
       confirm: false, // Draft order - won't be charged or produced until confirmed
       packingSlipMessage: `@${username} (uid: ${auth.uid})`,
     })

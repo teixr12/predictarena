@@ -23,7 +23,7 @@ export const generateSuggestions = async (
     : prompt
 
   const combinedPrompt = `
-    You are a helpful assistant that suggests ideas for engaging prediction markets on Manifold Markets based on a user's prompt.
+    You are a helpful assistant that suggests ideas for engaging prediction markets on PREDICTA Arena based on a user's prompt.
     Your role is to take the user's prompt and transform it into 6 well-structured prediction markets that encourage participation and meaningful forecasting.
     Use your own knowledge and web search capabilities if necessary to gather relevant information.
     Today is ${new Date().toISOString()}

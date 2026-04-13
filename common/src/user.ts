@@ -173,7 +173,7 @@ export const MANIFOLD_USER_USERNAME = 'PredictaArena'
 export const MANIFOLD_USER_NAME = 'PREDICTA Arena'
 export const MANIFOLD_AVATAR_URL = 'https://predictarena.com/logo.png'
 export const MANIFOLD_LOVE_LOGO =
-  'https://predictarena.com/manifold_love_logo.svg'
+  'https://predictarena.com/logo.svg'
 
 export function getCurrentUtcTime(): Date {
   const currentDate = new Date()
