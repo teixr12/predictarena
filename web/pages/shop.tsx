@@ -530,7 +530,7 @@ export default function ShopPage() {
     <Page trackPageView="shop page" className="p-3">
       <SEO
         title="Shop"
-        description="Spend your mana in the PREDICTA Arena shop"
+        description="Spend your coins in the PREDICTA Arena shop"
         url="/shop"
       />
       {/* Confetti on purchase */}
@@ -544,7 +544,7 @@ export default function ShopPage() {
       <Col className="mx-auto max-w-xl">
         <Row className="mb-2 items-center gap-2 text-2xl font-semibold">
           <FaGem className="h-6 w-6 text-violet-500" />
-          Mana Shop
+          PREDICTA Shop
         </Row>
         {user && (
           <Row className="text-ink-700 mb-6 items-center gap-4 text-sm">
@@ -1030,7 +1030,7 @@ function MerchItemCard(props: {
               <Row className="text-ink-500 mt-0.5 items-center gap-1 text-xs">
                 <span>Limit 1 per customer</span>
                 <InfoTooltip
-                  text="We hope to lift this restriction once the mana shop is up and running smoothly!"
+                  text="We hope to lift this restriction once the PREDICTA shop is up and running smoothly!"
                   size="sm"
                 />
               </Row>

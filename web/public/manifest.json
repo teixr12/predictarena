@@ -1,0 +1,27 @@
+{
+  "name": "PREDICTA Arena",
+  "short_name": "PREDICTA",
+  "description": "Predict world events. Train for Kalshi & Polymarket. Brazil's prediction market platform.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logo-cover.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "games", "entertainment"],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/"
+}
