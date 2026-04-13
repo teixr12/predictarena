@@ -76,7 +76,7 @@ export default function AboutPage() {
           <p className="text-ink-500 text-sm leading-relaxed">
             PREDICTA Arena is built on top of{' '}
             <a
-              href="https://github.com/manifoldmarkets/manifold"
+              href="https://github.com/teixr12/predictarena"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-400 hover:underline"

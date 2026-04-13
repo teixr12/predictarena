@@ -20,7 +20,7 @@ export default function LabsPage() {
           <LabLink href="/about">About</LabLink>
           {useAdmin() && <LabLink href="/admin">Admin</LabLink>}
           <LabLink href="/stats">Stats</LabLink>
-          <LabLink href="https://github.com/manifoldmarkets/manifold">
+          <LabLink href="https://github.com/teixr12/predictarena">
             Github
           </LabLink>
           <LabLink href="/api">API</LabLink>

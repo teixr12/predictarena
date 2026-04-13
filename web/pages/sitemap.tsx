@@ -235,7 +235,7 @@ export default function SitemapPage() {
             <SitemapLink
               title="GitHub"
               description="View our open source code"
-              href="https://github.com/manifoldmarkets/manifold"
+              href="https://github.com/teixr12/predictarena"
               external
               icon={CodeIcon}
             />
