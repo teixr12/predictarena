@@ -30,7 +30,7 @@ import { searchUsers } from './search-users'
 function getServer(): Server {
   const server = new Server(
     {
-      name: 'manifold-markets',
+      name: 'predicta-arena',
       version: '0.2.0',
     },
     {

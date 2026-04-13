@@ -30,7 +30,7 @@ import { TRADE_TERM } from 'common/envs/constants'
 import { Col } from 'web/components/layout/col'
 import { Row } from 'web/components/layout/row'
 import { Page } from 'web/components/layout/page'
-import { ManifoldLogo } from 'web/components/nav/manifold-logo'
+import { PredictaLogo } from 'web/components/nav/predicta-logo'
 import { SEO } from 'web/components/SEO'
 import { useUser } from 'web/hooks/use-user'
 import { getNativePlatform } from 'web/lib/native/is-native'
@@ -52,7 +52,7 @@ export default function SitemapPage() {
       <Col className="mx-auto w-full max-w-4xl px-4 pb-12 pt-4">
         {/* Header */}
         <div className="mb-8">
-          <ManifoldLogo className="mb-4 flex sm:hidden" />
+          <PredictaLogo className="mb-4 flex sm:hidden" />
           <Row className="items-center gap-3">
             <div className="bg-primary-100 dark:bg-primary-900/50 rounded-xl p-2.5">
               <MapIcon className="text-primary-600 dark:text-primary-400 h-6 w-6" />
@@ -250,13 +250,6 @@ export default function SitemapPage() {
               title="Bet on Love"
               description="Reality TV dating show"
               href="https://www.youtube.com/watch?v=mEF0S1qOsFI"
-              external
-              icon={HeartIcon}
-            />
-            <SitemapLink
-              title="Forecaster Love"
-              description="Dating prediction markets"
-              href="https://manifold.love"
               external
               icon={HeartIcon}
             />

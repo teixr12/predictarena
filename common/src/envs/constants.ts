@@ -134,10 +134,7 @@ export const PROD_MANIFOLD_LOVE_GROUP_SLUG = 'predictarena-relationships'
 export const RATING_GROUP_SLUGS = ['nonpredictive', 'unsubsidized']
 
 export const GROUP_SLUGS_TO_IGNORE_IN_MARKETS_EMAIL = [
-  'manifold-6748e065087e',
-  'manifold-features-25bad7c7792e',
   'bugs',
-  'manifold-leagues',
   ...RATING_GROUP_SLUGS,
   DESTINY_GROUP_SLUG,
   PROD_MANIFOLD_LOVE_GROUP_SLUG,
@@ -171,7 +168,6 @@ export const HIDE_FROM_NEW_USER_SLUGS = [
   'personal',
   'rationalussy',
   'nsfw',
-  'manifold-6748e065087e',
   'bugs',
   'new-years-resolutions-2024',
   'metamarkets',

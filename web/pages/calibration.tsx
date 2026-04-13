@@ -205,7 +205,7 @@ export default function CalibrationPage(props: {
                 <a
                   className="text-primary-600 dark:text-primary-400 decoration-primary-600/30 dark:decoration-primary-400/30 hover:decoration-primary-600 dark:hover:decoration-primary-400 font-medium underline transition-colors"
                   target="_blank"
-                  href="https://wasabipesto.com/manifold/markets/"
+                  href="https://predictarena.com"
                 >
                   charts and analysis
                 </a>{' '}
@@ -564,10 +564,10 @@ export function WasabiCharts() {
       <a
         className="text-primary-700 hover:underline"
         target="_blank"
-        href="https://wasabipesto.com/manifold/markets/"
+        href="https://predictarena.com"
       >
         charts
-      </a>{' '}
+</a>{' '}
       courtesy of <Linkify text="@wasabipesto" /> from our data in 2022.
     </div>
   )

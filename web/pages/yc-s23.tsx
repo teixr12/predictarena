@@ -106,7 +106,7 @@ const CompanyRow = (props: { company: Company; index: number }) => {
   return (
     <Col className="hover:bg-primary-100 active:bg-primary-100">
       <Link
-        href={`/ManifoldMarkets/${slug}`}
+        href={`/PredictaArena/${slug}`}
         onClick={(e) => e.stopPropagation()}
       >
         <Row className="cursor-pointer select-none justify-between px-3 py-2">

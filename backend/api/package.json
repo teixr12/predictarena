@@ -1,6 +1,6 @@
 {
   "name": "@predictarena/api",
-  "description": "Backend API endpoints for the Manifold website.",
+  "description": "Backend API for PREDICTA Arena",
   "version": "0.1.0",
   "private": true,
   "scripts": {

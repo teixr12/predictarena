@@ -20,7 +20,7 @@ const embedPatterns: EmbedPattern[] = [
     rewrite: (text: string) => text,
   },
   {
-    regex: /^https?:\/\/manifold\.markets\/([^\/]+\/[^\/]+)/,
+    regex: /^https?:\/\/predictarena\.com\/([^\/]+\/[^\/]+)/,
     // regex: /^http?:\/\/localhost:3000\/([^\/]+\/[^\/]+)/,
     rewrite: (slug) =>
       `<iframe src="https://predictarena.com/embed/${slug}"></iframe>`,
@@ -57,7 +57,7 @@ const embedPatterns: EmbedPattern[] = [
   {
     regex: /^(https?:\/\/www\.figma\.com\/(?:file|proto)\/[^\/]+\/[^\/]+)/,
     rewrite: (url) =>
-      `<iframe src="https://www.figma.com/embed?embed_host=manifold&url=${url}"></iframe>`,
+      `<iframe src="https://www.figma.com/embed?embed_host=predictarena&url=${url}"></iframe>`,
   },
   // Twitch is a bit annoying, since it requires the `&parent=DOMAIN` to match
   {
