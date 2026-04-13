@@ -220,7 +220,7 @@ function CashoutOptionsContent(props: {
             className="whitespace-nowrap text-xs sm:text-sm"
             disabled={!!allDisabled || hasNoRedeemableCash}
           >
-            Redeem for mana
+            Redeem for coins
           </Button>
           <Row className="text-ink-500 w-full justify-end gap-1 whitespace-nowrap text-xs sm:text-sm ">
             <TokenNumber
@@ -231,7 +231,7 @@ function CashoutOptionsContent(props: {
               )}
               coinClassName={clsx(allDisabled && 'grayscale')}
             />
-            mana value
+            coin value
           </Row>
         </Col>
       </Card>

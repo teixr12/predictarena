@@ -48,7 +48,7 @@ export function Welcome(props: { setFeedKey?: (key: string) => void }) {
 
   const handleSetPage = (page: number) => {
     if (page === 0) {
-      track('welcome screen: what is manifold')
+      track('welcome screen: what is predicta arena')
     } else if (page === 1) {
       track('welcome screen: name input')
     } else if (page === 2) {
@@ -75,7 +75,7 @@ export function Welcome(props: { setFeedKey?: (key: string) => void }) {
   const [trendingTopics, setTrendingTopics] = useState<Group[]>([])
 
   const availablePages = buildArray([
-    <WhatIsManifoldPage />,
+    <WhatIsPredictaArenaPage />,
     <NameInputPage />,
     <PredictionMarketPage />,
     SHOW_TOPICS && (
@@ -110,7 +110,7 @@ export function Welcome(props: { setFeedKey?: (key: string) => void }) {
             'in',
             `(${GROUP_SLUGS_TO_HIDE_FROM_WELCOME_FLOW.join(',')})`
           )
-          .filter('slug', 'not.ilike', '%manifold%')
+          .filter('slug', 'not.ilike', '%predicta%')
           .order('importance_score', { ascending: false })
           .limit(9)
       ),
@@ -206,7 +206,7 @@ export function Welcome(props: { setFeedKey?: (key: string) => void }) {
 //   return isTwitch
 // }
 
-function WhatIsManifoldPage() {
+function WhatIsPredictaArenaPage() {
   return (
     <>
       <Image

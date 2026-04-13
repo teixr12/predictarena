@@ -9,7 +9,7 @@ import { Col } from 'web/components/layout/col'
 import { Row } from 'web/components/layout/row'
 import { Spacer } from 'web/components/layout/spacer'
 import { LoadingIndicator } from 'web/components/widgets/loading-indicator'
-import { ManifoldLogo } from 'web/components/nav/manifold-logo'
+import { PredictaLogo } from 'web/components/nav/predicta-logo'
 import { Page } from 'web/components/layout/page'
 import { SEO } from 'web/components/SEO'
 import { Title } from 'web/components/widgets/title'
@@ -42,7 +42,7 @@ export default function TwitchLandingPage() {
         description={`Get more out of Twitch with play-money ${TRADING_TERM} questions.`}
       />
       <div className="px-4 pt-2 md:mt-0 lg:hidden">
-        <ManifoldLogo />
+        <PredictaLogo />
       </div>
 
       <Col className="text-ink-600 bg-canvas-0 max-w-3xl gap-8 rounded p-4 shadow-md sm:mx-auto sm:p-10">

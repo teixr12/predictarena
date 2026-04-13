@@ -28,7 +28,7 @@ export default function TestUser() {
   const [createUserKey, setCreateUserKey] = useState('')
 
   useEffect(() => {
-    setEmail('manifoldTestNewUser+' + randomString() + '@gmail.com')
+    setEmail('predictaTestUser+' + randomString() + '@gmail.com')
     setPassword(randomString())
     const cookie = getCookie(KEY)
     if (cookie) setCreateUserKey(cookie.replace(/"/g, ''))
@@ -96,7 +96,7 @@ export default function TestUser() {
         <a
           className={'text-primary-700 mx-1'}
           href={
-            'https://www.notion.so/manifoldmarkets/Passwords-f460a845ed6d47fc9ea353699adf7c5f?pvs=4#8a11d580b85449a2bba6e400cda8a4c6'
+            'https://predictarena.com'
           }
         >
           the proper value

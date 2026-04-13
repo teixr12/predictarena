@@ -2,7 +2,7 @@ type AboutPredictaProps = {
   className?: string
 }
 
-export const AboutManifold = ({ className = '' }: AboutPredictaProps) => {
+export const AboutPredictaArena = ({ className = '' }: AboutPredictaProps) => {
   return (
     <div className={`${className}`}>
       <div className="mb-2">

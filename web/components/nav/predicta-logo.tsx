@@ -4,7 +4,7 @@ import { useUser } from 'web/hooks/use-user'
 import { ENV } from 'common/envs/constants'
 import { LogoIcon } from '../icons/logo-icon'
 
-export function ManifoldLogo(props: { className?: string; twoLine?: boolean }) {
+export function PredictaLogo(props: { className?: string; twoLine?: boolean }) {
   const { className } = props
   const user = useUser()
 

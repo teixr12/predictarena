@@ -94,9 +94,9 @@ export const BetsTabContent = memo(function BetsTabContent(props: {
   // Min amount filter options
   const minAmountOptions = [
     { label: 'Any amount', value: undefined },
-    { label: 'M$100+', value: 100 },
-    { label: 'M$1,000+', value: 1000 },
-    { label: 'M$10,000+', value: 10000 },
+    { label: 'C100+', value: 100 },
+    { label: 'C1,000+', value: 1000 },
+    { label: 'C10,000+', value: 10000 },
   ]
   const selectedMinAmount = minAmountOptions[minAmountFilterIndex].value
 

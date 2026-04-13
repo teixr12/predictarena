@@ -329,7 +329,7 @@ export function SiteActivity(props: { className?: string }) {
                       className="items-center gap-2"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      M$
+                      C
                       <Input
                         type="number"
                         className="!h-8 w-32"
@@ -368,7 +368,7 @@ export function SiteActivity(props: { className?: string }) {
                   closeOnClickOverride: false,
                 } as DropdownItem,
                 {
-                  name: 'M$0',
+                  name: 'C0',
                   onClick: () => {
                     updateActivityState({ minBetAmount: 0 })
                   },

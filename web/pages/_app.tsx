@@ -96,9 +96,9 @@ const useDevtoolsDetector = () => {
 }
 
 // specially treated props that may be present in the server/static props
-type ManifoldPageProps = { auth?: AuthUser }
+type PredictaPageProps = { auth?: AuthUser }
 
-function MyApp({ Component, pageProps }: AppProps<ManifoldPageProps>) {
+function MyApp({ Component, pageProps }: AppProps<PredictaPageProps>) {
   useEffect(printBuildInfo, [])
   useHasLoaded()
   useRefreshAllClients()

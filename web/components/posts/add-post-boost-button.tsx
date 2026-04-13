@@ -195,7 +195,7 @@ function PostBoostPurchaseModal(props: {
                 color="gradient-pink"
                 onClick={() => setFundsModalOpen(true)}
               >
-                Get mana
+                Get Credits
               </Button>
             </div>
           )}

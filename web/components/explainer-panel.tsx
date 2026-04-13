@@ -5,7 +5,7 @@ import React from 'react'
 import { GoGraph } from 'react-icons/go'
 import { TbTargetArrow } from 'react-icons/tb'
 import { track } from 'web/lib/service/analytics'
-import { AboutManifold } from './about-manifold'
+import { AboutPredictaArena } from './about-manifold'
 import { Col } from './layout/col'
 import { Row } from './layout/row'
 import { Card } from './widgets/card'
@@ -15,16 +15,16 @@ import { formatMoney } from 'common/util/format'
 
 export const ExplainerPanel = (props: {
   className?: string
-  showWhatIsManifold?: boolean
+  showWhatIsPredictaArena?: boolean
   showAccuracy?: boolean
 }) => {
-  const { className, showWhatIsManifold = true, showAccuracy = true } = props
+  const { className, showWhatIsPredictaArena = true, showAccuracy = true } = props
   const handleSectionClick = (sectionTitle: string) => {
     track('explainer section click', { sectionTitle })
   }
   return (
     <Col className={clsx('max-w-xl', className)}>
-      {showWhatIsManifold && <WhatIsManifold onClick={handleSectionClick} />}
+      {showWhatIsPredictaArena && <WhatIsPredictaArena onClick={handleSectionClick} />}
       {showAccuracy && <Accuracy onClick={handleSectionClick} />}
       <PlayMoney onClick={handleSectionClick} />
     </Col>
@@ -57,7 +57,7 @@ export const ExpandSection = (props: {
   )
 }
 
-const WhatIsManifold = ({
+const WhatIsPredictaArena = ({
   onClick,
 }: {
   onClick: (sectionTitle: string) => void
@@ -70,7 +70,7 @@ const WhatIsManifold = ({
     }
     onClick={() => onClick('What is PREDICTA Arena?')}
   >
-    <AboutManifold />
+    <AboutPredictaArena />
   </ExpandSection>
 )
 

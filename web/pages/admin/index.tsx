@@ -89,7 +89,7 @@ export default function AdminPage() {
         <LabCard
           title="🍥 grafana"
           description="db performance"
-          href="https://manifoldmarkets.grafana.net/d/TFZtEJh4k/supabase"
+          href="https://predictarena.com"
         />
         <LabCard
           title="💤 postgres logs"

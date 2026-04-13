@@ -81,7 +81,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="text-primary-400 hover:underline"
             >
-              Manifold Markets
+              Manifold Markets (open source)
             </a>
             , an open-source prediction market platform. We are grateful to the
             Manifold team for building the infrastructure that makes PREDICTA

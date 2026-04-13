@@ -999,17 +999,17 @@ export function MarketResolvedNotification(props: {
 
   const resolvedByAdmin = sourceUserUsername != sourceContractCreatorUsername
 
-  const showManifoldAsResolver = token === 'CASH'
+  const showPredictaAsResolver = token === 'CASH'
 
-  const resolverName = showManifoldAsResolver
+  const resolverName = showPredictaAsResolver
     ? MANIFOLD_USER_NAME
     : resolvedByAdmin
     ? 'A mod'
     : sourceUserName
-  const resolverUsername = showManifoldAsResolver
+  const resolverUsername = showPredictaAsResolver
     ? MANIFOLD_USER_USERNAME
     : sourceUserUsername
-  const resolverAvatarUrl = showManifoldAsResolver
+  const resolverAvatarUrl = showPredictaAsResolver
     ? MANIFOLD_AVATAR_URL
     : notification.sourceUserAvatarUrl
 

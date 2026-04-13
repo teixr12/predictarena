@@ -33,7 +33,7 @@ export default function LabsPage() {
         <LabCard
           title="💌 PREDICTA Arena Love"
           description="Crowd source your long term matches!"
-          href="https://manifold.love"
+          href="https://predictarena.com"
         />
         <LabCard
           title="🎤 Mana-chan"

@@ -38,7 +38,7 @@ import { AddFundsButton } from '../profile/add-funds-button'
 import { ReportsIcon } from '../reports-icon'
 import { LiveTVIcon } from '../tv-icon'
 import { useTVIsLive } from '../tv/tv-schedule'
-import { ManifoldLogo } from './manifold-logo'
+import { PredictaLogo } from './predicta-logo'
 import { ProfileSummary } from './profile-summary'
 import { NavItem, SidebarItem } from './sidebar-item'
 
@@ -124,7 +124,7 @@ export default function Sidebar(props: {
       aria-label="Sidebar"
       className={clsx('flex h-screen flex-col', className)}
     >
-      <ManifoldLogo className="pb-3 pt-6" />
+      <PredictaLogo className="pb-3 pt-6" />
 
       {user && !isMobile && <ProfileSummary user={user} className="mb-3" />}
 
