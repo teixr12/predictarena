@@ -23,7 +23,7 @@ export const ZoomSlider = (props: {
 
   const ttColor =
     color === 'light-green'
-      ? 'bg-emerald-200 dark:bg-teal-200'
+      ? 'bg-primary-200 dark:bg-primary-300'
       : 'bg-primary-200'
 
   return (

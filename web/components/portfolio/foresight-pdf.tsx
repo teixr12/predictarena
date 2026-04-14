@@ -29,7 +29,7 @@ const s = StyleSheet.create({
     marginBottom: 32,
     gap: 24,
   },
-  scoreBig: { fontSize: 64, fontWeight: 'bold', color: '#10b981' },
+  scoreBig: { fontSize: 64, fontWeight: 'bold', color: '#a3e635' },
   scoreLabel: { fontSize: 14, color: '#374151', marginTop: 4 },
   sectionTitle: {
     fontSize: 13,
@@ -57,7 +57,7 @@ const s = StyleSheet.create({
     borderBottomColor: '#f3f4f6',
   },
   predText: { fontSize: 10, color: '#374151', flex: 1, paddingRight: 8 },
-  predProfit: { fontSize: 10, fontWeight: 'bold', color: '#10b981' },
+  predProfit: { fontSize: 10, fontWeight: 'bold', color: '#a3e635' },
   footer: { marginTop: 'auto', paddingTop: 24 },
   footerText: { fontSize: 9, color: '#9ca3af', textAlign: 'center' },
 })
@@ -92,7 +92,7 @@ export function ForesightPDFDocument({ data }: { data: ForesightPDFData }) {
                 fontSize: 12,
                 color:
                   data.readinessScore >= 75
-                    ? '#10b981'
+                    ? '#a3e635'
                     : data.readinessScore >= 50
                     ? '#f59e0b'
                     : '#ef4444',
@@ -119,7 +119,7 @@ export function ForesightPDFDocument({ data }: { data: ForesightPDFData }) {
             <Text
               style={[
                 s.statValue,
-                { color: data.totalProfit >= 0 ? '#10b981' : '#ef4444' },
+                { color: data.totalProfit >= 0 ? '#a3e635' : '#ef4444' },
               ]}
             >
               {data.totalProfit >= 0 ? '+' : ''}

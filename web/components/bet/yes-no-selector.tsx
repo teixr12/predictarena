@@ -35,13 +35,16 @@ export function YesNoSelector(props: {
   return (
     <Row className={clsx('space-x-3', className)}>
       <Button
-        color={'green'}
+        color={'none'}
         size="xl"
         onClick={() => onSelect('YES')}
         className={clsx(
-          btnClassName,
-          selected === 'YES' && 'opacity-75',
-          selected !== undefined ? '!rounded-full' : ''
+          'border transition-all',
+          selected === 'YES'
+            ? 'border-primary-500 bg-primary-500/20 text-primary-500'
+            : 'border-primary-500/40 bg-primary-500/10 text-primary-500 hover:bg-primary-500/20 hover:border-primary-500',
+          selected !== undefined ? '!rounded-full' : '!rounded-lg',
+          btnClassName
         )}
         disabled={disabled}
       >
@@ -51,13 +54,16 @@ export function YesNoSelector(props: {
       </Button>
 
       <Button
-        color={'red'}
+        color={'none'}
         size="xl"
         onClick={() => onSelect('NO')}
         className={clsx(
-          btnClassName,
-          selected === 'NO' && 'opacity-75',
-          selected !== undefined ? '!rounded-full' : ''
+          'border transition-all',
+          selected === 'NO'
+            ? 'border-scarlet-500 bg-scarlet-500/20 text-scarlet-500'
+            : 'border-scarlet-500/40 bg-scarlet-500/10 text-scarlet-500 hover:bg-scarlet-500/20 hover:border-scarlet-500',
+          selected !== undefined ? '!rounded-full' : '!rounded-lg',
+          btnClassName
         )}
         disabled={disabled}
       >

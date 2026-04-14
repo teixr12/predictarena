@@ -71,8 +71,8 @@ export function CalibrationChart(props: {
            ${px(p)},${py(p) - 6}
             ${px(p) - 3 * V3},${py(p) + 3}
             ${px(p) + 3 * V3},${py(p) + 3}`}
-          fill="#10b981"
-          stroke="#047857"
+          fill="#a3e635"
+          stroke="#65a30d"
           strokeWidth={0.5}
         />
       ))}

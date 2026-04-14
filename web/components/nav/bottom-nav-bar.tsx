@@ -45,8 +45,8 @@ import { NavItem } from './sidebar-item'
 export const BOTTOM_NAV_BAR_HEIGHT = 58
 
 const itemClass =
-  'sm:hover:bg-ink-200 block w-full py-1 px-3 text-center sm:hover:text-primary-700 transition-colors'
-const selectedItemClass = 'text-primary-700'
+  'sm:hover:bg-primary-400/10 block w-full py-1 px-3 text-center sm:hover:text-primary-400 transition-colors'
+const selectedItemClass = 'text-primary-400'
 const touchItemClass = 'touch-press-effect'
 const iconClassName = 'mx-auto my-1 h-[1.6rem] w-[1.6rem]'
 const exploreIconClassName =

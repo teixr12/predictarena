@@ -73,7 +73,7 @@ export function DepthChart(props: {
     return null
   }
 
-  const yesColor = pseudonym?.YES?.pseudonymColor ?? '#11b981'
+  const yesColor = pseudonym?.YES?.pseudonymColor ?? '#a3e635'
   const noColor = pseudonym?.NO?.pseudonymColor ?? '#ef4444'
 
   return (

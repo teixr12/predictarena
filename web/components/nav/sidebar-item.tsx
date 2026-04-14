@@ -38,10 +38,10 @@ export function SidebarItem(props: { item: NavItem; currentPage?: string }) {
 
   const sidebarClass = clsx(
     isCurrentPage
-      ? 'bg-ink-200 text-ink-900'
-      : 'text-ink-600 hover:bg-primary-100 hover:text-ink-700',
-    'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
-    'focus-visible:bg-primary-100 outline-none'
+      ? 'bg-primary-400/10 text-primary-400'
+      : 'text-ink-600 hover:bg-primary-400/10 hover:text-primary-400',
+    'group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
+    'focus-visible:bg-primary-400/10 outline-none'
   )
 
   const sidebarItem = (
@@ -50,8 +50,8 @@ export function SidebarItem(props: { item: NavItem; currentPage?: string }) {
         <item.icon
           className={clsx(
             isCurrentPage
-              ? 'text-ink-600'
-              : 'text-ink-500 group-hover:text-ink-600',
+              ? 'text-primary-400'
+              : 'text-ink-500 group-hover:text-primary-400',
             '  -ml-1 mr-3 h-6 w-6 flex-shrink-0',
             item.iconClassName
           )}

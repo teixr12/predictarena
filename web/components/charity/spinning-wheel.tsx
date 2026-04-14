@@ -16,7 +16,7 @@ export const WHEEL_COLORS = [
   '#f97316', // orange
   '#eab308', // yellow
   '#22c55e', // green
-  '#14b8a6', // teal
+  '#a3e635', // lime
   '#06b6d4', // cyan
   '#3b82f6', // blue
   '#a855f7', // purple

@@ -7,116 +7,126 @@
     -webkit-tap-highlight-color: transparent;
   }
   :root {
+    /* Ink: pure neutral grays — light mode (0=white, 1000=black) */
     --color-ink-0: 255 255 255;
-    --color-ink-50: 248 248 252;
-    --color-ink-100: 236 237 248;
-    --color-ink-200: 221 222 238;
-    --color-ink-300: 194 195 219;
-    --color-ink-400: 158 159 189;
-    --color-ink-500: 118 118 147;
-    --color-ink-600: 86 86 118;
-    --color-ink-700: 61 61 92;
-    --color-ink-800: 39 39 73;
-    --color-ink-900: 22 21 55;
-    --color-ink-950: 10 8 43;
+    --color-ink-50: 250 250 250;
+    --color-ink-100: 245 245 245;
+    --color-ink-200: 229 229 229;
+    --color-ink-300: 212 212 212;
+    --color-ink-400: 163 163 163;
+    --color-ink-500: 115 115 115;
+    --color-ink-600: 82 82 82;
+    --color-ink-700: 64 64 64;
+    --color-ink-800: 45 45 45;
+    --color-ink-900: 23 23 23;
+    --color-ink-950: 13 13 13;
     --color-ink-1000: 0 0 0;
 
-    --color-canvas-0: 253 254 255;
-    --color-canvas-50: 244 243 251;
-    --color-canvas-100: 210 212 224;
+    /* Canvas: light mode surfaces */
+    --color-canvas-0: 250 250 250;
+    --color-canvas-50: 245 245 245;
+    --color-canvas-100: 235 235 235;
 
-    --color-primary-50: 236 253 245;
-    --color-primary-100: 209 250 229;
-    --color-primary-200: 167 243 208;
-    --color-primary-300: 110 231 183;
-    --color-primary-400: 52 211 153;
-    --color-primary-500: 16 185 129;
-    --color-primary-600: 5 150 105;
-    --color-primary-700: 4 120 87;
-    --color-primary-800: 6 95 70;
-    --color-primary-900: 6 78 59;
-    --color-primary-950: 2 44 34;
+    /* Primary: lime green #A3E635 */
+    --color-primary-50: 247 254 231;
+    --color-primary-100: 236 252 203;
+    --color-primary-200: 217 249 157;
+    --color-primary-300: 190 242 100;
+    --color-primary-400: 163 230 53;
+    --color-primary-500: 132 204 22;
+    --color-primary-600: 101 163 13;
+    --color-primary-700: 77 124 15;
+    --color-primary-800: 63 98 18;
+    --color-primary-900: 54 83 20;
+    --color-primary-950: 26 46 5;
 
-    --color-no-50: 255 243 241;
-    --color-no-100: 255 235 231;
-    --color-no-200: 255 208 194;
-    --color-no-300: 255 164 151;
-    --color-no-400: 255 124 102;
-    --color-no-500: 247 88 54;
-    --color-no-600: 239 48 19;
-    --color-no-700: 209 30 12;
-    --color-no-800: 166 27 10;
-    --color-no-900: 132 29 13;
-    --color-no-950: 73 15 6;
+    /* NO: red #EF4444 */
+    --color-no-50: 254 242 242;
+    --color-no-100: 254 226 226;
+    --color-no-200: 254 202 202;
+    --color-no-300: 252 165 165;
+    --color-no-400: 248 113 113;
+    --color-no-500: 239 68 68;
+    --color-no-600: 220 38 38;
+    --color-no-700: 185 28 28;
+    --color-no-800: 153 27 27;
+    --color-no-900: 127 29 29;
+    --color-no-950: 69 10 10;
 
-    --color-yes-50: 240 253 250;
-    --color-yes-100: 204 251 241;
-    --color-yes-200: 153 246 228;
-    --color-yes-300: 94 234 212;
-    --color-yes-400: 45 212 191;
-    --color-yes-500: 20 184 166;
-    --color-yes-600: 13 148 136;
-    --color-yes-700: 15 118 110;
-    --color-yes-800: 17 94 89;
-    --color-yes-900: 19 78 74;
-    --color-yes-950: 4 47 46;
+    /* YES: lime green (same as primary) */
+    --color-yes-50: 247 254 231;
+    --color-yes-100: 236 252 203;
+    --color-yes-200: 217 249 157;
+    --color-yes-300: 190 242 100;
+    --color-yes-400: 163 230 53;
+    --color-yes-500: 132 204 22;
+    --color-yes-600: 101 163 13;
+    --color-yes-700: 77 124 15;
+    --color-yes-800: 63 98 18;
+    --color-yes-900: 54 83 20;
+    --color-yes-950: 26 46 5;
   }
   .dark {
     color-scheme: dark;
 
+    /* Ink: inverted neutral grays — dark mode */
     --color-ink-1000: 255 255 255;
-    --color-ink-950: 248 248 252;
-    --color-ink-900: 236 237 248;
-    --color-ink-800: 221 222 238;
-    --color-ink-700: 194 195 219;
-    --color-ink-600: 158 159 189;
-    --color-ink-500: 118 118 147;
-    --color-ink-400: 86 86 118;
-    --color-ink-300: 61 61 92;
-    --color-ink-200: 39 39 73;
-    --color-ink-100: 22 21 55;
-    --color-ink-50: 10 8 43;
+    --color-ink-950: 245 245 245;
+    --color-ink-900: 229 229 229;
+    --color-ink-800: 212 212 212;
+    --color-ink-700: 163 163 163;
+    --color-ink-600: 115 115 115;
+    --color-ink-500: 82 82 82;
+    --color-ink-400: 64 64 64;
+    --color-ink-300: 45 45 45;
+    --color-ink-200: 38 38 38;
+    --color-ink-100: 23 23 23;
+    --color-ink-50: 13 13 13;
     --color-ink-0: 0 0 0;
 
-    --color-canvas-0: 10 14 20;
-    --color-canvas-50: 18 24 38;
-    --color-canvas-100: 30 41 59;
+    /* Canvas: deep black surfaces */
+    --color-canvas-0: 13 13 13;
+    --color-canvas-50: 23 23 23;
+    --color-canvas-100: 38 38 38;
 
-    --color-primary-950: 236 253 245;
-    --color-primary-900: 209 250 229;
-    --color-primary-800: 167 243 208;
-    --color-primary-700: 110 231 183;
-    --color-primary-600: 52 211 153;
-    --color-primary-500: 16 185 129;
-    --color-primary-400: 5 150 105;
-    --color-primary-300: 4 120 87;
-    --color-primary-200: 6 95 70;
-    --color-primary-100: 6 78 59;
-    --color-primary-50: 2 44 34;
+    /* Primary: lime green (inverted scale for dark) */
+    --color-primary-950: 247 254 231;
+    --color-primary-900: 236 252 203;
+    --color-primary-800: 217 249 157;
+    --color-primary-700: 190 242 100;
+    --color-primary-600: 163 230 53;
+    --color-primary-500: 132 204 22;
+    --color-primary-400: 101 163 13;
+    --color-primary-300: 77 124 15;
+    --color-primary-200: 63 98 18;
+    --color-primary-100: 54 83 20;
+    --color-primary-50: 26 46 5;
 
-    --color-no-950: 255 243 241;
-    --color-no-900: 255 235 231;
-    --color-no-800: 255 208 194;
-    --color-no-700: 255 164 151;
-    --color-no-600: 255 124 102;
-    --color-no-500: 247 88 54;
-    --color-no-400: 239 48 19;
-    --color-no-300: 209 30 12;
-    --color-no-200: 166 27 10;
-    --color-no-100: 132 29 13;
-    --color-no-50: 73 15 6;
+    /* NO: red (inverted scale for dark) */
+    --color-no-950: 254 242 242;
+    --color-no-900: 254 226 226;
+    --color-no-800: 254 202 202;
+    --color-no-700: 252 165 165;
+    --color-no-600: 248 113 113;
+    --color-no-500: 239 68 68;
+    --color-no-400: 220 38 38;
+    --color-no-300: 185 28 28;
+    --color-no-200: 153 27 27;
+    --color-no-100: 127 29 29;
+    --color-no-50: 69 10 10;
 
-    --color-yes-950: 240 253 250;
-    --color-yes-900: 204 251 241;
-    --color-yes-800: 153 246 228;
-    --color-yes-700: 94 234 212;
-    --color-yes-600: 45 212 191;
-    --color-yes-500: 20 184 166;
-    --color-yes-400: 13 148 136;
-    --color-yes-300: 15 118 110;
-    --color-yes-200: 17 94 89;
-    --color-yes-100: 19 78 74;
-    --color-yes-50: 4 47 46;
+    /* YES: lime green (inverted scale for dark) */
+    --color-yes-950: 247 254 231;
+    --color-yes-900: 236 252 203;
+    --color-yes-800: 217 249 157;
+    --color-yes-700: 190 242 100;
+    --color-yes-600: 163 230 53;
+    --color-yes-500: 132 204 22;
+    --color-yes-400: 101 163 13;
+    --color-yes-300: 77 124 15;
+    --color-yes-200: 63 98 18;
+    --color-yes-100: 54 83 20;
+    --color-yes-50: 26 46 5;
   }
 }
 
@@ -189,8 +199,8 @@
 /* PREDICTA Arena blueprint grid background */
 .blueprint-grid {
   background-image:
-    linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(163, 230, 53, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(163, 230, 53, 0.04) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -322,12 +332,12 @@ text {
 @keyframes glow-indigo {
   0%,
   100% {
-    box-shadow: 0 0 12px rgba(16, 185, 129, 0.6),
-      0 0 24px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 12px rgba(163, 230, 53, 0.6),
+      0 0 24px rgba(163, 230, 53, 0.4);
   }
   50% {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.8),
-      0 0 40px rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.8),
+      0 0 40px rgba(163, 230, 53, 0.5);
   }
 }
 
@@ -355,10 +365,10 @@ text {
 @keyframes glow-indigo-subtle {
   0%,
   100% {
-    box-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 16px rgba(163, 230, 53, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.6);
   }
 }
 

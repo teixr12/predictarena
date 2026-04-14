@@ -28,7 +28,7 @@ import '../styles/globals.css'
 // and if you add a font, you must add it to tailwind config as well for it to work.
 
 const mainFont = Figtree({
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-main',
   subsets: ['latin'],
 })

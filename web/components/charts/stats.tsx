@@ -77,7 +77,7 @@ export function DailyChart(props: { values: Point[]; pct?: boolean }) {
           yKind={pct ? 'percent' : 'amount'}
           data={data}
           Tooltip={pct ? DailyPercentTooltip : DailyCountTooltip}
-          color="#11b981"
+          color="#a3e635"
           curve={curveLinear}
           zoomParams={zoomParams}
           showZoomer

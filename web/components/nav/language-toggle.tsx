@@ -9,7 +9,7 @@ export function LanguageToggle() {
         onClick={() => setLocale('en')}
         className={`flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-colors ${
           locale === 'en'
-            ? 'bg-primary-500/20 text-primary-300'
+            ? 'bg-primary-500/20 text-primary-500'
             : 'text-ink-500 hover:text-ink-900'
         }`}
         title="English"
@@ -22,7 +22,7 @@ export function LanguageToggle() {
         onClick={() => setLocale('pt-BR')}
         className={`flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-colors ${
           locale === 'pt-BR'
-            ? 'bg-primary-500/20 text-primary-300'
+            ? 'bg-primary-500/20 text-primary-500'
             : 'text-ink-500 hover:text-ink-900'
         }`}
         title="Português (BR)"

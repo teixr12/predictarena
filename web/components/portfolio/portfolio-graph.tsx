@@ -287,7 +287,7 @@ export const ProfitGraph = (props: {
         updateGraphValues({ profit: p ? p.y : undefined })
       }}
       curve={curveLinear}
-      color={['#14b8a6', '#F75836']}
+      color={['#a3e635', '#ef4444']}
       negativeThreshold={negativeThreshold}
       hideXAxis={hideXAxis}
       noWatermark

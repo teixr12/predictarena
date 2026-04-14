@@ -57,8 +57,8 @@ export function buttonClass(size: SizeType, color: ColorType) {
     sizeClasses[size],
     color === 'amber-outline' && [outline, 'text-amber-600 hover:bg-amber-500'],
     color === 'amber' && [solid, 'bg-amber-600 hover:bg-amber-700'],
-    color === 'green' && [solid, 'bg-teal-500 hover:bg-teal-600'],
-    color === 'green-outline' && [outline, 'text-teal-500 hover:bg-teal-500'],
+    color === 'green' && [solid, 'bg-primary-500 hover:bg-primary-600 !text-gray-950'],
+    color === 'green-outline' && [outline, 'text-primary-500 hover:bg-primary-500 hover:!text-gray-950'],
     color === 'red' && [solid, 'bg-scarlet-500 hover:bg-scarlet-600'],
     color === 'red-outline' && [
       outline,
@@ -77,15 +77,15 @@ export function buttonClass(size: SizeType, color: ColorType) {
     ],
     color === 'violet' && [solid, 'bg-violet-500 hover:bg-violet-700'],
     color === 'sky-outline' && [outline, 'text-sky-500 hover:bg-sky-500'],
-    color === 'indigo' && [solid, 'bg-primary-500 hover:bg-primary-600'],
+    color === 'indigo' && [solid, 'bg-primary-500 hover:bg-primary-600 !text-gray-950'],
     color === 'indigo-outline' && [
       outline,
-      'text-primary-600 hover:bg-primary-600',
+      'text-primary-600 hover:bg-primary-600 hover:!text-gray-950',
     ],
     color === 'gray' &&
       'bg-ink-300 text-ink-900 disabled:bg-ink-200 disabled:text-ink-500 hover:bg-ink-200 dark:enabled:hover:bg-ink-400 hover:text-ink-1000',
     color === 'gray-outline' && [outline, 'text-ink-600 hover:bg-ink-500'],
-    color === 'gradient' && [gradient, 'from-primary-500 to-blue-400'],
+    color === 'gradient' && [gradient, 'from-primary-600 to-primary-400 !text-gray-950'],
     color === 'gradient-pink' && [gradient, 'from-primary-500 to-fuchsia-500'],
     color === 'pink' && [solid, 'bg-fuchsia-500 hover:bg-fuchsia-600'],
     color === 'gray-white' &&

@@ -27,7 +27,7 @@ export function ProfitLossGraph(props: {
   const da = area(px, py0, py1).curve(curve)(data)!
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const dl = line(px, py1).curve(curve)(data)!
-  const color = (p: Point) => (p.y >= 0 ? '#14b8a6' : '#FFA799')
+  const color = (p: Point) => (p.y >= 0 ? '#a3e635' : '#ef4444')
   const stops = computeColorStops(data, color, px)
 
   return (

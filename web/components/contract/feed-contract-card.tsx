@@ -142,7 +142,7 @@ export function FeedContractCard(props: {
   return (
     <ClickFrame
       className={clsx(
-        'ring-primary-200 hover:ring-1',
+        'hover:ring-1 ring-primary-400/30',
 
         'relative cursor-pointer rounded-xl transition-all ',
         'flex w-full flex-col gap-0.5 px-4 py-2',
@@ -150,8 +150,8 @@ export function FeedContractCard(props: {
         size === 'sm'
           ? 'bg-canvas-50'
           : size === 'md'
-          ? 'bg-canvas-0 dark:bg-canvas-50 dark:border-canvas-50 hover:border-primary-300 gap-2 rounded-lg border shadow-md transition-colors'
-          : 'bg-canvas-0',
+          ? 'bg-canvas-50 border border-canvas-100 hover:border-primary-400/40 gap-2 rounded-xl transition-colors'
+          : 'bg-canvas-50',
         className
       )}
       onClick={(e) => {

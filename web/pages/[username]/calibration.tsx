@@ -453,8 +453,8 @@ function UserCalibrationChart({
       <defs>
         {/* Gradients for points */}
         <radialGradient id="yesGradient" cx="30%" cy="30%">
-          <stop offset="0%" stopColor="#6ee7b7" />
-          <stop offset="100%" stopColor="#10b981" />
+          <stop offset="0%" stopColor="#bef264" />
+          <stop offset="100%" stopColor="#a3e635" />
         </radialGradient>
         <radialGradient id="noGradient" cx="30%" cy="30%">
           <stop offset="0%" stopColor="#fca5a5" />
@@ -463,7 +463,7 @@ function UserCalibrationChart({
         {/* Glow filters */}
         <filter id="yesGlow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="3" result="blur" />
-          <feFlood floodColor="#10b981" floodOpacity="0.5" />
+          <feFlood floodColor="#a3e635" floodOpacity="0.5" />
           <feComposite in2="blur" operator="in" />
           <feMerge>
             <feMergeNode />
@@ -648,7 +648,7 @@ function UserCalibrationChart({
                   height={tooltipHeight}
                   rx={8}
                   className="fill-canvas-0 dark:fill-slate-900/95"
-                  stroke={hoveredPoint.type === 'yes' ? '#10b981' : '#ef4444'}
+                  stroke={hoveredPoint.type === 'yes' ? '#a3e635' : '#ef4444'}
                   strokeWidth={1}
                 />
                 <text
@@ -816,7 +816,7 @@ function PortfolioChart({
         <path
           d={area}
           fill={
-            isPositive ? 'rgba(20, 184, 166, 0.2)' : 'rgba(239, 68, 68, 0.2)'
+            isPositive ? 'rgba(163, 230, 53, 0.2)' : 'rgba(239, 68, 68, 0.2)'
           }
         />
 

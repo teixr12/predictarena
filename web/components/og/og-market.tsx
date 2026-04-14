@@ -87,7 +87,7 @@ export function OgMarket(props: OgCardProps) {
         ) : showGraph ? (
           <div className="flex w-full shrink justify-center">
             <ProbGraph
-              color={numericValue ? '#14bbFF' : '#14b8a6'}
+              color={numericValue ? '#14bbFF' : '#a3e635'}
               data={data}
               height={70}
               aspectRatio={7.5}

@@ -37,7 +37,7 @@ function StatBadge(props: { value: string; label: string }) {
 export function LandingPage() {
   const t = useTranslations('landing')
   return (
-    <div className="min-h-screen bg-[rgb(10_14_20)] blueprint-grid">
+    <div className="min-h-screen bg-[rgb(13_13_13)] blueprint-grid">
       {/* Nav */}
       <Row className="mx-auto max-w-6xl items-center justify-between px-6 py-4">
         <Row className="items-center gap-2">
