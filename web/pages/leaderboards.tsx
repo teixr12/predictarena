@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { RefreshIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 
@@ -49,6 +50,7 @@ type MyScores = {
 }
 
 export default function Leaderboards() {
+  const t = useTranslations('leaderboards')
   const [topicSlug, setTopicSlug] = usePersistentQueryState(TOPIC_KEY, '')
   const topicFromRouter = useTopicFromRouter(topicSlug)
   const [topic, setTopic] = useState<LiteGroup | undefined>()
@@ -139,12 +141,12 @@ export default function Leaderboards() {
 
   const allColumns: { [key in LeaderboardType]: LeaderboardColumn<Entry>[] } = {
     profit: [
-      { header: 'Profit', renderCell: (c) => formatMoney(c.score, token) },
+      { header: t('profit'), renderCell: (c) => formatMoney(c.score, token) },
     ],
 
     loss: [
       {
-        header: 'Loss',
+        header: t('loss'),
         renderCell: (c) => (
           <span className={c.score < 0 ? 'text-scarlet-500' : 'text-ink-400'}>
             {formatMoney(c.score, token)}
@@ -154,15 +156,15 @@ export default function Leaderboards() {
     ],
 
     volume: [
-      { header: 'Volume', renderCell: (c) => formatMoney(c.score, token) },
+      { header: t('volume'), renderCell: (c) => formatMoney(c.score, token) },
     ],
 
     creator: [
-      { header: 'Traders', renderCell: (c) => formatWithCommas(c.score) },
+      { header: t('traders'), renderCell: (c) => formatWithCommas(c.score) },
     ],
 
     referral: [
-      { header: 'Referrals', renderCell: (c) => c.score },
+      { header: t('referrals'), renderCell: (c) => c.score },
       {
         header: (
           <span className="flex items-center gap-1">
@@ -180,7 +182,7 @@ export default function Leaderboards() {
   return (
     <Page trackPageView={'leaderboards'}>
       <SEO
-        title="Leaderboards"
+        title={t('title')}
         description={`PREDICTA Arena's leaderboards show the top ${BETTORS}, question creators, and referrers.`}
         url="/leaderboards"
       />
@@ -190,17 +192,17 @@ export default function Leaderboards() {
         <Col className="gap-1">
           <Row className="items-center justify-between">
             <h1 className="text-primary-700 text-2xl font-semibold">
-              Leaderboard
+              {t('title')}
             </h1>
             <Link
               href="/leagues"
               className="text-ink-500 hover:text-ink-700 text-sm"
             >
-              Monthly leagues →
+              {t('monthlyLeagues')}
             </Link>
           </Row>
           <p className="text-ink-500 text-sm">
-            All-time top traders on PREDICTA Arena
+            {t('allTimeTop')}
           </p>
         </Col>
 
@@ -208,7 +210,7 @@ export default function Leaderboards() {
         {user && myScores?.[type] && (
           <div className="bg-canvas-50 border-ink-200 rounded-lg border px-4 py-3">
             <Row className="items-center justify-between">
-              <span className="text-ink-600 text-sm">Your rank</span>
+              <span className="text-ink-600 text-sm">{t('yourRank')}</span>
               <span className="text-ink-900 text-lg font-semibold tabular-nums">
                 #{data?.rank?.toLocaleString() ?? '—'}
               </span>
@@ -224,7 +226,7 @@ export default function Leaderboards() {
           <button
             onClick={refresh}
             className="text-ink-400 hover:text-ink-600 hover:bg-canvas-100 rounded p-1.5 transition-colors"
-            title="Refresh"
+            title={t('refresh')}
           >
             <RefreshIcon className="h-4 w-4" />
           </button>
@@ -233,12 +235,19 @@ export default function Leaderboards() {
         {/* Type Tabs */}
         <div className="border-ink-200 border-b">
           <Row className="-mb-px gap-1">
-            {LEADERBOARD_TYPES.map((t) => {
-              const isSelected = t.value === type
+            {LEADERBOARD_TYPES.map((tab) => {
+              const isSelected = tab.value === type
+              const tabLabel = {
+                profit: t('topForecasters'),
+                loss: t('biggestLosses'),
+                volume: t('mostActive'),
+                creator: t('marketCreators'),
+                referral: t('referrals'),
+              }[tab.value]
               return (
                 <button
-                  key={t.value}
-                  onClick={() => setType(t.value)}
+                  key={tab.value}
+                  onClick={() => setType(tab.value)}
                   className={clsx(
                     'border-b-2 px-4 py-2 text-sm font-medium transition-colors',
                     isSelected
@@ -246,7 +255,7 @@ export default function Leaderboards() {
                       : 'text-ink-500 hover:text-ink-700 border-transparent'
                   )}
                 >
-                  {t.name}
+                  {tabLabel}
                 </button>
               )
             })}
@@ -266,11 +275,11 @@ export default function Leaderboards() {
           ) : error ? (
             <div className="flex flex-col items-center justify-center gap-3 py-12 text-center">
               <span className="text-ink-600 text-sm">
-                Error loading leaderboard
+                {t('errorLoading')}
               </span>
               <span className="text-ink-400 text-xs">{error.message}</span>
               <Button onClick={refresh} size="sm" color="gray-outline">
-                Try again
+                {t('tryAgain')}
               </Button>
             </div>
           ) : null}

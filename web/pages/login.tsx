@@ -7,6 +7,7 @@ import { LogoSEO } from 'web/components/LogoSEO'
 import { Button } from 'web/components/buttons/button'
 import { firebaseLogin, loginWithApple } from 'web/lib/firebase/users'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 function GoogleIcon() {
   return (
@@ -50,6 +51,7 @@ function AppleIcon() {
 }
 
 export default function LoginPage() {
+  const t = useTranslations('auth')
   const [showAppleLogin, setShowAppleLogin] = useState(false)
   useRedirectIfSignedIn()
 
@@ -69,7 +71,7 @@ export default function LoginPage() {
         <Col className="bg-canvas-0 flex w-full flex-col gap-8 rounded-lg p-8 shadow-md">
           <Row className="w-full justify-center">
             <h1 className="text-primary-500 text-center text-2xl font-medium">
-              Log in to predict
+              {t('logInToPredict')}
             </h1>
           </Row>
           <Col className="gap-4">
@@ -80,7 +82,7 @@ export default function LoginPage() {
               onClick={firebaseLogin}
             >
               <GoogleIcon />
-              Continue with Google
+              {t('continueWithGoogle')}
             </Button>
 
             {showAppleLogin && (
@@ -90,7 +92,7 @@ export default function LoginPage() {
                 onClick={loginWithApple}
               >
                 <AppleIcon />
-                Continue with Apple
+                {t('continueWithApple')}
               </Button>
             )}
           </Col>

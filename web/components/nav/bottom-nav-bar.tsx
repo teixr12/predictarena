@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import {
   CloseButton,
   Dialog,
@@ -59,27 +60,27 @@ const NotificationsIconSolid = (props: { className?: string }) => (
   <NotificationsIcon {...props} solid={true} />
 )
 
-function getNavigation(user: User) {
+function getNavigation(t: (key: string) => string, user: User) {
   return [
     {
-      name: 'Browse',
+      name: t('browse'),
       href: '/home',
       icon: SearchIcon,
       solidIcon: SearchIconSolid,
     },
     {
-      name: 'Explore',
+      name: t('explore'),
       href: '/explore',
       icon: IoCompassOutline,
       solidIcon: IoCompass,
       iconClassName: exploreIconClassName,
     },
     {
-      name: 'Profile',
+      name: t('profile'),
       href: `/${user.username}`,
     },
     {
-      name: 'Inbox',
+      name: t('inbox'),
       href: `/notifications`,
       icon: NotificationsIconOutline,
       solidIcon: NotificationsIconSolid,
@@ -87,16 +88,16 @@ function getNavigation(user: User) {
   ]
 }
 
-const signedOutNavigation = () => [
+const signedOutNavigation = (t: (key: string) => string) => [
   {
-    name: 'Browse',
+    name: t('browse'),
     href: '/browse',
     icon: SearchIcon,
     solidIcon: SearchIconSolid,
     alwaysShowName: true,
   },
   {
-    name: 'Explore',
+    name: t('explore'),
     href: '/explore',
     icon: IoCompassOutline,
     solidIcon: IoCompass,
@@ -105,13 +106,13 @@ const signedOutNavigation = () => [
   },
   // { name: 'News', href: '/news', icon: NewspaperIcon, alwaysShowName: true },
   {
-    name: 'About',
+    name: t('about'),
     href: '/about',
     icon: QuestionMarkCircleIcon,
     solidIcon: QuestionMarkCircleIconSolid,
   },
   {
-    name: 'Sign in',
+    name: t('signIn'),
     onClick: firebaseLogin,
     icon: UserCircleIcon,
     solidIcon: UserCircleIconSolid,
@@ -121,6 +122,7 @@ const signedOutNavigation = () => [
 // From https://codepen.io/chris__sev/pen/QWGvYbL
 export function BottomNavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const t = useTranslations('nav')
 
   const currentPage = usePathname() ?? ''
 
@@ -131,7 +133,7 @@ export function BottomNavBar() {
     return null
   }
 
-  const navigationOptions = user ? getNavigation(user) : signedOutNavigation()
+  const navigationOptions = user ? getNavigation(t, user) : signedOutNavigation(t)
 
   return (
     <nav className="border-ink-100/30 dark:border-ink-300 text-ink-700 bg-canvas-0 fixed inset-x-0 bottom-0 z-50 flex select-none items-center justify-between border-t text-xs lg:hidden">
@@ -155,7 +157,7 @@ export function BottomNavBar() {
             onClick={() => setSidebarOpen(true)}
           >
             <MenuAlt3Icon className={iconClassName} aria-hidden="true" />
-            More
+            {t('more')}
           </div>
           <MobileSidebar
             sidebarOpen={sidebarOpen}

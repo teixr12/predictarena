@@ -1,4 +1,5 @@
 'use client'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { Page } from 'web/components/layout/page'
 import {
@@ -11,6 +12,7 @@ import { useRedirectIfSignedOut } from 'web/hooks/use-redirect-if-signed-out'
 import { useUser } from 'web/hooks/use-user'
 
 export default function Create() {
+  const t = useTranslations('create')
   useRedirectIfSignedOut()
 
   const user = useUser()
@@ -49,8 +51,8 @@ export default function Create() {
       <Page trackPageView={'banned from create page'}>
         <div className="mx-auto w-full max-w-2xl">
           <div className="rounded-lg px-6 py-4 sm:py-0">
-            <Title>Create a market</Title>
-            <p>Sorry, you are currently banned from creating a question.</p>
+            <Title>{t('pageTitle')}</Title>
+            <p>{t('bannedMessage')}</p>
           </div>
         </div>
       </Page>

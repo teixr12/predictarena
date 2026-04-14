@@ -1,6 +1,7 @@
 import { ColorType, SizeType, buttonClass } from './button'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export const CreateQuestionButton = (props: {
   className?: string
@@ -8,6 +9,7 @@ export const CreateQuestionButton = (props: {
   size?: SizeType
 }) => {
   const { className, color, size } = props
+  const t = useTranslations('create')
   return (
     <Link
       href="/create"
@@ -17,9 +19,7 @@ export const CreateQuestionButton = (props: {
         className
       )}
     >
-      <span>
-        Create <span className="lg:hidden xl:inline">a</span> market
-      </span>
+      <span>{t('pageTitle')}</span>
     </Link>
   )
 }

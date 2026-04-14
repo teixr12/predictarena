@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import {
   ChatIcon,
   DeviceMobileIcon,
@@ -54,6 +55,7 @@ export default function Sidebar(props: {
   isMobile?: boolean
 }) {
   const { className, isMobile } = props
+  const t = useTranslations('nav')
   const router = useRouter()
   const currentPage = usePathname() ?? undefined
   const user = useUser()
@@ -82,14 +84,14 @@ export default function Sidebar(props: {
   }
 
   const navOptions = isMobile
-    ? getMobileNav(!!user, () => setIsAddFundsModalOpen(!isAddFundsModalOpen), {
+    ? getMobileNav(t, !!user, () => setIsAddFundsModalOpen(!isAddFundsModalOpen), {
         isNewUser,
         isLiveTV,
         isAdminOrMod: isAdminOrMod,
         showShopBadge,
         onShopClick,
       })
-    : getDesktopNav(!!user, () => setIsModalOpen(true), {
+    : getDesktopNav(t, !!user, () => setIsModalOpen(true), {
         isNewUser,
         isLiveTV,
         isAdminOrMod: isAdminOrMod,
@@ -98,6 +100,7 @@ export default function Sidebar(props: {
       })
 
   const bottomNavOptions = bottomNav(
+    t,
     !!user,
     theme,
     toggleTheme,
@@ -163,6 +166,7 @@ export default function Sidebar(props: {
 }
 
 const getDesktopNav = (
+  t: (key: string) => string,
   loggedIn: boolean,
   openDownloadApp: () => void,
   options: {
@@ -176,43 +180,43 @@ const getDesktopNav = (
   const { isLiveTV } = options
   if (loggedIn)
     return buildArray(
-      { name: 'Browse', href: '/home', icon: SearchIcon },
+      { name: t('browse'), href: '/home', icon: SearchIcon },
       {
-        name: 'Explore',
+        name: t('explore'),
         href: '/explore',
         icon: IoCompassOutline,
         iconClassName: '!h-[1.6rem] !w-[1.6rem] !mr-[0.65rem]',
       },
       isLiveTV && {
-        name: 'TV',
+        name: t('live'),
         href: '/tv',
         icon: LiveTVIcon,
       },
       {
-        name: 'Notifications',
+        name: t('notifications'),
         href: `/notifications`,
         icon: NotificationsIcon,
       },
-      { name: 'Arena Seasons', href: '/leagues', icon: TrophyIcon },
+      { name: t('leagues'), href: '/leagues', icon: TrophyIcon },
       {
-        name: 'Kalshi Prep',
+        name: t('kalshiPrep'),
         href: '/kalshi-prep',
         icon: SparklesIcon,
       },
       {
-        name: 'Forum',
+        name: t('forum'),
         href: '/posts',
         icon: ChatIcon,
       },
       // Show shop when enabled OR for admins (testing)
       (SPEND_CREDITS_ENABLED || options.isAdminOrMod) && {
-        name: 'Shop',
+        name: t('shop'),
         href: '/shop',
         icon: LuGem,
         onClick: options.onShopClick,
         children: options.showShopBadge ? (
           <>
-            Shop
+            {t('shop')}
             <span className="ml-2 rounded-full bg-amber-400 px-1.5 py-0.5 text-[10px] font-bold text-amber-900">
               NEW
             </span>
@@ -220,21 +224,22 @@ const getDesktopNav = (
         ) : undefined,
       },
       options.isAdminOrMod && {
-        name: 'Reports',
+        name: t('reports'),
         href: '/reports',
         icon: ReportsIcon,
       }
     )
 
   return buildArray(
-    { name: 'Browse', href: '/', icon: SearchIcon },
+    { name: t('browse'), href: '/', icon: SearchIcon },
     { name: 'Predictle', href: '/predictle', icon: SparklesIcon },
-    { name: 'About', href: '/about', icon: QuestionMarkCircleIcon },
+    { name: t('about'), href: '/about', icon: QuestionMarkCircleIcon },
     { name: 'App', onClick: openDownloadApp, icon: DeviceMobileIcon }
   )
 }
 
 const getMobileNav = (
+  t: (key: string) => string,
   loggedIn: boolean,
   toggleModal: () => void,
   options: {
@@ -248,8 +253,8 @@ const getMobileNav = (
   const { isAdminOrMod, isLiveTV } = options
 
   return buildArray<NavItem>(
-    { name: 'Leagues', href: '/leagues', icon: TrophyIcon },
-    { name: 'Forum', href: '/posts', icon: ChatIcon },
+    { name: t('leagues'), href: '/leagues', icon: TrophyIcon },
+    { name: t('forum'), href: '/posts', icon: ChatIcon },
     { name: 'Charity', href: '/charity', icon: HeartIcon },
     loggedIn && {
       name: 'Referrals',
@@ -257,24 +262,24 @@ const getMobileNav = (
       icon: StarIcon,
     },
     isLiveTV && {
-      name: 'TV',
+      name: t('live'),
       href: '/tv',
       icon: LiveTVIcon,
     },
     isAdminOrMod && {
-      name: 'Reports',
+      name: t('reports'),
       href: '/reports',
       icon: ReportsIcon,
     },
     // Show shop when enabled OR for admins (testing)
     (SPEND_CREDITS_ENABLED || isAdminOrMod) && {
-      name: 'Shop',
+      name: t('shop'),
       href: '/shop',
       icon: LuGem,
       onClick: options.onShopClick,
       children: options.showShopBadge ? (
         <>
-          Shop
+          {t('shop')}
           <span className="ml-2 rounded-full bg-amber-400 px-1.5 py-0.5 text-[10px] font-bold text-amber-900">
             NEW
           </span>
@@ -285,6 +290,7 @@ const getMobileNav = (
 }
 
 const bottomNav = (
+  t: (key: string) => string,
   loggedIn: boolean,
   theme: 'light' | 'dark' | 'auto',
   toggleTheme: () => void,
@@ -292,7 +298,7 @@ const bottomNav = (
   isMobile: boolean | undefined
 ) =>
   buildArray<NavItem>(
-    loggedIn && { name: 'About', href: '/about', icon: QuestionMarkCircleIcon },
+    loggedIn && { name: t('about'), href: '/about', icon: QuestionMarkCircleIcon },
     loggedIn &&
       !isMobile && {
         name: 'Referrals',
@@ -303,13 +309,13 @@ const bottomNav = (
       name: theme ?? 'auto',
       children:
         theme === 'light' ? (
-          'Light'
+          t('light')
         ) : theme === 'dark' ? (
-          'Dark'
+          t('dark')
         ) : (
           <>
-            <span className="hidden dark:inline">Dark</span>
-            <span className="inline dark:hidden">Light</span> (auto)
+            <span className="hidden dark:inline">{t('dark')}</span>
+            <span className="inline dark:hidden">{t('light')}</span> ({t('auto')})
           </>
         ),
       icon: ({ className, ...props }) => (
@@ -327,12 +333,12 @@ const bottomNav = (
       onClick: toggleTheme,
     },
     loggedIn && {
-      name: 'Sign out',
+      name: t('signOut'),
       icon: LogoutIcon,
       onClick: async () => {
         await withTracking(firebaseLogout, 'sign out')()
         await router.refresh()
       },
     },
-    !loggedIn && { name: 'Sign in', icon: LoginIcon, onClick: firebaseLogin }
+    !loggedIn && { name: t('signIn'), icon: LoginIcon, onClick: firebaseLogin }
   )

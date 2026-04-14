@@ -10,11 +10,13 @@ import { Title } from 'web/components/widgets/title'
 import { capitalize } from 'lodash'
 import { ReportProps } from 'common/report'
 import { report as reportContent } from 'web/lib/api/api'
+import { useTranslations } from 'next-intl'
 
 export function ReportButton(props: { report: ReportProps }) {
   const { report } = props
   const { contentOwnerId, contentType } = report
   const currentUser = useUser()
+  const t = useTranslations('market')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const label = contentType === 'contract' ? 'question' : contentType
   if (!currentUser || currentUser.id === contentOwnerId) return null
@@ -28,7 +30,7 @@ export function ReportButton(props: { report: ReportProps }) {
           setIsModalOpen(true)
         }}
       >
-        Report
+        {t('report')}
       </Button>
       <ReportModal
         isModalOpen={isModalOpen}
@@ -47,16 +49,16 @@ export const ReportModal = (props: {
   report: ReportProps
 }) => {
   const { label, report, setIsModalOpen, isModalOpen } = props
+  const t = useTranslations('market')
+  const tc = useTranslations('common')
 
   const [isReported, setIsReported] = useState(false)
 
   const onReport = async () => {
     await toast.promise(reportContent(report), {
-      loading: 'Reporting...',
-      success: `${capitalize(
-        label
-      )} reported! Admins will take a look within 24 hours.`,
-      error: `Error reporting ${label}`,
+      loading: t('reportingIn'),
+      success: `${capitalize(label)} ${t('reportedMessage')}`,
+      error: `${t('reportErrorMessage')} ${label}`,
     })
     setIsReported(true)
   }
@@ -64,11 +66,11 @@ export const ReportModal = (props: {
   return (
     <Modal open={isModalOpen} setOpen={setIsModalOpen}>
       <Col className={'bg-canvas-0 rounded-md p-4'}>
-        <Title>Report {label}</Title>
+        <Title>{t('reportQuestion')}</Title>
         <span className={'mb-4 text-sm'}>
           {isReported
-            ? `You've reported this ${label}. Our team will take a look within 24 hours.`
-            : `Report this ${label} for objectionable content that violates our `}
+            ? t('alreadyReported')
+            : t('reportTitle')}
           <a
             href="https://docs.predictarena.com/community-guidelines"
             target="_blank"
@@ -81,7 +83,7 @@ export const ReportModal = (props: {
         </span>
         <Row className={'items-center justify-between'}>
           <Button color={'gray-white'} onClick={() => setIsModalOpen(false)}>
-            {isReported ? 'Done' : 'Cancel'}
+            {isReported ? tc('done') : tc('cancel')}
           </Button>
           {!isReported && (
             <Button
@@ -90,7 +92,7 @@ export const ReportModal = (props: {
               className="my-auto"
               onClick={withTracking(onReport, 'block')}
             >
-              Report {label}
+              {t('report')} {label}
             </Button>
           )}
         </Row>

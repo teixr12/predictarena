@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
 import { useEvent } from 'client-common/hooks/use-event'
@@ -50,6 +51,7 @@ import { track } from 'web/lib/service/analytics'
 import { PrivateMessagesList } from '../components/messaging/private-messages-list'
 
 export default function NotificationsPage() {
+  const t = useTranslations('notifications')
   const privateUser = usePrivateUser()
   const user = useUser()
   useRedirectIfSignedOut()
@@ -71,8 +73,8 @@ export default function NotificationsPage() {
     <Page trackPageView={'notifications page'}>
       <div className="w-full">
         {shouldShowBanner && <NotificationsAppBanner />}
-        <Title className="hidden lg:block">Notifications</Title>
-        <SEO title="Notifications" description="PREDICTA Arena user notifications" />
+        <Title className="hidden lg:block">{t('title')}</Title>
+        <SEO title={t('title')} description={t('seoDescription')} />
         {privateUser && user && router.isReady ? (
           <NotificationsContent
             user={user}
@@ -86,10 +88,11 @@ export default function NotificationsPage() {
 }
 
 function NotificationsAppBanner() {
+  const t = useTranslations('notifications')
   return (
     <Row className="bg-primary-100 relative mb-2 justify-between rounded-md px-4 py-2 text-sm">
       <Row className={'text-ink-600 items-center gap-3 text-sm sm:text-base'}>
-        Get the app for the best experience
+        {t('getApp')}
         <AppBadgesOrGetAppButton />
       </Row>
       <button
@@ -111,6 +114,7 @@ function NotificationsContent(props: {
   user: User
   section?: string
 }) {
+  const t = useTranslations('notifications')
   const { privateUser, user, section } = props
   const {
     groupedNotifications,
@@ -223,9 +227,7 @@ function NotificationsContent(props: {
               content: (
                 <NotificationsList
                   groupedNotifications={groupedNewMarketNotifications}
-                  emptyTitle={
-                    "You don't have any new question notifications from followed users, yet. Try following some users to see more."
-                  }
+                  emptyTitle={t('noFollowedNotifs')}
                   markAllAsSeen={markAllAsSeen}
                 />
               ),
@@ -325,6 +327,7 @@ export function NotificationsList(props: {
   emptyTitle?: string
   markAllAsSeen?: () => void
 }) {
+  const t = useTranslations('notifications')
   const {
     privateUser,
     emptyTitle,
@@ -386,7 +389,7 @@ export function NotificationsList(props: {
                   })
                 }}
               >
-                Clear all
+                {t('clearAll')}
               </button>
               {pinnedExpanded ? (
                 <ChevronUpIcon className="h-5 w-5" />
@@ -410,7 +413,7 @@ export function NotificationsList(props: {
         groupedNotifications.length === 0 &&
         (!pinnedNotifications || pinnedNotifications.length === 0) && (
           <div className="text-ink-500 mt-4 text-center">
-            {emptyTitle ? emptyTitle : `You don't have any notifications yet.`}
+            {emptyTitle ? emptyTitle : t('noNotificationsYet')}
           </div>
         )}
       {paginatedGroupedNotifications &&

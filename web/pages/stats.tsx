@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { DailyChart } from 'web/components/charts/stats'
 import { Col } from 'web/components/layout/col'
 import { Row } from 'web/components/layout/row'
@@ -129,6 +130,7 @@ export default function Analytics(props: {
   shopStats?: ShopStats
   totalRedeemable: number
 }) {
+  const t = useTranslations('stats')
   const {
     stats,
     manaSupplyOverTime,
@@ -143,8 +145,8 @@ export default function Analytics(props: {
     return (
       <Page trackPageView={'site stats page'}>
         <SEO
-          title="Stats"
-          description="See site-wide usage statistics."
+          title={t('title')}
+          description={t('description')}
           url="/stats"
         />
         <div className="text-center py-16 text-gray-500">

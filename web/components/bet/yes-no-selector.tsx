@@ -6,6 +6,7 @@ import { TRADE_TERM } from 'common/envs/constants'
 import { capitalize } from 'lodash'
 import { Button } from '../buttons/button'
 import { Row } from '../layout/row'
+import { useTranslations } from 'next-intl'
 
 export function YesNoSelector(props: {
   selected?: 'YES' | 'NO'
@@ -29,6 +30,7 @@ export function YesNoSelector(props: {
     highlight,
     includeWordBet,
   } = props
+  const t = useTranslations('market')
 
   return (
     <Row className={clsx('space-x-3', className)}>
@@ -44,7 +46,7 @@ export function YesNoSelector(props: {
         disabled={disabled}
       >
         {includeWordBet ? capitalize(TRADE_TERM) : ''}{' '}
-        {yesLabel ? yesLabel : 'YES'}
+        {yesLabel ? yesLabel : t('yes')}
         <ArrowUpIcon className="ml-1 h-4 w-4" />
       </Button>
 
@@ -60,7 +62,7 @@ export function YesNoSelector(props: {
         disabled={disabled}
       >
         {includeWordBet ? capitalize(TRADE_TERM) : ''}{' '}
-        {noLabel ? noLabel : 'NO'}
+        {noLabel ? noLabel : t('no')}
         <ArrowDownIcon className="ml-1 h-4 w-4" />
       </Button>
     </Row>
@@ -73,6 +75,7 @@ export function YesNoCancelSelector(props: {
   className?: string
 }) {
   const { selected, onSelect, className } = props
+  const t = useTranslations('market')
   const btnClassName = clsx(
     '!py-2 flex-1 first:rounded-l-xl last:rounded-r-xl rounded-r-none rounded-l-none whitespace-nowrap',
     className
@@ -86,7 +89,7 @@ export function YesNoCancelSelector(props: {
         onClick={() => onSelect('YES')}
         className={btnClassName}
       >
-        YES
+        {t('yes')}
       </Button>
 
       <Button
@@ -94,7 +97,7 @@ export function YesNoCancelSelector(props: {
         onClick={() => onSelect('NO')}
         className={btnClassName}
       >
-        NO
+        {t('no')}
       </Button>
 
       <Button
@@ -102,7 +105,7 @@ export function YesNoCancelSelector(props: {
         onClick={() => onSelect('MKT')}
         className={btnClassName}
       >
-        PARTIAL %
+        {t('partialPerc')}
       </Button>
 
       <Button
@@ -110,7 +113,7 @@ export function YesNoCancelSelector(props: {
         onClick={() => onSelect('CANCEL')}
         className={btnClassName}
       >
-        N/A
+        {t('na')}
       </Button>
     </Row>
   )
@@ -121,6 +124,7 @@ export function ChooseCancelSelector(props: {
   onSelect: (selected: 'CHOOSE_ONE' | 'CHOOSE_MULTIPLE' | 'CANCEL') => void
 }) {
   const { selected, onSelect } = props
+  const t = useTranslations('market')
 
   const btnClassName =
     '!py-2 flex-1 sm:first:rounded-l-xl sm:last:rounded-r-xl sm:rounded-none whitespace-nowrap'
@@ -133,7 +137,7 @@ export function ChooseCancelSelector(props: {
         onClick={() => onSelect('CHOOSE_ONE')}
         className={btnClassName}
       >
-        Choose one
+        {t('chooseOne')}
       </Button>
       <Button
         color={selected === 'CHOOSE_MULTIPLE' ? 'blue' : 'gray'}
@@ -141,7 +145,7 @@ export function ChooseCancelSelector(props: {
         onClick={() => onSelect('CHOOSE_MULTIPLE')}
         className={btnClassName}
       >
-        Choose many
+        {t('chooseMany')}
       </Button>
       <Button
         color={selected === 'CANCEL' ? 'yellow' : 'gray'}
@@ -149,7 +153,7 @@ export function ChooseCancelSelector(props: {
         onClick={() => onSelect('CANCEL')}
         className={btnClassName}
       >
-        N/A
+        {t('na')}
       </Button>
     </div>
   )
@@ -161,6 +165,7 @@ export function NumberCancelSelector(props: {
   className?: string
 }) {
   const { selected, onSelect } = props
+  const t = useTranslations('market')
 
   const btnClassName = 'flex-1 font-medium whitespace-nowrap'
 
@@ -172,7 +177,7 @@ export function NumberCancelSelector(props: {
         onClick={() => onSelect('NUMBER')}
         className={clsx(btnClassName, 'rounded-l-xl rounded-r-none')}
       >
-        Choose value
+        {t('chooseValue')}
       </Button>
 
       <Button
@@ -181,7 +186,7 @@ export function NumberCancelSelector(props: {
         onClick={() => onSelect('CANCEL')}
         className={clsx(btnClassName, 'rounded-l-none rounded-r-xl')}
       >
-        N/A
+        {t('na')}
       </Button>
     </Row>
   )

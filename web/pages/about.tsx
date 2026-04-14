@@ -11,13 +11,15 @@ import { SEO } from 'web/components/SEO'
 import { Title } from 'web/components/widgets/title'
 import { LogoIcon } from 'web/components/icons/logo-icon'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export default function AboutPage() {
+  const t = useTranslations('about')
   return (
     <Page trackPageView={'about page'} className="!col-span-7">
       <SEO
-        title="About PREDICTA Arena"
-        description="PREDICTA Arena is a play-money prediction market training platform. Practice forecasting risk-free, build your track record, and bridge to real-money platforms like Kalshi and Polymarket."
+        title={t('seoTitle')}
+        description={t('seoDescription')}
         url="/about"
       />
 
@@ -25,84 +27,78 @@ export default function AboutPage() {
         {/* Header */}
         <Row className="items-center gap-3">
           <LogoIcon className="text-primary-400 h-8 w-8 sm:hidden" />
-          <Title className="mb-0">About PREDICTA Arena</Title>
+          <Title className="mb-0">{t('pageTitle')}</Title>
         </Row>
 
         {/* Mission */}
         <Col className="gap-3">
           <p className="text-ink-700 text-lg leading-relaxed">
-            PREDICTA Arena is a <strong>play-money prediction market
-            training platform</strong>. We give you 500 free credits to trade
-            on real-world events — politics, economics, technology, sports —
-            with zero financial risk.
+            {t('intro1')}
           </p>
           <p className="text-ink-600 text-lg leading-relaxed">
-            Once you've built a track record, your{' '}
+            {t('intro2part1')}{' '}
             <Link href="/foresight-portfolio" className="text-primary-400 hover:underline">
-              Foresight Portfolio
+              {t('intro2foresightPortfolio')}
             </Link>{' '}
-            shows your Kalshi Readiness Rating, accuracy, and top predictions —
-            proof of skill you can take to real-money platforms like{' '}
-            <strong>Kalshi</strong> and <strong>Polymarket</strong>.
+            {t('intro2part2')}{' '}
+            <strong>{t('intro2Kalshi')}</strong> {t('intro2and')} <strong>{t('intro2Polymarket')}</strong>.
           </p>
         </Col>
 
         {/* Mission items */}
         <div>
-          <h2 className="text-ink-600 mb-4 text-xl font-semibold">Our mission</h2>
+          <h2 className="text-ink-600 mb-4 text-xl font-semibold">{t('missionTitle')}</h2>
           <Col className="gap-3">
             <MissionItem
               icon={<ChartBarIcon className="h-5 w-5" />}
-              text="Make forecasting skills accessible — practice the same mechanics used by professional traders, risk-free."
+              text={t('mission1')}
             />
             <MissionItem
               icon={<AcademicCapIcon className="h-5 w-5" />}
-              text="Bridge the gap between curiosity and real-money prediction markets with structured training and credentialing."
+              text={t('mission2')}
             />
             <MissionItem
               icon={<ShieldCheckIcon className="h-5 w-5" />}
-              text="Build calibrated forecasters who understand probability, not just gut-feeling bettors."
+              text={t('mission3')}
             />
             <MissionItem
               icon={<LightBulbIcon className="h-5 w-5" />}
-              text="Help people make better decisions by improving their model of how the future unfolds."
+              text={t('mission4')}
             />
           </Col>
         </div>
 
         {/* Built on open source */}
         <div className="bg-canvas-50 border-ink-200 rounded-xl border p-5">
-          <h2 className="text-ink-700 mb-2 text-lg font-semibold">Built on open source</h2>
+          <h2 className="text-ink-700 mb-2 text-lg font-semibold">{t('openSourceTitle')}</h2>
           <p className="text-ink-500 text-sm leading-relaxed">
-            PREDICTA Arena is built on top of{' '}
+            {t('openSourceText1')}{' '}
             <a
               href="https://github.com/teixr12/predictarena"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-400 hover:underline"
             >
-              Manifold Markets (open source)
+              {t('openSourceLink')}
             </a>
-            , an open-source prediction market platform. We are grateful to the
-            Manifold team for building the infrastructure that makes PREDICTA
-            Arena possible.
+            {t('openSourceText2')}
           </p>
         </div>
 
         {/* Contact */}
         <div>
           <h2 className="text-ink-600 mb-3 text-xl font-semibold">
-            Questions or feedback?
+            {t('contactTitle')}
           </h2>
           <p className="text-ink-600 text-lg">
-            Email us at{' '}
+            {t('contactText1')}{' '}
             <a
               href="mailto:support@predictarena.com"
               className="text-primary-400 hover:underline"
             >
               support@predictarena.com
             </a>
-            . We read every message.
+            {t('contactText2')}
           </p>
         </div>
       </Col>

@@ -5,9 +5,11 @@ import { Button } from './button'
 import { PlayMoneyDisclaimer } from '../play-money-disclaimer'
 import { Col } from '../layout/col'
 import { Row } from 'web/components/layout/row'
+import { useTranslations } from 'next-intl'
 
 export const SidebarSignUpButton = (props: { className?: string }) => {
   const { className } = props
+  const t = useTranslations('auth')
 
   return (
     <Col className={clsx('mt-4', className)}>
@@ -17,7 +19,7 @@ export const SidebarSignUpButton = (props: { className?: string }) => {
         onClick={firebaseLogin}
         className="w-full"
       >
-        Sign up
+        {t('signUp')}
       </Button>
       <PlayMoneyDisclaimer />
     </Col>
@@ -26,6 +28,7 @@ export const SidebarSignUpButton = (props: { className?: string }) => {
 
 export const SignUpButton = (props: { className?: string }) => {
   const { className } = props
+  const t = useTranslations('auth')
 
   return (
     <Button
@@ -34,12 +37,14 @@ export const SignUpButton = (props: { className?: string }) => {
       onClick={firebaseLogin}
       className={className}
     >
-      Sign up
+      {t('signUp')}
     </Button>
   )
 }
 
 export const GoogleSignInButton = (props: { onClick: () => any }) => {
+  const t = useTranslations('auth')
+
   return (
     <Button
       onClick={props.onClick}
@@ -55,7 +60,7 @@ export const GoogleSignInButton = (props: { onClick: () => any }) => {
           height={24}
           className="rounded-full bg-white"
         />
-        <span>Sign in with Google</span>
+        <span>{t('signInWithGoogle')}</span>
       </Row>
     </Button>
   )

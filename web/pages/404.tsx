@@ -3,6 +3,7 @@ import { Col } from 'web/components/layout/col'
 import { Page } from 'web/components/layout/page'
 import { ExternalLink } from 'web/components/widgets/external-link'
 import { Title } from 'web/components/widgets/title'
+import { useTranslations } from 'next-intl'
 
 export default function Custom404(props: { customText?: string }) {
   if (IS_PRIVATE_PREDICTA) {
@@ -18,18 +19,19 @@ export default function Custom404(props: { customText?: string }) {
 }
 
 export function Custom404Content(props: { customText?: string }) {
+  const t = useTranslations('notFound')
   const { customText } = props
   return (
     <div className="flex h-[50vh] flex-col items-center justify-center">
       <Col className="max-w-sm">
-        <Title>404: Oops!</Title>
+        <Title>{t('title')}</Title>
         {customText && <p>{customText}</p>}
-        {!customText && <p>Less than 1% chance anything exists at this url.</p>}
+        {!customText && <p>{t('subtitle')}</p>}
         <p>
-          If you didn't expect this, let us know{' '}
+          {t('discord')}{' '}
           <ExternalLink
             href="https://discord.com/widget?id=915138780216823849&theme=dark"
-            title="on Discord!"
+            title={t('discordLink')}
           />
         </p>
       </Col>
