@@ -18,7 +18,7 @@ function ValuePropCard(props: {
     <Col className="border-primary-500/20 bg-canvas-50/50 hover:border-primary-500/40 rounded-2xl border p-6 backdrop-blur-sm transition-colors">
       <div className="text-primary-400 mb-4">{icon}</div>
       <h3 className="mb-2 text-lg font-semibold text-white">{title}</h3>
-      <p className="text-ink-400 text-sm leading-relaxed">{description}</p>
+      <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
     </Col>
   )
 }
@@ -27,7 +27,7 @@ function StatBadge(props: { value: string; label: string }) {
   return (
     <Col className="items-center gap-1">
       <span className="text-primary-400 text-2xl font-bold">{props.value}</span>
-      <span className="text-ink-500 text-xs uppercase tracking-wider">
+      <span className="text-gray-500 text-xs uppercase tracking-wider">
         {props.label}
       </span>
     </Col>
@@ -47,19 +47,19 @@ export function LandingPage() {
         <Row className="items-center gap-4">
           <Link
             href="/about"
-            className="text-ink-400 hover:text-white text-sm transition-colors"
+            className="text-gray-400 hover:text-white text-sm transition-colors"
           >
             {t('navAbout')}
           </Link>
           <Link
             href="/kalshi-prep"
-            className="text-ink-400 hover:text-white text-sm transition-colors"
+            className="text-gray-400 hover:text-white text-sm transition-colors"
           >
             {t('navKalshiPrep')}
           </Link>
           <Link
             href="/login"
-            className="text-ink-400 hover:text-white text-sm transition-colors"
+            className="text-gray-400 hover:text-white text-sm transition-colors"
           >
             {t('navSignIn')}
           </Link>
@@ -82,7 +82,7 @@ export function LandingPage() {
         </h1>
 
         {/* Subheadline */}
-        <p className="text-ink-400 mb-10 max-w-2xl text-xl leading-relaxed">
+        <p className="text-gray-400 mb-10 max-w-2xl text-xl leading-relaxed">
           {t('subheadline')}
         </p>
 
@@ -162,7 +162,7 @@ export function LandingPage() {
                 <h3 className="text-lg font-semibold text-white">
                   {item.title}
                 </h3>
-                <p className="text-ink-400 text-sm leading-relaxed">
+                <p className="text-gray-400 text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </Col>
@@ -176,7 +176,7 @@ export function LandingPage() {
         <h2 className="mb-4 text-3xl font-bold text-white">
           {t('ctaTitle')}
         </h2>
-        <p className="text-ink-400 mb-8 max-w-md">
+        <p className="text-gray-400 mb-8 max-w-md">
           {t('ctaSubtitle')}
         </p>
         <SignUpButton className="px-10 py-3 text-base" />
@@ -187,9 +187,9 @@ export function LandingPage() {
         <Row className="mx-auto max-w-6xl items-center justify-between">
           <Row className="items-center gap-2">
             <LogoIcon className="text-primary-500 h-5 w-5" />
-            <span className="text-ink-500 text-sm">{t('footerCopyright')}</span>
+            <span className="text-gray-500 text-sm">{t('footerCopyright')}</span>
           </Row>
-          <Row className="text-ink-500 gap-6 text-sm">
+          <Row className="text-gray-500 gap-6 text-sm">
             <Link href="/about" className="hover:text-white transition-colors">
               {t('footerAbout')}
             </Link>
