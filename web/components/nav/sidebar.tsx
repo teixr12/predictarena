@@ -38,6 +38,7 @@ import { AddFundsButton } from '../profile/add-funds-button'
 import { ReportsIcon } from '../reports-icon'
 import { LiveTVIcon } from '../tv-icon'
 import { useTVIsLive } from '../tv/tv-schedule'
+import { LanguageToggle } from './language-toggle'
 import { PredictaLogo } from './predicta-logo'
 import { ProfileSummary } from './profile-summary'
 import { NavItem, SidebarItem } from './sidebar-item'
@@ -153,6 +154,9 @@ export default function Sidebar(props: {
         {bottomNavOptions.map((item) => (
           <SidebarItem key={item.name} item={item} currentPage={currentPage} />
         ))}
+        <div className="px-3 pt-1">
+          <LanguageToggle />
+        </div>
       </div>
     </nav>
   )

@@ -1,5 +1,6 @@
 import { ENV_CONFIG, TRADE_TERM } from 'common/envs/constants'
 import { capitalize } from 'lodash'
+import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
 import type { AppProps } from 'next/app'
 import { Figtree } from 'next/font/google'
 import Head from 'next/head'
@@ -10,6 +11,8 @@ import { AuthProvider, AuthUser } from 'web/components/auth-context'
 import { ErrorBoundary } from 'web/components/error-boundary'
 import { NativeMessageProvider } from 'web/components/native-message-provider'
 import { Sweepstakes } from 'web/components/sweepstakes-provider'
+import { useLocale } from 'web/hooks/use-locale'
+import { LocaleContext } from 'web/lib/locale-context'
 import { OptimisticEntitlementsProvider } from 'web/hooks/use-optimistic-entitlements'
 import { useHasLoaded } from 'web/hooks/use-has-loaded'
 import { useIOSBodyFix } from 'web/hooks/use-ios-body-fix'
@@ -95,6 +98,12 @@ const useDevtoolsDetector = () => {
   return isDevtoolsOpen
 }
 
+// Statically import all message files — no dynamic FS access, no user input in paths
+const messagesByLocale = {
+  en: () => import('web/messages/en.json'),
+  'pt-BR': () => import('web/messages/pt-BR.json'),
+} as const
+
 // specially treated props that may be present in the server/static props
 type PredictaPageProps = { auth?: AuthUser }
 
@@ -104,6 +113,12 @@ function MyApp({ Component, pageProps }: AppProps<PredictaPageProps>) {
   useRefreshAllClients()
   useIOSBodyFix()
   useMobileScrollRestoration()
+
+  const { locale, setLocale } = useLocale()
+  const [messages, setMessages] = useState<AbstractIntlMessages>({})
+  useEffect(() => {
+    messagesByLocale[locale]().then((mod) => setMessages(mod.default ?? mod))
+  }, [locale])
 
   // ian: Required by GambleId
   const devToolsOpen = false //useDevtoolsDetector()
@@ -190,25 +205,35 @@ function MyApp({ Component, pageProps }: AppProps<PredictaPageProps>) {
         One idea: just disable them for !user.sweepstakesVerified users.
         */}
       <ErrorBoundary>
-        {devToolsOpen ? (
-          <div
-            className={'flex h-screen flex-col items-center justify-center p-4'}
+        <LocaleContext.Provider value={{ locale, setLocale }}>
+          <NextIntlClientProvider
+            locale={locale}
+            messages={messages}
+            onError={() => {}} // suppress missing-key warnings during hydration
           >
-            Developer tools are disabled. Please close them and refresh.
-          </div>
-        ) : (
-          <ThemeProvider>
-            <AuthProvider serverUser={pageProps.auth}>
-              <OptimisticEntitlementsProvider>
-                <Sweepstakes>
-                  <NativeMessageProvider>
-                    <Component {...pageProps} />
-                  </NativeMessageProvider>
-                </Sweepstakes>
-              </OptimisticEntitlementsProvider>
-            </AuthProvider>
-          </ThemeProvider>
-        )}
+            {devToolsOpen ? (
+              <div
+                className={
+                  'flex h-screen flex-col items-center justify-center p-4'
+                }
+              >
+                Developer tools are disabled. Please close them and refresh.
+              </div>
+            ) : (
+              <ThemeProvider>
+                <AuthProvider serverUser={pageProps.auth}>
+                  <OptimisticEntitlementsProvider>
+                    <Sweepstakes>
+                      <NativeMessageProvider>
+                        <Component {...pageProps} />
+                      </NativeMessageProvider>
+                    </Sweepstakes>
+                  </OptimisticEntitlementsProvider>
+                </AuthProvider>
+              </ThemeProvider>
+            )}
+          </NextIntlClientProvider>
+        </LocaleContext.Provider>
       </ErrorBoundary>
 
       <GoogleOneTapSetup />
