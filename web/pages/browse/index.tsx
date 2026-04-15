@@ -14,6 +14,7 @@ import { Search } from 'web/components/search'
 import { useIsMobile } from 'web/hooks/use-is-mobile'
 import { usePrivateUser, useUser } from 'web/hooks/use-user'
 import { PredictaLogo } from 'web/components/nav/predicta-logo'
+import { TrendingMarketsPanel } from 'web/components/home/trending-markets-panel'
 import { DEFAULT_FOR_YOU, Welcome } from 'web/components/onboarding/welcome'
 import { useSaveReferral } from 'web/hooks/use-save-referral'
 export default function BrowsePage() {
@@ -21,7 +22,11 @@ export default function BrowsePage() {
   useSaveReferral(user)
 
   return (
-    <Page trackPageView={'questions page'} className="lg:px-4">
+    <Page
+      trackPageView={'questions page'}
+      className="lg:px-4"
+      rightPanel={<TrendingMarketsPanel />}
+    >
       {/* only show logo on mobile, since there's no sidebar */}
       {!user && <PredictaLogo className="m-2 flex lg:hidden" />}
       <div className="lg:mb-4"></div>

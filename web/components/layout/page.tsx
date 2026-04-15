@@ -24,6 +24,7 @@ export function Page(props: {
   hideBottomBar?: boolean
   hideFooter?: boolean
   banner?: ReactNode
+  rightPanel?: ReactNode
 }) {
   const {
     trackPageView,
@@ -33,6 +34,7 @@ export function Page(props: {
     hideSidebar,
     hideBottomBar,
     banner,
+    rightPanel,
   } = props
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -69,7 +71,7 @@ export function Page(props: {
       <Col
         className={clsx(
           !hideBottomBar && 'pb-[58px] lg:pb-0', // bottom bar padding
-          'text-ink-1000 blueprint-grid mx-auto min-h-screen w-full max-w-[1440px] lg:grid lg:grid-cols-12',
+          'text-ink-1000 mx-auto min-h-screen w-full max-w-[1440px] lg:grid lg:grid-cols-12',
           isMobile && isIOS && 'page-scroll-container' // Add scrollable container only on iOS
         )}
       >
@@ -90,6 +92,13 @@ export function Page(props: {
           {children}
           {!props.hideFooter && <Footer />}
         </main>
+        {rightPanel && (
+          <aside className="hidden lg:col-span-3 lg:flex lg:flex-col">
+            <div className="sticky top-0 max-h-screen overflow-y-auto px-4 pt-4">
+              {rightPanel}
+            </div>
+          </aside>
+        )}
       </Col>
       {!hideBottomBar && <BottomNavBar />}
     </>

@@ -4,6 +4,8 @@ import Router from 'next/router'
 
 import { SEO } from 'web/components/SEO'
 import { DailyStats } from 'web/components/home/daily-stats'
+import { FeaturedMarketHero } from 'web/components/home/featured-market-hero'
+import { TrendingMarketsPanel } from 'web/components/home/trending-markets-panel'
 import { Page } from 'web/components/layout/page'
 import { DowntimeBanner } from 'web/components/nav/banner'
 import { Welcome } from 'web/components/onboarding/welcome'
@@ -18,11 +20,16 @@ export default function Home() {
   useRedirectIfSignedOut()
 
   return (
-    <Page trackPageView={'home'} className="lg:px-4">
+    <Page
+      trackPageView={'home'}
+      className="lg:px-4"
+      rightPanel={<TrendingMarketsPanel />}
+    >
       <Welcome />
       <SEO title={`Home`} description={`Browse all questions`} url={`/home`} />
       <DowntimeBanner />
       <DailyStats className="z-50 mb-1 w-full px-2 py-2" user={user} />
+      <FeaturedMarketHero />
       <BrowsePageContent />
       {user && (
         <button
