@@ -1,35 +1,34 @@
-import { ContractParams, MaybeAuthedContractParams } from 'common/contract'
+import { Contract } from 'common/contract'
 import { getContractOGProps } from 'common/contract-seo'
 import { removeUndefinedProps } from 'common/util/object'
 import { buildOgUrl } from 'common/util/og'
+import { unauthedApi } from 'common/util/api'
 import { OgMarket } from 'web/components/og/og-market'
-import { getStaticProps as getStaticWebProps } from 'web/pages/[username]/[contractSlug]'
+import type { GetServerSideProps } from 'next'
 
-// All of this is very copied from main page
-
-export async function getStaticProps(ctx: {
-  params: { username: string; contractSlug: string }
-}) {
-  return getStaticWebProps(ctx)
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { contractSlug } = ctx.params as { contractSlug: string }
+  try {
+    const contract = await unauthedApi('slug/:slug', { slug: contractSlug })
+    if (!contract) return { notFound: true }
+    return { props: { contract: contract as unknown as Contract } }
+  } catch {
+    return { notFound: true }
+  }
 }
 
-export default function OGTestPage(props: MaybeAuthedContractParams) {
-  if (props.state !== 'authed') {
+export default function OGTestPage(props: { contract: Contract }) {
+  const { contract } = props
+  if (!contract) {
     return <>bruh</>
   }
-
-  return <OriginalGangstaTestPage {...props.params} />
+  return <OriginalGangstaTestPage contract={contract} />
 }
 
-export async function getStaticPaths() {
-  return { paths: [], fallback: 'blocking' }
-}
-
-function OriginalGangstaTestPage(props: ContractParams) {
-  const { contract, pointsString } = props
+function OriginalGangstaTestPage(props: { contract: Contract }) {
+  const { contract } = props
   const ogCardProps = removeUndefinedProps({
     ...getContractOGProps(contract),
-    points: pointsString,
   })
 
   return (

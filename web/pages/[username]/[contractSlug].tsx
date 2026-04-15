@@ -1,61 +1,66 @@
-import { ContractParams, MaybeAuthedContractParams } from 'common/contract'
-import { getContractParams } from 'common/contract-params'
+import { Contract } from 'common/contract'
 import { base64toPoints } from 'common/edge/og'
-import { getContractFromSlug } from 'common/supabase/contracts'
-import { removeUndefinedProps } from 'common/util/object'
+import { unauthedApi } from 'common/util/api'
 import { ContractPageContent } from 'web/components/contract/contract-page'
 import { ContractSEO } from 'web/components/contract/contract-seo'
+import { Col } from 'web/components/layout/col'
 import { Page } from 'web/components/layout/page'
 import { Title } from 'web/components/widgets/title'
+import { useContractPageParams } from 'web/hooks/use-contract-page-params'
 import { useIsIframe } from 'web/hooks/use-is-iframe'
-import { initSupabaseAdmin } from 'web/lib/supabase/admin-db'
 import Custom404 from '../404'
 import ContractEmbedPage from '../embed/[username]/[contractSlug]'
+import type { GetServerSideProps } from 'next'
 
-export async function getStaticProps(ctx: {
-  params: { username: string; contractSlug: string }
-}) {
-  const { contractSlug } = ctx.params
+// Fetch contract via public API — no Supabase admin key required
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { contractSlug } = ctx.params as {
+    username: string
+    contractSlug: string
+  }
 
   try {
-    const adminDb = await initSupabaseAdmin()
-
-    const contract = await getContractFromSlug(adminDb, contractSlug)
-
+    const contract = await unauthedApi('slug/:slug', { slug: contractSlug })
     if (!contract) {
       return { notFound: true }
     }
-
-    if (contract.deleted) {
-      return {
-        props: {
-          state: 'deleted',
-          slug: contract.slug,
-          visibility: contract.visibility,
-        },
-      }
-    }
-
-    const props = await getContractParams(contract, adminDb)
-
-    return {
-      props: {
-        state: 'authed',
-        params: removeUndefinedProps(props),
-      },
-    }
+    // The API returns FullMarket which is a superset of Contract
+    return { props: { contract: contract as unknown as Contract } }
   } catch (e) {
-    console.error('getStaticProps failed:', contractSlug, e)
-    return { notFound: true, revalidate: 60 }
+    console.error('getServerSideProps failed:', contractSlug, e)
+    return { notFound: true }
   }
 }
 
-export async function getStaticPaths() {
-  return { paths: [], fallback: 'blocking' }
+function ContractPageSkeleton({ contract }: { contract: Contract }) {
+  return (
+    <Col className="gap-4 px-2 pt-4">
+      {/* Title renders immediately from SSR contract */}
+      <h1 className="text-ink-1000 text-xl font-bold sm:text-2xl">
+        {contract.question}
+      </h1>
+      {/* Chart placeholder */}
+      <div className="bg-canvas-50 h-64 w-full animate-pulse rounded-lg" />
+      {/* Bet panel placeholder */}
+      <div className="flex gap-3">
+        <div className="bg-canvas-50 h-12 w-36 animate-pulse rounded-lg" />
+        <div className="bg-canvas-50 h-12 w-36 animate-pulse rounded-lg" />
+      </div>
+      {/* Tabs placeholder */}
+      <div className="bg-canvas-50 mt-4 h-8 w-64 animate-pulse rounded" />
+      <div className="bg-canvas-50 h-32 w-full animate-pulse rounded-lg" />
+    </Col>
+  )
 }
 
-export default function ContractPage(props: MaybeAuthedContractParams) {
-  if (props.state === 'deleted') {
+export default function ContractPage(props: { contract: Contract }) {
+  const { contract } = props
+
+  if (!contract) {
+    return <Custom404 customText="Unable to fetch question" />
+  }
+
+  if (contract.deleted) {
     return (
       <Page trackPageView={false}>
         <div className="flex h-[50vh] flex-col items-center justify-center">
@@ -65,26 +70,31 @@ export default function ContractPage(props: MaybeAuthedContractParams) {
     )
   }
 
-  return <NonPrivateContractPage contractParams={props.params} />
+  return <HydratedContractPage contract={contract} />
 }
 
-function NonPrivateContractPage(props: { contractParams: ContractParams }) {
-  const { contract, pointsString } = props.contractParams
-
-  const points = pointsString ? base64toPoints(pointsString) : []
-
+function HydratedContractPage({ contract }: { contract: Contract }) {
   const inIframe = useIsIframe()
-  if (!contract) {
-    return <Custom404 customText="Unable to fetch question" />
-  }
+  const contractParams = useContractPageParams(contract)
+
   if (inIframe) {
+    if (!contractParams) {
+      return <ContractPageSkeleton contract={contract} />
+    }
+    const points = contractParams.pointsString
+      ? base64toPoints(contractParams.pointsString)
+      : []
     return <ContractEmbedPage contract={contract} points={points} />
   }
 
   return (
     <Page trackPageView={false} className="xl:col-span-10">
-      <ContractSEO contract={contract} points={pointsString} />
-      <ContractPageContent key={contract.id} {...props.contractParams} />
+      <ContractSEO contract={contract} points={undefined} />
+      {contractParams ? (
+        <ContractPageContent key={contract.id} {...contractParams} />
+      ) : (
+        <ContractPageSkeleton contract={contract} />
+      )}
     </Page>
   )
 }

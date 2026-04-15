@@ -15,9 +15,9 @@ import {
 } from 'common/contract'
 import { getMultiBetPoints, getSingleBetPoints } from 'common/contract-params'
 import { DOMAIN, TRADE_TERM } from 'common/envs/constants'
-import { getContractFromSlug } from 'common/supabase/contracts'
 import { formatMoney } from 'common/util/format'
 import { pointsToBase64 } from 'common/util/og'
+import { unauthedApi } from 'common/util/api'
 import { getShareUrl } from 'common/util/share'
 import { mapValues } from 'lodash'
 import Image from 'next/image'
@@ -53,7 +53,6 @@ import { QRCode } from 'web/components/widgets/qr-code'
 import { useLiveContract } from 'web/hooks/use-contract'
 import { useUser } from 'web/hooks/use-user'
 import { track } from 'web/lib/service/analytics'
-import { db } from 'web/lib/supabase/db'
 import Custom404 from '../../404'
 type Points = HistoryPoint<any>[]
 
@@ -71,21 +70,20 @@ async function getHistoryData(contract: Contract) {
   }
 }
 
-export async function getStaticProps(props: {
+export async function getServerSideProps(ctx: {
   params: { username: string; contractSlug: string }
 }) {
-  const { contractSlug } = props.params
+  const { contractSlug } = ctx.params
 
-  let contract
+  let contract: Contract
   try {
-    // TODO: use admin db
-    contract = await getContractFromSlug(db, contractSlug)
+    contract = await unauthedApi('slug/:slug', { slug: contractSlug }) as unknown as Contract
   } catch (error) {
-    console.error('DB error fetching contract:', contractSlug, error)
-    return { notFound: true, revalidate: 60 }
+    console.error('API error fetching contract:', contractSlug, error)
+    return { notFound: true }
   }
 
-  if (contract == null) {
+  if (!contract) {
     return { notFound: true }
   }
 
@@ -111,17 +109,14 @@ export async function getStaticProps(props: {
       )
     }
   } catch (error) {
-    console.error('DB error fetching contract data:', contractSlug, error)
-    return { notFound: true, revalidate: 60 }
+    console.error('API error fetching contract data:', contractSlug, error)
+    // Return contract without chart data rather than 404
+    return { props: { contract, points: null, multiPoints: null } }
   }
 
   return {
     props: { contract, points, multiPoints },
   }
-}
-
-export async function getStaticPaths() {
-  return { paths: [], fallback: 'blocking' }
 }
 
 export default function ContractEmbedPage(props: {
