@@ -42,7 +42,27 @@ export async function getServerSideProps(ctx: {
       }
     }
 
-    const props = await getContractParams(contract, serverDb)
+    let props: Omit<ContractParams, 'cash'>
+    try {
+      props = await getContractParams(contract, serverDb)
+    } catch (e) {
+      console.error('getContractParams failed, using fallback:', contractSlug, e)
+      // Minimal fallback so the page renders with contract data even when
+      // enrichment queries (related markets, comments, etc.) fail.
+      props = {
+        contract,
+        comments: [],
+        pinnedComments: [],
+        totalComments: 0,
+        totalBets: 0,
+        totalPositions: 0,
+        topContractMetrics: [],
+        relatedContracts: [],
+        chartAnnotations: [],
+        topics: [],
+        dashboards: [],
+      }
+    }
 
     return {
       props: {
