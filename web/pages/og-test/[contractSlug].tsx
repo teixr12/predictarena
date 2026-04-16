@@ -1,34 +1,30 @@
-import { Contract } from 'common/contract'
+import { ContractParams, MaybeAuthedContractParams } from 'common/contract'
 import { getContractOGProps } from 'common/contract-seo'
 import { removeUndefinedProps } from 'common/util/object'
 import { buildOgUrl } from 'common/util/og'
-import { unauthedApi } from 'common/util/api'
 import { OgMarket } from 'web/components/og/og-market'
-import type { GetServerSideProps } from 'next'
+import { getServerSideProps as getMainServerSideProps } from 'web/pages/[username]/[contractSlug]'
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { contractSlug } = ctx.params as { contractSlug: string }
-  try {
-    const contract = await unauthedApi('slug/:slug', { slug: contractSlug })
-    if (!contract) return { notFound: true }
-    return { props: { contract: contract as unknown as Contract } }
-  } catch {
-    return { notFound: true }
-  }
+// Reuse the same data fetching as the main contract page
+export async function getServerSideProps(ctx: {
+  params: { username: string; contractSlug: string }
+}) {
+  return getMainServerSideProps(ctx)
 }
 
-export default function OGTestPage(props: { contract: Contract }) {
-  const { contract } = props
-  if (!contract) {
+export default function OGTestPage(props: MaybeAuthedContractParams) {
+  if (props.state !== 'authed') {
     return <>bruh</>
   }
-  return <OriginalGangstaTestPage contract={contract} />
+
+  return <OriginalGangstaTestPage {...props.params} />
 }
 
-function OriginalGangstaTestPage(props: { contract: Contract }) {
-  const { contract } = props
+function OriginalGangstaTestPage(props: ContractParams) {
+  const { contract, pointsString } = props
   const ogCardProps = removeUndefinedProps({
     ...getContractOGProps(contract),
+    points: pointsString,
   })
 
   return (
