@@ -1,25 +1,32 @@
 import { ContractParams, MaybeAuthedContractParams } from 'common/contract'
 import { getContractParams } from 'common/contract-params'
 import { base64toPoints } from 'common/edge/og'
+import { ENV_CONFIG } from 'common/envs/constants'
 import { getContractFromSlug } from 'common/supabase/contracts'
+import { createClient } from 'common/supabase/utils'
 import { removeUndefinedProps } from 'common/util/object'
 import { ContractPageContent } from 'web/components/contract/contract-page'
 import { ContractSEO } from 'web/components/contract/contract-seo'
 import { Page } from 'web/components/layout/page'
 import { Title } from 'web/components/widgets/title'
 import { useIsIframe } from 'web/hooks/use-is-iframe'
-import { db } from 'web/lib/supabase/db'
 import Custom404 from '../404'
 import ContractEmbedPage from '../embed/[username]/[contractSlug]'
 
-// Use anon Supabase client instead of admin — no SUPABASE_KEY env var needed
+// Create a fresh Supabase client for server-side use with the anon key
+// (no admin key needed — the anon key is hardcoded in ENV_CONFIG)
+function getServerDb() {
+  return createClient(ENV_CONFIG.supabaseInstanceId, ENV_CONFIG.supabaseAnonKey)
+}
+
 export async function getServerSideProps(ctx: {
   params: { username: string; contractSlug: string }
 }) {
   const { contractSlug } = ctx.params
 
   try {
-    const contract = await getContractFromSlug(db, contractSlug)
+    const serverDb = getServerDb()
+    const contract = await getContractFromSlug(serverDb, contractSlug)
 
     if (!contract) {
       return { notFound: true }
@@ -35,7 +42,7 @@ export async function getServerSideProps(ctx: {
       }
     }
 
-    const props = await getContractParams(contract, db)
+    const props = await getContractParams(contract, serverDb)
 
     return {
       props: {

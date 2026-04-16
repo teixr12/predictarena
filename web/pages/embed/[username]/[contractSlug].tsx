@@ -14,8 +14,9 @@ import {
   isBinaryMulti,
 } from 'common/contract'
 import { getMultiBetPoints, getSingleBetPoints } from 'common/contract-params'
-import { DOMAIN, TRADE_TERM } from 'common/envs/constants'
+import { DOMAIN, ENV_CONFIG, TRADE_TERM } from 'common/envs/constants'
 import { getContractFromSlug } from 'common/supabase/contracts'
+import { createClient } from 'common/supabase/utils'
 import { formatMoney } from 'common/util/format'
 import { pointsToBase64 } from 'common/util/og'
 import { getShareUrl } from 'common/util/share'
@@ -53,7 +54,6 @@ import { QRCode } from 'web/components/widgets/qr-code'
 import { useLiveContract } from 'web/hooks/use-contract'
 import { useUser } from 'web/hooks/use-user'
 import { track } from 'web/lib/service/analytics'
-import { db } from 'web/lib/supabase/db'
 import Custom404 from '../../404'
 type Points = HistoryPoint<any>[]
 
@@ -78,7 +78,8 @@ export async function getServerSideProps(ctx: {
 
   let contract
   try {
-    contract = await getContractFromSlug(db, contractSlug)
+    const serverDb = createClient(ENV_CONFIG.supabaseInstanceId, ENV_CONFIG.supabaseAnonKey)
+    contract = await getContractFromSlug(serverDb, contractSlug)
   } catch (error) {
     console.error('DB error fetching contract:', contractSlug, error)
     return { notFound: true }
